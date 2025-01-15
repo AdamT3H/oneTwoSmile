@@ -5,17 +5,30 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --onlineBeckGround: #474747;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
+  font-family: "IBM Plex Sans", serif;
+
+  margin: 0;
+  padding: 0;
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
+
+body {
+  max-width : 1824px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
