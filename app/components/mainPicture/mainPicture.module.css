@@ -13,20 +13,21 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
   
 .smilingWomanMainPage {
     height: 100%; 
-    width: auto;
+
+    width: 100%; 
 }
 
 .containerCenter {
     display: flex;
     justify-content: center;
     flex-grow: 1;
-    flex-direction: column;  /* Встановлюємо вертикальне вирівнювання */
+    flex-direction: column;
     font-weight: 200;
     font-size: 40px;
     align-items: start !important;
