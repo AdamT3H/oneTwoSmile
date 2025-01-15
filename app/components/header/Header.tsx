@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from './Header.module.css';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 export default function Header() {
