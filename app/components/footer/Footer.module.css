@@ -25,6 +25,11 @@
 .container{
     display: flex;
     margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    padding-bottom: 50px;
 }
 
 .links{
@@ -37,6 +42,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: absolute;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .instagram{
@@ -80,6 +89,8 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+    text-align: right;
+    margin-right: 50px;
 }
 
 .mapText{
@@ -111,29 +122,9 @@
     }
 }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    position: relative; /* Для абсолютного позиціювання */
-    padding-bottom: 50px; /* Замість margin-bottom */
-}
-
 .workingDays {
     text-align: left; /* Вирівнювання тексту ліворуч */
     margin-left: 50px;
-}
-
-.mein {
-    position: absolute; /* Для фіксації в центрі контейнера */
-    left: 50%; /* Розташування рівно по центру */
-    transform: translateX(-50%); /* Центрування по горизонталі */
-    text-align: center; /* Текст у центрі */
-}
-
-.map {
-    text-align: right; /* Вирівнювання тексту праворуч */
-    margin-right: 50px;
 }
 
 .container img{
