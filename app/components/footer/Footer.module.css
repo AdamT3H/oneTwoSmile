@@ -35,8 +35,7 @@
 
 .links{
     display: flex;
-    gap: 40%;
-    transform: translateX(-50%);
+    gap: 50px;
 }
 
 .mein{
