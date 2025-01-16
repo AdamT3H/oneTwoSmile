@@ -15,9 +15,9 @@ export default function MainPicture() {
             Клініка для тих, хто<br />обирає себе.
         </div>
 
-        <div className={styles.containerEnd}>
+        {/* <div className={styles.containerEnd}>
             Підхід 360°
-        </div>
+        </div> */}
 
     </div>
   );

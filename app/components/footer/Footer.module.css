@@ -88,7 +88,6 @@
 }
 
 
-
 .mapText:hover + .arrowPngImageEnd.animate,
 .mapText:hover ~ .arrowPngImageStart.animate {
     animation: goArrow 0.6s;
@@ -137,4 +136,7 @@
     margin-right: 50px;
 }
 
+.container img{
+  max-width: none;
+}
 
