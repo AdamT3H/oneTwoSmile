@@ -7,6 +7,8 @@ import styles from './Header.module.css';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
+import clinicInfo from '@/data/clinicInfo'; // Імпорт даних
+
 export default function Header() {
   const [isMoreOptionsVisible, setMoreOptionsVisible] = useState(false);
   const pathname = usePathname();
@@ -49,10 +51,10 @@ export default function Header() {
                   height={0} 
                   objectFit="cover"
               />
-              <div>+38 066 467 20 80</div>
+              <div>{clinicInfo.phone}</div>
             </div>
             <div style={{ fontSize: '9px' }}>
-              Україна, м.Львів, вул.Замарстинівська,127 (ЖК барселона)
+              {clinicInfo.location}
             </div>
               {/* <button style={{color:"var(--onlineBeckGround)", fontWeight: '400',backgroundImage: 'url("/header/bg.png")', backgroundSize: 'cover', backgroundPosition: 'center', border: 'none', padding: '10px 45px', fontSize: '12px', borderRadius: '6px', cursor: 'pointer'}} className="OnlineBookingBtn">Online запис</button> */}
           </div>

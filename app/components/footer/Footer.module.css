@@ -1,0 +1,140 @@
+.workingDays h1{
+    font-size: 32px;
+    font-weight: 200;
+    margin-bottom: 30px;
+}
+
+.workingDays h2{
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.mein h1{
+    text-transform: uppercase;
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 60px;
+}
+
+.mein h2{
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.container{
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.links{
+    display: flex;
+    gap: 40%;
+    transform: translateX(-50%);
+}
+
+.mein{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instagram{
+    background-image: url("/header/bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.instagram img{
+    margin: 10px;
+}
+
+.tiktok{
+    background-image: url("/header/bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.tiktok img{
+    margin: 10px;
+}
+
+.facebook{
+    background-image: url("/header/bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.facebook img{
+    margin: 10px;
+}
+
+.map{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.mapText{
+    font-size: 14px;
+    font-weight: 300;
+}
+
+
+
+.mapText:hover + .arrowPngImageEnd.animate,
+.mapText:hover ~ .arrowPngImageStart.animate {
+    animation: goArrow 0.6s;
+}
+
+@keyframes goArrow { 
+    0% {
+        transform:translateX(0%);
+    }
+    40% {
+        transform:translateX(8%);
+    }
+    60% {
+        transform:translateX(4%);
+    }
+    80% {
+        transform:translateX(6%);
+    }
+    100% {
+        transform:translateX(0%);
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative; /* Для абсолютного позиціювання */
+    padding-bottom: 50px; /* Замість margin-bottom */
+}
+
+.workingDays {
+    text-align: left; /* Вирівнювання тексту ліворуч */
+    margin-left: 50px;
+}
+
+.mein {
+    position: absolute; /* Для фіксації в центрі контейнера */
+    left: 50%; /* Розташування рівно по центру */
+    transform: translateX(-50%); /* Центрування по горизонталі */
+    text-align: center; /* Текст у центрі */
+}
+
+.map {
+    text-align: right; /* Вирівнювання тексту праворуч */
+    margin-right: 50px;
+}
+
+

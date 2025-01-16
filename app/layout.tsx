@@ -1,6 +1,7 @@
 import EasyWeekIntegration from "@/app/components/EasyWeekIntegration";
 import "./globals.css";
 import {Header} from "@/app/components/index"
+import {Footer} from "@/app/components/index"
 import Script from "next/script";
 
 
@@ -30,6 +31,7 @@ export default function RootLayout({
       <Header/>
       <EasyWeekIntegration />
         {children}
+      <Footer/>
       </body>
     </html>
   );

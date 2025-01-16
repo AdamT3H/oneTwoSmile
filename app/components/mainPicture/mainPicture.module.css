@@ -7,6 +7,7 @@
     background-repeat: no-repeat; 
     display: flex;
     max-width: none;
+    margin-bottom: 70px;
 }
   
 .container div:first-child {
@@ -19,7 +20,6 @@
   
 .smilingWomanMainPage {
     height: 100%; 
-
     width: auto; 
 }
 

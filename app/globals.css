@@ -12,12 +12,8 @@
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-}
-
 body {
   font-family: "IBM Plex Sans", serif;
-
   margin: 0;
   padding: 0;
   color: var(--foreground);
@@ -32,3 +28,6 @@ body {
   align-items: center;
 }
 
+img{
+  max-width: none;
+}
