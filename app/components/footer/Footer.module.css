@@ -18,6 +18,13 @@
     margin-bottom: 60px;
 }
 
+.meinText h1{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 200;
+}
+
 .mein h2{
     margin-bottom: 15px;
     font-weight: 300;
@@ -25,10 +32,26 @@
 
 .container{
     display: flex;
-    justify-content: space-between; /* Центрування по горизонталі */
+    justify-content: center; /* Центрування по горизонталі */
+    align-items: center;
+    flex-direction: column;
     width: 100%;
-    position: relative;
     padding: 0px 50px 50px 50px;
+}
+
+.workingDaysAndMap{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.linksAndGmail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 300;
 }
 
 .links{
@@ -47,40 +70,136 @@
     transform: translateX(-50%); */
 }
 
-.instagram{
+.instagram {
+    position: relative;
+    display: inline-block;
     background-image: url("/header/bg.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.4s ease-in-out; /* Плавне масштабування */
 }
 
-.instagram img{
+.instagram::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/header/bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    z-index: -1; /* Розмістити позаду */
+    transform: rotate(0deg); /* Початкове значення */
+    transition: transform 0.4s linear; /* Плавний перехід */
+    will-change: transform; /* Оптимізація */
+}
+
+.instagram:hover::before {
+    transform: rotate(40deg); /* Обертання при наведенні */
+}
+
+.instagram:hover {
+    transform: scale(1.1); /* Масштабування елемента */
+}
+
+.instagram img {
     margin: 10px;
+    position: relative;
+    z-index: 1; /* Щоб іконка була поверх бекграунда */
 }
 
 .tiktok{
+    position: relative;
+    display: inline-block;
     background-image: url("/header/bg.png");
-    background-position: center;
+    background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.4s ease-in-out; /* Плавне масштабування */
 }
 
-.tiktok img{
+.tiktok::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/header/bg.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    z-index: -1;
+    transform: rotate(0deg);
+    transition: transform 0.4s linear;
+    will-change: transform; 
+}
+
+.tiktok:hover::before {
+    transform: rotate(-40deg);
+}
+
+.tiktok:hover {
+    transform: scale(1.1);
+}
+
+.tiktok img {
     margin: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .facebook{
+    position: relative;
+    display: inline-block;
     background-image: url("/header/bg.png");
-    background-position: center;
+    background-position: right;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.4s ease-in-out; 
 }
 
-.facebook img{
+.facebook::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/header/bg.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    z-index: -1;
+    transform: rotate(0deg);
+    transition: transform 0.4s linear;
+    will-change: transform;
+}
+
+.facebook:hover::before {
+    transform: rotate(40deg);
+}
+
+.facebook:hover {
+    transform: scale(1.1); 
+}
+
+.facebook img {
     margin: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .map{
@@ -123,7 +242,7 @@
 
 .workingDays {
     text-align: left;
-    width: 250px;
+
 }
 
 .container img{
@@ -161,3 +280,84 @@
     font-weight: 300;
 }
 
+
+@media (max-width: 1382px) {
+
+}
+
+@media (max-width: 992px) {
+    .meinText h1{
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    .links{
+        gap: 30px;
+    }
+
+    .linksAndGmail{
+        font-size: 14px;
+    }
+
+    .workingDays h1{
+        font-size: 24px;
+        font-weight: 200;
+        margin-bottom: 20px;
+    }
+    
+    .workingDays h2{
+        font-size: 12px;
+        font-weight: 300;
+    }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 650px) {
+    .workingDaysAndMap{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .workingDays h1{
+        margin-bottom: 10px;
+    }
+
+    .workingDays h2{
+        margin-bottom: 1px;
+    }
+
+    .workingDays{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 50px;
+    }
+
+    .myDiv {
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .meinText h1{
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+
+    .workingDays h1{
+        font-size: 24px;
+        font-weight: 200;
+        margin-bottom: 15px;
+    }
+    
+    .workingDays h2{
+        font-size: 12px;
+        font-weight: 300;
+    }
+}

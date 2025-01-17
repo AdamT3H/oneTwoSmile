@@ -267,7 +267,7 @@
     transform: scale(1.2);
 } */
 
-.burgerOptionsMainActive {
+.burgerOptionsMainActive, .burgerOptionsMedActive, .burgerOptionsTeamActive, .burgerOptionsServiceActive  {
     font-weight: 300;
     /* background-image: url("/header/bg.png");
     background-size: cover;
@@ -276,10 +276,5 @@
     color: transparent; */
     filter: brightness(0.9) saturate(2.8);
     border-bottom: 2px solid #99999949;
-    padding: 0px 4px 0px 4px;
+    padding: 0px 2px 0px 2px;
 }
-
-
-
-
-  

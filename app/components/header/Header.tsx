@@ -33,11 +33,11 @@ export default function Header() {
           <div className={styles.burger}>
             <Link href="/" className={`${styles.burgerOptionsMain} ${pathname === "/" ? styles.burgerOptionsMainActive : ""}`}>Головна</Link>
             <h1 className={styles.burgerOptionsMain}>|</h1>
-            <Link href="/" className={styles.burgerOptionsTeam}>Наша команда</Link>
+            <Link href="/ourTeam" className={`${styles.burgerOptionsTeam} ${pathname === "/ourTeam" ? styles.burgerOptionsTeamActive : ""}`}>Наша команда</Link>
             <h1 className={styles.burgerOptionsTeam}>|</h1>
-            <Link href="/" className={styles.burgerOptionsMed}>Медичний туризм</Link>
+            <Link href="/medicalTourism" className={`${styles.burgerOptionsMed} ${pathname === "/medicalTourism" ? styles.burgerOptionsMedActive : ""}`}>Медичний туризм</Link>
             <h1 className={styles.burgerOptionsMed}>|</h1>
-            <Link href="/" className={styles.burgerOptionsService}>Наші послуги</Link>
+            <Link href="/service" className={`${styles.burgerOptionsService} ${pathname === "/service" ? styles.burgerOptionsServiceActive : ""}`}>Наші послуги</Link>
             <h1 className={styles.burgerOptionsService}>|</h1>
             <button className={styles.burgerOptionsMore} onClick={() => setMoreOptionsVisible(!isMoreOptionsVisible)}>Більше<Image className={styles.burgerOptionsMoreArrow} alt="Open more" src="/header/arrow.png" width={10} height={0}  objectFit="cover"/></button>
           </div>
@@ -64,12 +64,12 @@ export default function Header() {
       <div className={`${styles.overlay} ${isMoreOptionsVisible ? styles.overlayVisible : ''}`} onClick={() => setMoreOptionsVisible(false)}></div>
       <div className={`${styles.moreOptions} ${isMoreOptionsVisible ? styles.moreOptionsVisible : ''}`}>
         <div className={styles.moreOptionsContainer}>
-          <Link href="/" className={styles.optionShop}>Магазин</Link>
-          <Link href="/" className={styles.optionAbout}>Про нас</Link>
+          <Link href="/shop" className={styles.optionShop}>Магазин</Link>
+          <Link href="/aboutUs" className={styles.optionAbout}>Про нас</Link>
           <Link href="/" className={styles.optionMain}>Головна</Link>
-          <Link href="/" className={styles.optionTeam}>Наша команда</Link>
-          <Link href="/" className={styles.optionMed}>Медичний туризм</Link>
-          <Link href="/" className={styles.optionService}>Наші послуги</Link>
+          <Link href="/ourTeam" className={styles.optionTeam}>Наша команда</Link>
+          <Link href="/medicalTourism" className={styles.optionMed}>Медичний туризм</Link>
+          <Link href="/service" className={styles.optionService}>Наші послуги</Link>
         </div>
       </div>
 
