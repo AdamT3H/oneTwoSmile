@@ -39,7 +39,6 @@ export default function Footer() {
           <div style={{ fontSize: '9px' }}>
             {clinicInfo.location}
           </div>
-            {/* <button style={{color:"var(--onlineBeckGround)", fontWeight: '400',backgroundImage: 'url("/header/bg.png")', backgroundSize: 'cover', backgroundPosition: 'center', border: 'none', padding: '10px 45px', fontSize: '12px', borderRadius: '6px', cursor: 'pointer'}} className="OnlineBookingBtn">Online запис</button> */}
         </div>
 
         <div className={styles.myDiv}>

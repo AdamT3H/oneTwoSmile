@@ -6,8 +6,8 @@ export default function MainPicture() {
 
   return (
     <div className={styles.container}>
-        <div>
-            <Image className={styles.smilingWomanMainPage} src="/main/smilingWomanMainPage.png" width={500} height={500} alt='Smiling women photo'/>
+        <div className={styles.containerStart}>
+            <Image className={styles.smilingWomanMainPage} src="/main/smilingWomanMainPage.png" width={480} height={4800} alt='Smiling women photo'/>
         </div>
 
         <div className={styles.containerCenter}>

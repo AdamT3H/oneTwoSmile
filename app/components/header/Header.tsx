@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from './Header.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 import clinicInfo from '@/data/clinicInfo'; // Імпорт даних

@@ -25,12 +25,10 @@
 
 .container{
     display: flex;
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Центрування по горизонталі */
     width: 100%;
     position: relative;
-    padding-bottom: 50px;
+    padding: 0px 50px 50px 50px;
 }
 
 .links{
@@ -42,10 +40,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
+    position: relative;
     justify-content: center;
-    left: 50%;
-    transform: translateX(-50%);
+    text-align: center;
+    /* left: 50%;
+    transform: translateX(-50%); */
 }
 
 .instagram{
@@ -87,7 +86,6 @@
 .map{
     gap: 30px;
     text-align: right;
-    margin-right: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -124,8 +122,8 @@
 }
 
 .workingDays {
-    text-align: left; /* Вирівнювання тексту ліворуч */
-    margin-left: 50px;
+    text-align: left;
+    width: 250px;
 }
 
 .container img{
