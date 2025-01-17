@@ -24,9 +24,29 @@ export default function Footer() {
       </div>
 
       <div className={styles.map}>
-        <Image className={`${styles.arrowPngImageStart} ${styles.animate}`} src="/footer/arrow-png-image-start.png" width={50} height={30} alt='Way to clinic'/>
-        <Link href={clinicInfo.map} className={styles.mapText} target="_blank" rel="noopener noreferrer">Прoкласти маршрут</Link>
-        <Image className={`${styles.arrowPngImageEnd} ${styles.animate}`} src="/footer/arrow-png-image-end.png" width={60} height={30} alt='Way to clinic'/>
+        
+        <div className={styles.info}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '5px'}}>
+            <Image
+                src="/header/Phone.png"
+                alt="Header Background"
+                width={13}
+                height={0} 
+                objectFit="cover"
+            />
+            <div>{clinicInfo.phone}</div>
+          </div>
+          <div style={{ fontSize: '9px' }}>
+            {clinicInfo.location}
+          </div>
+            {/* <button style={{color:"var(--onlineBeckGround)", fontWeight: '400',backgroundImage: 'url("/header/bg.png")', backgroundSize: 'cover', backgroundPosition: 'center', border: 'none', padding: '10px 45px', fontSize: '12px', borderRadius: '6px', cursor: 'pointer'}} className="OnlineBookingBtn">Online запис</button> */}
+        </div>
+
+        <div className={styles.myDiv}>
+          <Image className={`${styles.arrowPngImageStart} ${styles.animate}`} src="/footer/arrow-png-image-start.png" width={55} height={30} alt='Way to clinic'/>
+          <Link href={clinicInfo.map} className={styles.mapText} target="_blank" rel="noopener noreferrer">Прoкласти маршрут</Link>
+          <Image className={`${styles.arrowPngImageEnd} ${styles.animate}`} src="/footer/arrow-png-image-end.png" width={55} height={30} alt='Way to clinic'/>
+        </div>
       </div>
     </div>
   );

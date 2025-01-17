@@ -26,8 +26,8 @@ export default function Header() {
               objectFit="cover"
               className={styles.imageMargin}
             />
-            Інноваційна клініка стоматології та косметології
-            <button className="OnlineBookingBtn">Online запис</button>
+            <h1 className={styles.logoText}>Інноваційна клініка стоматології та косметології</h1>
+            <button id={styles.OnlineBookingBtnId} className="OnlineBookingBtn">Online запис</button>
           </div>
 
           <div className={styles.burger}>
@@ -53,7 +53,7 @@ export default function Header() {
               />
               <div>{clinicInfo.phone}</div>
             </div>
-            <div style={{ fontSize: '9px' }}>
+            <div style={{ fontSize: '9px', display: 'inline-block' }}>
               {clinicInfo.location}
             </div>
               {/* <button style={{color:"var(--onlineBeckGround)", fontWeight: '400',backgroundImage: 'url("/header/bg.png")', backgroundSize: 'cover', backgroundPosition: 'center', border: 'none', padding: '10px 45px', fontSize: '12px', borderRadius: '6px', cursor: 'pointer'}} className="OnlineBookingBtn">Online запис</button> */}

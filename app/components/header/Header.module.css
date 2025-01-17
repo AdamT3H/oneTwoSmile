@@ -46,7 +46,7 @@
     right: 0;
     font-size: 16px;
     font-weight: 300;
-    width: 230px;
+    width: 210px;
 }
 
 .burgerOptionsMain, .burgerOptionsTeam, .burgerOptionsMed, .burgerOptionsService, .burgerOptionsMore {
@@ -73,7 +73,7 @@
     font-size: 18px; 
 }
 
-.logo button:last-child {
+#OnlineBookingBtnId {
     position: absolute;
     right: 0;
     top: 0;
@@ -90,7 +90,7 @@
     transition: background-position 1s ease, transform 0.3s ease-in-out;
 }
 
-.logo button:last-child:hover {
+#OnlineBookingBtnId:hover {
     will-change: transform;
     background-position: 100% 100%;
     transform: scale(1.1);
@@ -174,13 +174,17 @@
     justify-content: space-between;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1382px) {
     .burger > .burgerOptionsService {
       display: none;
     }
 
     .moreOptionsContainer > .optionService {
         display: block;
+    }
+
+    .logoText{
+        background: #000;
     }
 }
 
@@ -194,7 +198,7 @@
     }
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1024px) {
     .burger > .burgerOptionsTeam, .burgerOptionsMain {
       display: none !important;
     }
@@ -212,6 +216,26 @@
         transform: none; /* Вимкнути зміщення */
         left: auto;
         width: fit-content;
+    }
+}
+
+@media (max-width: 480px) {
+    .container{
+        padding:20px 20px 20px 20px;
+        height: 150px;
+    }
+
+    .logo{
+        width: 50%;
+        justify-content: center;
+    }
+
+    #OnlineBookingBtnId{
+        position: relative;
+    }
+
+    .logoText{
+        display: none;
     }
 }
 
@@ -243,8 +267,8 @@
     /* background-image: url("/header/bg.png");
     background-size: cover;
     background-clip: text;
-    -webkit-background-clip: text; */
-    /* color: transparent; */
+    -webkit-background-clip: text; 
+    color: transparent; */
     filter: brightness(0.9) saturate(2.8);
     border-bottom: 2px solid #99999949;
     padding: 0px 4px 0px 4px;
