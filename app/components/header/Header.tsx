@@ -7,7 +7,7 @@ import styles from './Header.module.css';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-import clinicInfo from '@/data/clinicInfo'; // Імпорт даних
+import clinicInfo from '@/data/clinicInfo';
 
 export default function Header() {
   const [isMoreOptionsVisible, setMoreOptionsVisible] = useState(false);
@@ -27,10 +27,9 @@ export default function Header() {
               className={styles.imageMargin}
             />
             <h1 className={styles.logoText}>Інноваційна клініка стоматології та косметології</h1>
-            <button id={styles.OnlineBookingBtnId} className="OnlineBookingBtn">Online запис</button>
           </div>
 
-          <div className={styles.burger}>
+          <nav className={styles.burger}>
             <Link href="/" className={`${styles.burgerOptionsMain} ${pathname === "/" ? styles.burgerOptionsMainActive : ""}`}>Головна</Link>
             <h1 className={styles.burgerOptionsMain}>|</h1>
             <Link href="/ourTeam" className={`${styles.burgerOptionsTeam} ${pathname === "/ourTeam" ? styles.burgerOptionsTeamActive : ""}`}>Наша команда</Link>
@@ -39,8 +38,8 @@ export default function Header() {
             <h1 className={styles.burgerOptionsMed}>|</h1>
             <Link href="/service" className={`${styles.burgerOptionsService} ${pathname === "/service" ? styles.burgerOptionsServiceActive : ""}`}>Наші послуги</Link>
             <h1 className={styles.burgerOptionsService}>|</h1>
-            <button className={styles.burgerOptionsMore} onClick={() => setMoreOptionsVisible(!isMoreOptionsVisible)}>Більше<Image className={styles.burgerOptionsMoreArrow} alt="Open more" src="/header/arrow.png" width={10} height={0}  objectFit="cover"/></button>
-          </div>
+            <button className={styles.burgerOptionsMore} onClick={() => setMoreOptionsVisible(!isMoreOptionsVisible)}>Більше<Image alt="Open more" src="/header/arrow.png" width={10} height={0}  objectFit="cover"/></button>
+          </nav>
 
           <div className={styles.info}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '5px'}}>
@@ -64,12 +63,12 @@ export default function Header() {
       <div className={`${styles.overlay} ${isMoreOptionsVisible ? styles.overlayVisible : ''}`} onClick={() => setMoreOptionsVisible(false)}></div>
       <div className={`${styles.moreOptions} ${isMoreOptionsVisible ? styles.moreOptionsVisible : ''}`}>
         <div className={styles.moreOptionsContainer}>
-          <Link href="/shop" className={styles.optionShop}>Магазин</Link>
-          <Link href="/aboutUs" className={styles.optionAbout}>Про нас</Link>
-          <Link href="/" className={styles.optionMain}>Головна</Link>
-          <Link href="/ourTeam" className={styles.optionTeam}>Наша команда</Link>
-          <Link href="/medicalTourism" className={styles.optionMed}>Медичний туризм</Link>
-          <Link href="/service" className={styles.optionService}>Наші послуги</Link>
+          <Link href="/shop" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionShop}>Магазин</Link>
+          <Link href="/aboutUs" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionAbout}>Про нас</Link>
+          <Link href="/" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionMain}>Головна</Link>
+          <Link href="/ourTeam" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionTeam}>Наша команда</Link>
+          <Link href="/medicalTourism" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionMed}>Медичний туризм</Link>
+          <Link href="/service" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionService}>Наші послуги</Link>
         </div>
       </div>
 

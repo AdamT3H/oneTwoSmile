@@ -19,10 +19,30 @@ export default function Footer() {
           <h2>{clinicInfo.workTime.weekends}</h2>
         </div>
 
-        <div className={styles.myDiv}>
-          <Image className={`${styles.arrowPngImageStart} ${styles.animate}`} src="/footer/arrow-png-image-start.png" width={55} height={30} alt='Way to clinic'/>
-          <Link href={clinicInfo.map} className={styles.mapText} target="_blank" rel="noopener noreferrer">Прoкласти маршрут</Link>
-          <Image className={`${styles.arrowPngImageEnd} ${styles.animate}`} src="/footer/arrow-png-image-end.png" width={55} height={30} alt='Way to clinic'/>
+        <div className={styles.infoAndMyDiv}>
+          
+          <div className={styles.info}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '5px'}}>
+              <Image
+                  src="/header/Phone.png"
+                  alt="Header Background"
+                  width={13}
+                  height={0} 
+                  objectFit="cover"
+              />
+              <div>{clinicInfo.phone}</div>
+            </div>
+            <div style={{ fontSize: '9px', textAlign: 'center' }}>
+              {clinicInfo.location}
+            </div>
+          </div>
+
+          <div className={styles.myDiv}>
+            <Image className={`${styles.arrowPngImageStart} ${styles.animate}`} src="/footer/arrow-png-image-start.png" width={55} height={30} alt='Way to clinic'/>
+            <Link href={clinicInfo.map} className={styles.mapText} target="_blank" rel="noopener noreferrer">Прoкласти маршрут</Link>
+            <Image className={`${styles.arrowPngImageEnd} ${styles.animate}`} src="/footer/arrow-png-image-end.png" width={55} height={30} alt='Way to clinic'/>
+          </div>
+
         </div>
 
       </div>

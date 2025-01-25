@@ -262,11 +262,6 @@
     will-change: transform;
 }
 
-/* .burgerOptionsMoreArrow:hover{
-    will-change: transform;
-    transform: scale(1.2);
-} */
-
 .burgerOptionsMainActive, .burgerOptionsMedActive, .burgerOptionsTeamActive, .burgerOptionsServiceActive  {
     font-weight: 300;
     /* background-image: url("/header/bg.png");

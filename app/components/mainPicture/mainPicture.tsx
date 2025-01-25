@@ -11,13 +11,20 @@ export default function MainPicture() {
         </div>
 
         <div className={styles.containerCenter}>
-            <Image src="/header/Logo.png" width={150} height={150} alt='Logo'/>
+            <Image className={styles.logoPic} src="/header/Logo.png" width={150} height={150} alt='Logo'/>
             Клініка для тих, хто<br />обирає себе.
         </div>
 
-        <div className={styles.containerEnd}>
+        <div className={styles.containerEndButton} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <div className={styles.containerEnd}>
             Підхід 360°
+          </div>
+
+          <button id={styles.OnlineBookingBtnId} className="OnlineBookingBtn">Online запис</button>
         </div>
+
+        <button  id={styles.OnlineBookingBtnId2} className="OnlineBookingBtn">Online запис</button>
+
 
     </div>
   );

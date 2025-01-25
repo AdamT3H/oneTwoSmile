@@ -71,11 +71,10 @@ export default function App() {
           }`}
         >
           <div ref={sliderRef} className={`${styles.keenSlider} keen-slider `}>
-            <div className={`${styles.keenSlider__slide} ${styles.numberSlide1} keen-slider__slide number-slide1`}>
-
-
-
-            </div>
+          <div className={`${styles.keenSlider__slide} ${styles.numberSlide1} keen-slider__slide number-slide1`}>
+            <div className={styles.background}></div>
+            <div className={styles.mainTextSlide1}>привіт, хзddd</div>
+          </div>
 
             
             

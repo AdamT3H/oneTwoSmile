@@ -23,6 +23,7 @@
     text-align: center;
     font-size: 40px;
     font-weight: 200;
+    margin-bottom: 30px;
 }
 
 .mein h2{
@@ -43,6 +44,8 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 .linksAndGmail{
@@ -278,6 +281,7 @@
 .info{
     font-size: 16px;
     font-weight: 300;
+    margin-bottom: 40px;
 }
 
 
@@ -341,23 +345,33 @@
     .myDiv {
         margin-bottom: 50px;
     }
+
+    .info{
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 @media (max-width: 480px) {
 
     .meinText h1{
-        font-size: 26px;
+        font-size: 22px;
         margin-bottom: 30px;
     }
 
     .workingDays h1{
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 200;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
     
     .workingDays h2{
         font-size: 12px;
         font-weight: 300;
+    }
+
+    .mapText{
+        font-size: 12;
     }
 }
