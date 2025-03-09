@@ -31,7 +31,7 @@ export default function Header() {
 
           <nav className={styles.burger}>
             <Link href="/" className={`${styles.burgerOptionsMain} ${pathname === "/" ? styles.burgerOptionsMainActive : ""}`}>Головна</Link>
-            <h1 className={styles.burgerOptionsMain}>|</h1>
+            <h1 className={styles.burgerOptionsMainDecor}>|</h1>
             <Link href="/ourTeam" className={`${styles.burgerOptionsTeam} ${pathname === "/ourTeam" ? styles.burgerOptionsTeamActive : ""}`}>Наша команда</Link>
             <h1 className={styles.burgerOptionsTeam}>|</h1>
             <Link href="/medicalTourism" className={`${styles.burgerOptionsMed} ${pathname === "/medicalTourism" ? styles.burgerOptionsMedActive : ""}`}>Медичний туризм</Link>

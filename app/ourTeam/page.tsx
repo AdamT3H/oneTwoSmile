@@ -1,8 +1,11 @@
+import AboutTeam from "@/app/components/pageOurTeamAboutTeam/aboutTeam.tsx";
+import AboutTeamGrid from "@/app/components/pageOurTeamAboutTeamGrid/aboutTeamGrid.tsx";
 
 export default function OurTeam() {
   return (
     <div className="w-full">
-      Потужна команда
+      <AboutTeam/>
+      <AboutTeamGrid/>
     </div>
   );
 }

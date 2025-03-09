@@ -195,7 +195,7 @@
 }
 
 @media (max-width: 1024px) {
-    .burger > .burgerOptionsTeam, .burgerOptionsMain {
+    .burger > .burgerOptionsTeam, .burgerOptionsMain, .burgerOptionsMainDecor {
       display: none !important;
     }
 
@@ -241,7 +241,6 @@
     .imageMargin{
         margin-bottom: 12px;
     }
-      
 }
   
 .optionService, .optionMed, .optionTeam, .optionMain{
