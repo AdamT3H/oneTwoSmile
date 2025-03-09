@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Slider.module.css";
 import { useKeenSlider, KeenSliderPlugin } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import Link from "next/link";
+// import Link from "next/link";
 import Image from "next/image";
 
 const AdaptiveHeight: KeenSliderPlugin = (slider) => {
