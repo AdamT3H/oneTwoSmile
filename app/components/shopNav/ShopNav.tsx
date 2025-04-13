@@ -1,5 +1,3 @@
-"use client";
-import { useState } from "react";
 import styles from "./ShopNav.module.css";
 import Link from "next/link";
 import Image from "next/image";
