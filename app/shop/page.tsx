@@ -1,13 +1,13 @@
 import ShopNav from "@/app/components/shopNav/ShopNav.tsx";
 import BannerShopPage from "@/app/components/bannerShopPage/BannerShopPage.tsx";
-import СategorySection from "@/app/components/сategorySection/СategorySection.tsx";
+import CategorySection from "@/app/components/categorySection/CategorySection.tsx";
 
 export default function Shop() {
   return (
     <div className="w-full">
       <ShopNav />
       <BannerShopPage />
-      <СategorySection
+      <CategorySection
         title="Догляд"
         categoryLink="/shop/category/care"
         products={[
@@ -74,7 +74,7 @@ export default function Shop() {
         ]}
       />
 
-      <СategorySection
+      <CategorySection
         title="Косметика"
         categoryLink="/shop/category/care"
         products={[
