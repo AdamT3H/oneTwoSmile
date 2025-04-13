@@ -10,6 +10,7 @@ export default function AboutTeamGrid() {
   const handleFlip = () => {
     setFlipped(!flipped);
   };
+
   return (
     <div className={styles.container}>
         <div className={styles.grid}>
@@ -27,7 +28,7 @@ export default function AboutTeamGrid() {
             </div>
           </div>
 
-          <div className={styles.flipCard}>
+          <div className={styles.flipCard} onClick={handleFlip}>
             <div className={styles.flipCardInner}>
               <div className={styles.flipCardFront}>
                 <Image src="/team/person.png" alt="Team member" width={200} height={250} className={styles.image} />
@@ -40,7 +41,7 @@ export default function AboutTeamGrid() {
             </div>
           </div>
 
-          <div className={styles.flipCard}>
+          <div className={styles.flipCard} onClick={handleFlip}>
             <div className={styles.flipCardInner}>
               <div className={styles.flipCardFront}>
                 <Image src="/team/person.png" alt="Team member" width={200} height={250} className={styles.image} />
@@ -53,7 +54,7 @@ export default function AboutTeamGrid() {
             </div>
           </div>
 
-          <div className={styles.flipCard}>
+          <div className={styles.flipCard} onClick={handleFlip}>
             <div className={styles.flipCardInner}>
               <div className={styles.flipCardFront}>
                 <Image src="/team/person.png" alt="Team member" width={200} height={250} className={styles.image} />
@@ -66,7 +67,7 @@ export default function AboutTeamGrid() {
             </div>
           </div>
 
-          <div className={styles.flipCard}>
+          <div className={styles.flipCard} onClick={handleFlip}>
             <div className={styles.flipCardInner}>
               <div className={styles.flipCardFront}>
                 <Image src="/team/person.png" alt="Team member" width={200} height={250} className={styles.image} />
@@ -79,7 +80,7 @@ export default function AboutTeamGrid() {
             </div>
           </div>
 
-          <div className={styles.flipCard}>
+          <div className={styles.flipCard} onClick={handleFlip}>
             <div className={styles.flipCardInner}>
               <div className={styles.flipCardFront}>
                 <Image src="/team/person.png" alt="Team member" width={200} height={250} className={styles.image} />
@@ -92,7 +93,7 @@ export default function AboutTeamGrid() {
             </div>
           </div>
 
-          <div className={styles.flipCard}>
+          <div className={styles.flipCard} onClick={handleFlip}>
             <div className={styles.flipCardInner}>
               <div className={styles.flipCardFront}>
                 <Image src="/team/person.png" alt="Team member" width={200} height={250} className={styles.image} />

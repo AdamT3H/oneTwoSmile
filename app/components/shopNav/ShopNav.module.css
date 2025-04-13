@@ -1,0 +1,169 @@
+.shopLinkButton {
+  background-color: rgb(238, 237, 237);
+  padding: 3px;
+  display: inline-block;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 46px;
+  aspect-ratio: 1;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shopLinkButton:hover {
+  background-color: rgb(228, 227, 227);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.19);
+}
+
+.navWrapper {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8px 0 16px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.bottomRow {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  z-index: 1;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.center {
+    position: static; 
+    transform: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+.searchInShopList {
+  background-color: rgb(238, 237, 237);
+  padding: 3px;
+  display: inline-block;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 244px;
+}
+
+.searchInShopListInput {
+  border-radius: 50px;
+  border: none;
+  padding: 6px 12px;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  opacity: 1;
+}
+
+.searchInShopListInput::placeholder {
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.likesAndCartContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.iconButton {
+  background-color: rgb(238, 237, 237);
+  padding: 9px;
+  display: inline-block;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.iconButton:hover {
+  background-color: rgb(228, 227, 227);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.19);
+}
+
+.searchInShopListLoopButton {
+  background-color: rgb(209, 209, 209);
+  margin-right: 9px;
+  padding: 4px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchInShopListLoopButton:hover {
+  background-color: rgb(199, 199, 199);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.19);
+}
+
+@media (min-width: 300px) {
+    .navWrapper {
+        padding: 0 40px;
+      }
+
+      .topRow {
+        margin-bottom: 30px;
+      }
+}
+
+@media (min-width: 769px) {
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .topRow,
+  .bottomRow {
+    display: contents;
+  }
+
+
+  .center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    z-index: 1;
+  }
+}
