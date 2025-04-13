@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import styles from "./СategorySection.module.css";
 import Link from "next/link";
 import Image from "next/image";
@@ -20,6 +22,24 @@ export default function СategorySection({
   categoryLink,
   products,
 }: CategorySectionProps) {
+  const [activeHeartId, setActiveHeartId] = useState<number | null>(null);
+  const [activeCartId, setActiveCartId] = useState<number | null>(null);
+
+  const handleLikeClick = (productId: number) => {
+    setActiveHeartId(productId);
+
+    setTimeout(() => {
+      setActiveHeartId(null);
+    }, 700);
+  };
+
+  const handleCartClick = (productId: number) => {
+    setActiveCartId(productId);
+
+    setTimeout(() => {
+      setActiveCartId(null);
+    }, 700);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
@@ -35,20 +55,32 @@ export default function СategorySection({
             {products.map((product) => (
               <div key={product.id} className={styles.productCard}>
                 <div className={styles.cardButtons}>
-                  <button className={styles.likeButton}>
+                  <button
+                    className={styles.likeButton}
+                    onClick={() => handleLikeClick(product.id)}
+                  >
                     <Image
                       src="/shop/like.png"
                       alt="Liked products"
                       width={20}
                       height={20}
+                      className={`${styles.heartImage} ${
+                        activeHeartId === product.id ? styles.animate : ""
+                      }`}
                     />
                   </button>
-                  <button className={styles.cartButton}>
+                  <button
+                    className={styles.cartButton}
+                    onClick={() => handleCartClick(product.id)}
+                  >
                     <Image
                       src="/shop/cart.png"
                       alt="Shopping cart"
                       width={20}
                       height={20}
+                      className={`${styles.cartImage} ${
+                        activeCartId === product.id ? styles.animate : ""
+                      }`}
                     />
                   </button>
                 </div>
