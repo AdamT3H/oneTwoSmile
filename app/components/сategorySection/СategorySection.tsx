@@ -34,6 +34,25 @@ export default function СategorySection({
           <div className={styles.products}>
             {products.map((product) => (
               <div key={product.id} className={styles.productCard}>
+                <div className={styles.cardButtons}>
+                  <button className={styles.likeButton}>
+                    <Image
+                      src="/shop/like.png"
+                      alt="Liked products"
+                      width={20}
+                      height={20}
+                    />
+                  </button>
+                  <button className={styles.cartButton}>
+                    <Image
+                      src="/shop/cart.png"
+                      alt="Shopping cart"
+                      width={20}
+                      height={20}
+                    />
+                  </button>
+                </div>
+
                 <div className={styles.productImageWrapper}>
                   <Image
                     src={product.imageUrl}

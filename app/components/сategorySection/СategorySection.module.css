@@ -26,11 +26,14 @@
 }
 
 .productCard {
-  padding: 12px;
+  padding: 20px;
   border-radius: 8px;
   text-align: center;
-  width: 195px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .productCard:not(:last-child)::after {
@@ -105,7 +108,7 @@
   content: "";
   position: absolute;
   top: 0;
-  width: 50px;
+  width: 15px;
   height: 100%;
   z-index: 2;
   pointer-events: none;
@@ -128,4 +131,33 @@
 .products::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 4px;
+}
+
+.cardButtons {
+  position: absolute;
+  top: 11px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.likeButton,
+.cartButton {
+  background-color: rgb(238, 237, 237);
+  padding: 9px;
+  display: inline-block;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.likeButton:hover ,
+.cartButton:hover {
+  background-color: rgb(228, 227, 227);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.19);
+  transform: scale(1.1);
 }
