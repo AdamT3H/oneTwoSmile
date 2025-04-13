@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import styles from "./СategorySection.module.css";
+import styles from "./CategorySection.module.css";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -17,7 +17,7 @@ interface CategorySectionProps {
   products: Product[];
 }
 
-export default function СategorySection({
+export default function CategorySection({
   title,
   categoryLink,
   products,
