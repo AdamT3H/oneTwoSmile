@@ -9,7 +9,7 @@ interface LikeDrawerProps {
 }
 
 export default function LikeDrawer({ isOpen, onClose }: LikeDrawerProps) {
-  const [likedItems, setlikedItems] = useState([
+  const [likedItems] = useState([
     {
       id: 1,
       title: "Крем для обличчя",
