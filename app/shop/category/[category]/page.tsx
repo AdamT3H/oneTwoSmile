@@ -5,6 +5,7 @@ import ShopNav from "@/app/components/shopNav/ShopNav.tsx";
 import styles from "./CategoryPage.module.css";
 import { useState } from "react";
 import Image from "next/image";
+import { validateHeaderValue } from "http";
 
 interface Product {
   id: number;
@@ -64,73 +65,199 @@ const categoryData: Record<string, Product[]> = {
       price: "410₴",
     },
     {
-      id: 8,
+      id: 9,
       title: "Сироватка",
       imageUrl: "/shop/IMG_1984.png",
       price: "410₴",
     },
     {
-      id: 8,
+      id: 10,
       title: "Сироватка",
       imageUrl: "/shop/IMG_1984.png",
       price: "410₴",
     },
     {
-      id: 8,
+      id: 11,
       title: "Сироватка",
       imageUrl: "/shop/IMG_1984.png",
       price: "410₴",
     },
     {
-      id: 8,
+      id: 12,
       title: "Сироватка",
       imageUrl: "/shop/IMG_1984.png",
       price: "410₴",
     },
     {
-      id: 8,
+      id: 13,
       title: "Сироватка",
       imageUrl: "/shop/IMG_1984.png",
       price: "410₴",
     },
     {
-        id: 8,
-        title: "Сироватка",
-        imageUrl: "/shop/IMG_1984.png",
-        price: "410₴",
-      },
-      {
-        id: 8,
-        title: "Сироватка",
-        imageUrl: "/shop/IMG_1984.png",
-        price: "410₴",
-      },
-    {
-      id: 8,
+      id: 14,
       title: "Сироватка",
       imageUrl: "/shop/IMG_1984.png",
       price: "410₴",
     },
     {
-      id: 8,
+      id: 15,
       title: "Сироватка",
       imageUrl: "/shop/IMG_1984.png",
       price: "410₴",
     },
     {
-      id: 8,
+      id: 16,
       title: "Сироватка",
       imageUrl: "/shop/IMG_1984.png",
       price: "410₴",
     },
     {
-      id: 8,
+      id: 17,
       title: "Сироватка",
       imageUrl: "/shop/IMG_1984.png",
       price: "410₴",
     },
     {
-      id: 8,
+      id: 18,
+      title: "Сироватка",
+      imageUrl: "/shop/IMG_1984.png",
+      price: "410₴",
+    },
+    {
+      id: 19,
+      title: "Сироватка",
+      imageUrl: "/shop/IMG_1984.png",
+      price: "410₴",
+    },
+    {
+      id: 20,
+      title: "Сироватка",
+      imageUrl: "/shop/IMG_1984.png",
+      price: "410₴",
+    },
+    {
+      id: 21,
+      title: "Крем для обличчя",
+      imageUrl: "/shop/IMG_1962.png",
+      price: "350₴",
+    },
+    {
+      id: 22,
+      title: "Маска для шкіри",
+      imageUrl: "/shop/IMG_1981.png",
+      price: "280₴",
+    },
+    {
+      id: 23,
+      title: "Сироватка",
+      imageUrl: "/shop/IMG_1984.png",
+      price: "410₴",
+    },
+    {
+      id: 24,
+      title: "Крем для обличчя",
+      imageUrl: "/shop/IMG_1962.png",
+      price: "350₴",
+    },
+    {
+      id: 25,
+      title: "Маска для шкіри",
+      imageUrl: "/shop/IMG_1981.png",
+      price: "280₴",
+    },
+    {
+      id: 26,
+      title: "Сироватка",
+      imageUrl: "/shop/IMG_1984.png",
+      price: "410₴",
+    },
+    {
+      id: 27,
+      title: "Крем для обличчя",
+      imageUrl: "/shop/IMG_1962.png",
+      price: "350₴",
+    },
+    {
+      id: 28,
+      title: "Маска для шкіри",
+      imageUrl: "/shop/IMG_1981.png",
+      price: "280₴",
+    },
+    {
+      id: 29,
+      title: "Сироватка",
+      imageUrl: "/shop/IMG_1984.png",
+      price: "410₴",
+    },
+    {
+      id: 30,
+      title: "Крем для обличчя",
+      imageUrl: "/shop/IMG_1962.png",
+      price: "350₴",
+    },
+    {
+      id: 31,
+      title: "Маска для шкіри",
+      imageUrl: "/shop/IMG_1981.png",
+      price: "280₴",
+    },
+    {
+      id: 32,
+      title: "Сироватка",
+      imageUrl: "/shop/IMG_1984.png",
+      price: "410₴",
+    },
+    {
+      id: 33,
+      title: "Крем для обличчя",
+      imageUrl: "/shop/IMG_1962.png",
+      price: "350₴",
+    },
+    {
+      id: 34,
+      title: "Маска для шкіри",
+      imageUrl: "/shop/IMG_1981.png",
+      price: "280₴",
+    },
+    {
+      id: 35,
+      title: "Сироватка",
+      imageUrl: "/shop/IMG_1984.png",
+      price: "410₴",
+    },
+    {
+      id: 36,
+      title: "Крем для обличчя",
+      imageUrl: "/shop/IMG_1962.png",
+      price: "350₴",
+    },
+    {
+      id: 37,
+      title: "Маска для шкіри",
+      imageUrl: "/shop/IMG_1981.png",
+      price: "280₴",
+    },
+    {
+      id: 38,
+      title: "Сироватка",
+      imageUrl: "/shop/IMG_1984.png",
+      price: "410₴",
+    },
+    {
+      id: 39,
+      title: "Крем для обличчя",
+      imageUrl: "/shop/IMG_1962.png",
+      price: "350₴",
+    },
+    {
+      id: 40,
+      title: "Маска для шкіри",
+      imageUrl: "/shop/IMG_1981.png",
+      price: "280₴",
+    },
+    {
+      id: 41,
       title: "Сироватка",
       imageUrl: "/shop/IMG_1984.png",
       price: "410₴",
@@ -138,7 +265,7 @@ const categoryData: Record<string, Product[]> = {
   ],
   cosmetic: [
     {
-      id: 4,
+      id: 42,
       title: "Косметичка",
       imageUrl: "/shop/IMG_1984.png",
       price: "450₴",
@@ -152,11 +279,12 @@ const categoryTitles: Record<string, string> = {
 };
 
 export default function CategoryPage({
-  params,
-}: {
-  params: Promise<{ category: string }>;
-}) {
-  const { category } = use(params);
+    params,
+  }: {
+    params: Promise<{ category: string }>;
+  }) {
+    const { category } = use(params);
+  
   const products = categoryData[category];
   const [activeHeartId, setActiveHeartId] = useState<number | null>(null);
   const [activeCartId, setActiveCartId] = useState<number | null>(null);
@@ -183,6 +311,28 @@ export default function CategoryPage({
     }, 700);
   };
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 2;
+
+  const indexOfLastProduct = currentPage * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+  
+  const range = 2; 
+  const startPage = currentPage;
+  const endPage = Math.min(currentPage + range, totalPages);
+
+
+
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div style={{ width: "100%" }}>
       <ShopNav />
@@ -190,7 +340,7 @@ export default function CategoryPage({
         <h1 className={styles.title}>Категорія: {readableCategory}</h1>
         <div className={styles.productListWraper}>
           <div className={styles.productList}>
-            {products.map((product) => (
+            {currentProducts.map((product) => (
               <div key={product.id} className={styles.productCard}>
                 <div className={styles.cardButtons}>
                   <button
@@ -233,6 +383,48 @@ export default function CategoryPage({
                 <p className={styles.bold}>{product.price}</p>
               </div>
             ))}
+          </div>
+        </div>
+        {/* Пагінація */}
+        <div className={styles.paginationWrapper}>
+          <div className={styles.pagination}>
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Попередня
+            </button>
+            {currentPage > range + 1 && (
+              <>
+                <button onClick={() => handlePageChange(1)}>1</button>
+                <span>...</span>
+              </>
+            )}
+            {Array.from({ length: endPage - startPage + 1 }, (_, index) => (
+              <button
+                key={startPage + index}
+                onClick={() => handlePageChange(startPage + index)}
+                className={
+                  currentPage === startPage + index ? styles.activePage : ""
+                }
+              >
+                {startPage + index}
+              </button>
+            ))}
+            {currentPage < totalPages - range && (
+              <>
+                <span>...</span>
+                <button onClick={() => handlePageChange(totalPages)}>
+                  {totalPages}
+                </button>
+              </>
+            )}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Наступна
+            </button>
           </div>
         </div>
       </div>

@@ -76,6 +76,7 @@
 .title{
   font-size: 33px;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
+  margin-left: 7px;
 }
 
 .moreButton{
@@ -222,4 +223,10 @@
 
 .cartImage.animate {
   animation: toCart 1.3s ease;
+}
+
+@media (max-width: 690px) {
+  .title {
+    font-size: 26px !important;
+  }
 }

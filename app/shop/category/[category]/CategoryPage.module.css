@@ -29,7 +29,7 @@
 
 .productCard {
   padding: 20px;
-  border-radius: 8px;
+
   text-align: center;
   position: relative;
   display: flex;
@@ -37,19 +37,22 @@
   justify-content: center;
   align-items: center;
   transition: transform 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 0px 7px rgba(0, 0, 0, 0.1);
 }
 
 /* Додаємо роздільник */
-.productCard::after {
-  content: "";
-  position: absolute;
-  top: 10%;
-  bottom: 10%;
-  right: -40px;
-  width: 4px;
-  background-color: #ccc;
-  border-radius: 3px;
-}
+/* .productCard::after {
+    content: "";
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 100%;
+    margin-left: 45px; 
+    width: 4px;
+    background-color: #ccc;
+    border-radius: 3px;
+  } */
 
 .productImage {
   max-width: 100%;
@@ -58,8 +61,8 @@
 }
 
 .productImageWrapper {
-  width: 140px;
-  height: 140px;
+  width: 180px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,38 +165,172 @@
   display: none;
 }
 
-@media (max-width: 1705px) {
+
+.paginationWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    background-color: #fff;
+    width: fit-content;
+    padding: 10px 25px;
+    font-size: 15px;
+    border-radius: 50px;
+    box-shadow: 0 0px 13px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pagination button {
+    padding: 2px 10px;
+    border: none;
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: 500;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .pagination button:hover {
+    background-color: #e0e0e0; /* сірий фон при наведенні */
+    transform: translateY(-2px); /* ефект підняття кнопки */
+  }
+  
+  .pagination button:disabled {
+    cursor: not-allowed;
+    background-color: #e0e0e0; /* сірий фон для неактивних кнопок */
+    color: #999; /* сірий текст */
+  }
+  
+  .pagination .activePage {
+    background-color: #636363; /* зелений фон для активної сторінки */
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* легка тінь для акценту */
+    transform: translateY(-2px); /* ефект підняття активної кнопки */
+  }
+  
+  .pagination .activePage:hover {
+    background-color: #454545;
+  }
+  
+
+/* @media (max-width: 1705px) {
+  .productCard:nth-child(5n)::after {
+    display: block;
+  }
+
   .productCard:nth-child(4n)::after {
     display: none;
   }
-}
+} */
 
-@media (max-width: 1035px) {
-    .productCard:nth-child(2n)::after {
-      display: none;
-    }
+/* @media (max-width: 1380px) {
+  .productCard:nth-child(4n)::after {
+    display: block;
   }
 
-  @media (max-width: 690px) {
-    .productCard::after {
-      display: none;
+  .productCard:nth-child(3n)::after {
+    display: none;
+  }
+} */
+
+@media (max-width: 1035px) {
+  .productList {
+    grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+  }
+}
+
+/* @media (max-width: 874px) {
+  .productCard:nth-child(3n)::after {
+    display: block;
+  }
+
+  .productCard:nth-child(2n)::after {
+    display: none;
+  }
+} */
+
+@media (max-width: 690px) {
+  .productCard::after {
+    display: none !important;
+  }
+
+  
+  .pagination {
+    padding: 8px 10px;
+    gap: 10px;
+  }
+
+  .CategoryPage-module__jAtDda__productCard {
+    padding: 15px;
+  }
+
+  .productList {
+    gap: 20px;
+    padding: 0px;
+  }
+
+  .title {
+    font-size: 25px;
+  }
+
+  .container {
+    padding-left: clamp(20px, 1vw, 16px);
+    padding-right: clamp(20px, 1vw, 16px);
+    
+  }
+
+  .title {
+    padding-left: clamp(8px, 2vw, 16px);
+  }
+
+  .likeButton,
+  .cartButton {
+    padding: 6px;
+    border-radius: 12px;
+  }
+
+  .productList {
+    gap: 45px 40px;
+  }
+}
+
+@media (max-width: 550px) {
+  .productList {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+}
+
+@media (max-width: 505px) {
+  .pagination {
+    font-size: 13px !important;
+  }
+  .productImageWrapper {
+    width: 140px;
+    height: 140px;
+  }
+
+  .productList {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 379px) {
+    .pagination {
+      font-size: 13px !important;
     }
-
+    .productImageWrapper {
+      width: 110px;
+      height: 110px;
+    }
+  
     .productList {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 20px;
-      }
-
-    .title {
-        font-size: 25px;
-      }
-
-      .container {
-        padding-left: clamp(8px, 2vw, 16px);
-        padding-right: clamp(8px, 2vw, 16px);
-      }
-
-      .title {
-        padding-left: clamp(8px, 2vw, 16px);
-      }
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
   }
