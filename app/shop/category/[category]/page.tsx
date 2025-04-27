@@ -5,7 +5,6 @@ import ShopNav from "@/app/components/shopNav/ShopNav.tsx";
 import styles from "./CategoryPage.module.css";
 import { useState } from "react";
 import Image from "next/image";
-import { validateHeaderValue } from "http";
 
 interface Product {
   id: number;
