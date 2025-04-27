@@ -76,7 +76,7 @@ export default function Shop() {
 
       <CategorySection
         title="Косметика"
-        categoryLink="/shop/category/care"
+        categoryLink="/shop/category/cosmetic"
         products={[
           {
             id: 1,

@@ -25,7 +25,7 @@ export default function CategorySection({
   const [activeHeartId, setActiveHeartId] = useState<number | null>(null);
   const [activeCartId, setActiveCartId] = useState<number | null>(null);
 
-  const handleLikeClick = (productId: number) => {
+  const handleLikeClickOnProduct = (productId: number) => {
     setActiveHeartId(productId);
 
     setTimeout(() => {
@@ -33,7 +33,7 @@ export default function CategorySection({
     }, 700);
   };
 
-  const handleCartClick = (productId: number) => {
+  const handleCartClickOnProduct = (productId: number) => {
     setActiveCartId(productId);
 
     setTimeout(() => {
@@ -57,7 +57,7 @@ export default function CategorySection({
                 <div className={styles.cardButtons}>
                   <button
                     className={styles.likeButton}
-                    onClick={() => handleLikeClick(product.id)}
+                    onClick={() => handleLikeClickOnProduct(product.id)}
                   >
                     <Image
                       src="/shop/like.png"
@@ -71,7 +71,7 @@ export default function CategorySection({
                   </button>
                   <button
                     className={styles.cartButton}
-                    onClick={() => handleCartClick(product.id)}
+                    onClick={() => handleCartClickOnProduct(product.id)}
                   >
                     <Image
                       src="/shop/cart.png"

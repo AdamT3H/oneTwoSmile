@@ -1,0 +1,161 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 350px;
+  height: 100vh;
+  background-color: white;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.open.overlay {
+  opacity: 1;
+  z-index: 1002;
+  pointer-events: all;
+}
+
+.open.drawer {
+  right: 0;
+  z-index: 1002;
+}
+
+.header {
+  padding: 17px;
+  font-size: 26px;
+  color: #101010ef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  background-image: url("/header/bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: saturate(1) contrast(1.1);
+}
+
+.closeButton {
+  font-size: 25px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #383838;
+}
+
+.content {
+  padding: 17px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.noContent{
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.productItem {
+  display: flex;
+  margin: 30px 0px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 30px;
+  gap: 15px;
+}
+
+.productTitle{
+  font-size: 22px;
+  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.12);
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  max-width: none;
+}
+
+.productPrice{
+  font-size: 16px;
+  color: #444;
+  font-weight: bold;
+  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.12);
+}
+
+.quantityControl {
+  background-color: #f0f0f0;
+  width: 80px;
+  padding: 0px 3px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.quantityButton {
+  background-color: #9c9c9c;  /* Темний фон */
+  color: #e6e6e6;  /* Білі символи */
+  font-size: 16px;  /* Розмір тексту */
+  width: 20px;  /* Ширина кнопки */
+  height: 20px;  /* Висота кнопки */
+  border: none;
+  border-radius: 50%;  /* Округлість кнопки */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;  /* Анімація для фонового кольору та масштабування */
+}
+
+.quantityButton:hover {
+  background-color: #979797;  /* Світліший фон при наведенні */
+  transform: scale(1.1);  /* Легке збільшення розміру кнопки при наведенні */
+}
+
+.quantityButton:focus {
+  outline: none;  /* Прибираємо контур при фокусуванні */
+}
+
+.quantityControl:hover .quantityButton {
+  background-color: #707070;  /* Кнопки світлішають при наведенні на контейнер */
+}
+
+.deleteButton {
+  align-self: flex-end;
+  background-color: #f0f0f0;
+  color: #444;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+
