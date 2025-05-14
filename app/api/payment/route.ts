@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
     apiVersion: 1,
     language: 'UA',
     // serviceUrl: 'http://localhost:3000/callback', 
-    serviceUrl: 'https://one-two-smile.vercel.app/callback',
+    serviceUrl: 'https://one-two-smile.vercel.app/api/payment-callback',
     orderReference,
     orderDate,
     amount,
@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
     productPrice,
     clientEmail,
     // returnUrl: 'http://localhost:3000/shop/success',
-    returnUrl: 'https://one-two-smile.vercel.app/shop/success-redirect'
+    returnUrl: 'https://one-two-smile.vercel.app/shop/success'
   };
 
   const response = await fetch('https://api.wayforpay.com/api', {
