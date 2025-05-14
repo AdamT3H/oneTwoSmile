@@ -65,8 +65,12 @@ export default function Shop() {
         });
 
         setProductsByCategory(productsMap);
-      } catch (err: any) {
-        console.error("Помилка:", err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          console.error("Помилка при завантаженні:", err.message);
+        } else {
+          console.error("Невідома помилка:", err);
+        }
         setError("Не вдалося завантажити продукти.");
       } finally {
         setLoading(false);

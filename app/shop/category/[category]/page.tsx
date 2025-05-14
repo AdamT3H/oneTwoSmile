@@ -129,8 +129,12 @@ export default function CategoryPage({
         }
 
         setProducts(productsData || []);
-      } catch (err: any) {
-        console.error("Помилка при завантаженні:", err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          console.error("Помилка при завантаженні:", err.message);
+        } else {
+          console.error("Невідома помилка:", err);
+        }
       } finally {
         setLoading(false);
       }
@@ -198,17 +202,17 @@ export default function CategoryPage({
     indexOfLastProduct
   );
 
-  const [isMobile, setIsMobile] = useState(false);
+  // const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsMobile(window.innerWidth < 768);
+  //   };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  //   handleResize();
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
