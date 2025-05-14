@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
     merchantSignature,
     apiVersion: 1,
     language: 'UA',
-    // serviceUrl: 'http://localhost:3000/callback', 
+    // serviceUrl: 'http://localhost:3000/api/payment-callback', 
     serviceUrl: 'https://one-two-smile.vercel.app/api/payment-callback',
     orderReference,
     orderDate,

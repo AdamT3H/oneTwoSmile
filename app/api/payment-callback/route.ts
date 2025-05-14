@@ -3,7 +3,6 @@ import { NextRequest } from 'next/server';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    console.log('CALLBACK BODY', body);
 
     const { transactionStatus } = body;
 
@@ -22,7 +21,6 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Додай GET для перевірки в браузері
 export async function GET() {
   return new Response('✅ Callback route is alive (GET)', { status: 200 });
 }
