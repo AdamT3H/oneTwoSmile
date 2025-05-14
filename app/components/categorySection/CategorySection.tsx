@@ -47,7 +47,7 @@ export default function CategorySection({
   }, []);
 
   useEffect(() => {
-    const handleStorageChange = () => {
+    const handleCartUpdated = () => {
       const stored = localStorage.getItem("cartedProducts");
       if (stored) {
         try {
@@ -63,8 +63,8 @@ export default function CategorySection({
       }
     };
   
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    window.addEventListener("cart-updated", handleCartUpdated);
+    return () => window.removeEventListener("cart-updated", handleCartUpdated);
   }, []);
 
   useEffect(() => {

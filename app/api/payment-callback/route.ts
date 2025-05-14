@@ -1,20 +1,31 @@
-import { NextRequest } from "next/server";
+import { NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest) {
-  const body = await req.json();
-  const { transactionStatus } = body;
+  try {
+    const body = await req.json();
+    console.log('CALLBACK BODY', body);
 
-  if (transactionStatus === "Approved") {
-    console.log("НАДСИЛАЮ НА ПОШТУ БІБІ БА БА");
-    return new Response(JSON.stringify({ reason: "Success" }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    const { transactionStatus } = body;
+
+    if (transactionStatus === 'Approved') {
+      console.log('✅ УСПІШНА ОПЛАТА — НАДСИЛАЮ EMAIL!');
+      return new Response(JSON.stringify({ reason: 'Success' }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    return new Response('Ignored', { status: 200 });
+  } catch (error) {
+    console.error('❌ Помилка в callback:', error);
+    return new Response('Server Error', { status: 500 });
   }
-
-  return new Response("Ignored", { status: 200 });
 }
 
+// Додай GET для перевірки в браузері
+export async function GET() {
+  return new Response('✅ Callback route is alive (GET)', { status: 200 });
+}
 // import { NextRequest } from 'next/server';
 
 // export async function POST(req: NextRequest) {

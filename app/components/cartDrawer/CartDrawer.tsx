@@ -81,7 +81,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
       setCartedItems((prevItems) => prevItems.filter((item) => item.id !== id));
 
-      window.dispatchEvent(new Event("storage"));
+      window.dispatchEvent(new CustomEvent("cart-updated"));
     } catch (err) {
       console.error("Помилка при видаленні товару з корзини:", err);
     }
@@ -104,6 +104,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         return item;
       });
 
+      window.dispatchEvent(new CustomEvent("liked-products-updated"));
       saveCartToLocalStorage(updatedItems);
       return updatedItems;
     });
