@@ -1,0 +1,6 @@
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function POST(req: NextRequest) {
+  // Можеш зчитати body, якщо треба щось логувати
+  return NextResponse.redirect('https://one-two-smile.vercel.app/shop/success', 302);
+}
