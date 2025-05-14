@@ -72,80 +72,64 @@ export default function App() {
           }`}
         >
           <div ref={sliderRef} className={`${styles.keenSlider} keen-slider `}>
-            <div className={`${styles.keenSlider__slide} ${styles.numberSlide1} keen-slider__slide number-slide1`}>
+            <div
+              className={`${styles.keenSlider__slide} ${styles.numberSlide1} keen-slider__slide number-slide1`}
+            >
               <div className={styles.background}></div>
               <div className={styles.mainTextSlide1}>Чому обирають нас?</div>
-              {/* <div className={styles.lowerTextSlide1}>d</div> */}
-              <Image className={styles.sliderPhoto} src="/main/sliderPhoto.png" alt="Slider" width={250} height={250} />
+              <Image
+                className={styles.sliderPhoto}
+                src="/main/sliderPhoto.png"
+                alt="Slider"
+                width={250}
+                height={250}
+              />
             </div>
 
-            <div className={`${styles.keenSlider__slide} ${styles.numberSlide2} keen-slider__slide number-slide2`}>
+            <div
+              className={`${styles.keenSlider__slide} ${styles.numberSlide2} keen-slider__slide number-slide2`}
+            >
               <div className={styles.background}></div>
-              <div className={styles.mainTextSlide2}>
-                <div>— Команда висококваліфікованих лікарів</div>
-                <div>— Комплексний підхід</div>
-                <div>— Індивідуальний підхід до кожного пацієнта</div>
-              </div>
-              {/* <Image className={styles.sliderPhoto} src="/main/sliderPhoto.png" alt="Slider" width={250} height={250} /> */}
-            </div>
-
-            <div className={`${styles.keenSlider__slide} ${styles.numberSlide3} keen-slider__slide number-slide3`}>
-              <div className={styles.background}></div>
-              <div className={styles.mainTextSlide3}>
-                <div className={styles.firstArg}>
-                  <Image className={styles.teamImage} src="/main/team.png" alt="Team" width={250} height={250}/>
+              <div className={styles.mainContentWrapper}>
+                <div className={styles.textBlock}>
                   <h1>Команда висококваліфікованих лікарів</h1>
                 </div>
-                <div className={styles.secondArg}>
-                  <Image className={styles.teamImage} src="/main/team.png" alt="Team" width={300} height={250}/>
-                  <h1>Комплексний підхід</h1>
-                </div>
-                <div className={styles.thirdArg}>
-                  <Image className={styles.teamImage} src="/main/team.png" alt="Team" width={300} height={250}/>
-                  <h1>Індивідуальний підхід до кожного пацієнта</h1>
-                </div>
-
+                
+                <Image
+                  className={styles.sliderPhoto1}
+                  src="/main/TEST.png"
+                  alt="Slider"
+                  width={750}
+                  height={750}
+                />
               </div>
-              {/* <Image className={styles.sliderPhoto} src="/main/sliderPhoto.png" alt="Slider" width={250} height={250} /> */}
             </div>
 
-            <div className={`${styles.keenSlider__slide} ${styles.numberSlide4} keen-slider__slide number-slide4`}>
+            <div
+              className={`${styles.keenSlider__slide} ${styles.numberSlide3} keen-slider__slide number-slide3`}
+            >
               <div className={styles.background}></div>
-              <div className={styles.mainTextSlide4}>
-                <div className={styles.firstArg}>
+              <div className={styles.mainContentWrapper}>
+                <div className={styles.textBlock}>
                   <h1>Команда висококваліфікованих лікарів</h1>
                 </div>
-                <div className={styles.secondArg}>
+
+                <Image
+                  className={styles.sliderPhoto1}
+                  src="/main/TEST.png"
+                  alt="Slider"
+                  width={750}
+                  height={750}
+                />
+              </div>
+            </div>
+
+            {/* <div className={styles.secondArg}>
                   <h1>Комплексний підхід лікування зубів</h1>
                 </div>
                 <div className={styles.thirdArg}>
                   <h1>Індивідуальний підхід до кожного пацієнта</h1>
-                </div>
-
-              </div>
-              {/* <Image className={styles.sliderPhoto} src="/main/sliderPhoto.png" alt="Slider" width={250} height={250} /> */}
-            </div>
-
-
-            <div className={`${styles.keenSlider__slide} ${styles.numberSlide5} keen-slider__slide number-slide5`}>
-              <div className={styles.background}></div>
-              <div className={styles.mainTextSlide5}>
-                <h1>Команда висококваліфікованих лікарів</h1>
-                <h1>Комплексний підхід</h1>
-                <h1>Індивідуальний підхід до кожного пацієнта</h1>
-              </div>
-              {/* <Image className={styles.sliderPhoto} src="/main/sliderPhoto.png" alt="Slider" width={250} height={250} /> */}
-            </div>
-
-
-
-
-
-            
-
-
-
-
+                </div> */}
           </div>
           {loaded && instanceRef.current && (
             <>
@@ -170,27 +154,29 @@ export default function App() {
               />
             </>
           )}
-                {loaded &&
-      instanceRef.current &&
-      instanceRef.current.track.details.slides ? (
-        <div className={styles.dots}>
-          {[
-            ...Array(instanceRef.current.track.details.slides.length).keys(),
-          ].map((idx) => {
-            return (
-              <button
-                key={idx}
-                onClick={() => {
-                  instanceRef.current?.moveToIdx(idx);
-                }}
-                className={`${styles.dot} ${
-                  currentSlide === idx ? styles.active : ""
-                }`}
-              ></button>
-            );
-          })}
-        </div>
-      ) : null}
+          {loaded &&
+          instanceRef.current &&
+          instanceRef.current.track.details.slides ? (
+            <div className={styles.dots}>
+              {[
+                ...Array(
+                  instanceRef.current.track.details.slides.length
+                ).keys(),
+              ].map((idx) => {
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      instanceRef.current?.moveToIdx(idx);
+                    }}
+                    className={`${styles.dot} ${
+                      currentSlide === idx ? styles.active : ""
+                    }`}
+                  ></button>
+                );
+              })}
+            </div>
+          ) : null}
         </div>
       </div>
       {/* {loaded &&

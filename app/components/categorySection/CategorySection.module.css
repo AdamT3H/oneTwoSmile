@@ -34,6 +34,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 220px;
 }
 
 .productCard:not(:last-child)::after {
@@ -50,6 +51,9 @@
 .productTitle {
   font-size: 14px;
   margin: 8px 0 4px;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .productImageWrapper {
@@ -77,6 +81,7 @@
   font-size: 33px;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
   margin-left: 7px;
+  text-transform: capitalize;
 }
 
 .moreButton{
@@ -228,5 +233,10 @@
 @media (max-width: 690px) {
   .title {
     font-size: 26px !important;
+  }
+
+  .container{
+    padding-left: clamp(20px, 5vw, 64px);
+    padding-right:clamp(20px, 5vw, 64px);
   }
 }

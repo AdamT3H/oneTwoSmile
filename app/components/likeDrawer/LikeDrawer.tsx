@@ -2,45 +2,76 @@
 import { useState, useEffect } from "react";
 import styles from "./LikeDrawer.module.css";
 import Image from "next/image";
+import Link from "next/link";
+import { supabase } from "@/lib/supabase.js";
 
 interface LikeDrawerProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+interface Product {
+  id: number;
+  title: string;
+  main_image_url: string;
+  price: string;
+}
+
 export default function LikeDrawer({ isOpen, onClose }: LikeDrawerProps) {
-  const [likedItems] = useState([
-    {
-      id: 1,
-      title: "Крем для обличчя",
-      imageUrl: "/shop/IMG_1962.png",
-      price: "350₴",
-    },
-    {
-      id: 2,
-      title: "Маска для шкіри",
-      imageUrl: "/shop/IMG_1981.png",
-      price: "280₴",
-    },
-    {
-      id: 3,
-      title: "Сироватка",
-      imageUrl: "/shop/IMG_1984.png",
-      price: "410₴",
-    },
-    {
-      id: 4,
-      title: "Сироватка",
-      imageUrl: "/shop/IMG_1984.png",
-      price: "410₴",
-    },
-    {
-      id: 5,
-      title: "Сироватка піздата шо пздц",
-      imageUrl: "/shop/IMG_1984.png",
-      price: "410₴",
-    },
-  ]);
+  const [likedItems, setLikedItems] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchLikedItems = async () => {
+      const stored = localStorage.getItem("likedProducts");
+      if (!stored) return;
+
+      setIsLoading(true);
+      try {
+        const likedIDs = JSON.parse(stored); // [1, 2, 3]
+        if (Array.isArray(likedIDs) && likedIDs.length > 0) {
+          const { data, error } = await supabase
+            .from("products")
+            .select("*")
+            .in("id", likedIDs);
+
+          if (!error && data) {
+            setLikedItems(data);
+          } else {
+            console.error("Error fetching liked products:", error);
+          }
+        } else {
+          setLikedItems([]);
+        }
+      } catch (err) {
+        console.error("Failed to parse liked products:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (isOpen) {
+      fetchLikedItems();
+    }
+  }, [isOpen]);
+
+  const handleRemove = (id: number) => {
+    const stored = localStorage.getItem("likedProducts");
+    if (!stored) return;
+
+    try {
+      const likedIDs: number[] = JSON.parse(stored);
+      const updatedIDs = likedIDs.filter((itemId) => itemId !== id);
+
+      localStorage.setItem("likedProducts", JSON.stringify(updatedIDs));
+
+      setLikedItems((prevItems) => prevItems.filter((item) => item.id !== id));
+
+      window.dispatchEvent(new Event("storage"));
+    } catch (err) {
+      console.error("Помилка при видаленні вподобаного товару:", err);
+    }
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -68,23 +99,43 @@ export default function LikeDrawer({ isOpen, onClose }: LikeDrawerProps) {
           </button>
         </div>
         <div className={styles.content}>
-          {likedItems.length === 0 ? (
+          {isLoading ? (
+            <p className={styles.loading}>Завантаження...</p>
+          ) : likedItems.length === 0 ? (
             <p className={styles.noContent}>У вас ще немає вподобань</p>
           ) : (
             <ul className={styles.productList}>
               {likedItems.map((product) => (
                 <li key={product.id} className={styles.productItem}>
-                  <Image
-                    src={product.imageUrl}
-                    alt={product.title}
-                    width={90}
-                    height={90}
-                    className={styles.productImage}
-                  />
+                  <div className={styles.productImageWrapper}>
+                    <Link href={`/product/${product.id}`}>
+                      <Image
+                        src={product.main_image_url}
+                        alt={product.title}
+                        width={90}
+                        height={90}
+                        className={styles.productImage}
+                      />
+                    </Link>
+                  </div>
                   <div className={styles.productInfo}>
-                    <p className={styles.productTitle}>{product.title}</p>
-                    <p className={styles.productPrice}>{product.price}</p>
-                    <button className={styles.deleteButton}>Видалити</button>
+                    <Link
+                      href={`/product/${product.id}`}
+                      className={styles.productTitle}
+                    >
+                      {product.title}
+                    </Link>
+                    <p className={styles.productPrice}>{product.price} ₴</p>
+                    <button
+                      className={styles.deleteButton}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        handleRemove(product.id);
+                      }}
+                    >
+                      Видалити
+                    </button>
                   </div>
                 </li>
               ))}

@@ -64,7 +64,7 @@ export default function Header() {
       <div className={`${styles.moreOptions} ${isMoreOptionsVisible ? styles.moreOptionsVisible : ''}`}>
         <div className={styles.moreOptionsContainer}>
           <Link href="/shop" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionShop}>Магазин</Link>
-          <Link href="/aboutUs" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionAbout}>Про нас</Link>
+          <Link href="/policy" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionAbout}>Умови користування</Link>
           <Link href="/" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionMain}>Головна</Link>
           <Link href="/ourTeam" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionTeam}>Наша команда</Link>
           <Link href="/medicalTourism" onClick={() => setMoreOptionsVisible((prev) => !prev)} className={styles.optionMed}>Медичний туризм</Link>

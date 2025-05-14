@@ -1,78 +1,61 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./AllServices.module.css";
+import { supabase } from "@/lib/supabase";
 
-const services = [
-  {
-    id: 1,
-    name: "Чистка зубів",
-    category: "Догляд за зубами",
-    description:
-      "Професійна чистка зубів – це ефективна процедура для видалення зубного нальоту, каменю та залишків їжі, що накопичуються у важкодоступних місцях. Ми використовуємо ультразвукові технології, які дозволяють безболісно та делікатно очистити емаль, а спеціальні полірувальні пасти надають їй гладкості та природного блиску. Регулярне проведення чистки запобігає утворенню карієсу, розвитку пародонтиту та кровоточивості ясен. Рекомендується повторювати кожні 6 місяців для підтримки здоров'я та естетики вашої усмішки.",
-    price: "800 грн",
-    duration: "30 хв",
-  },
-  {
-    id: 2,
-    name: "Відбілювання зубів",
-    category: "Догляд за зубами",
-    description:
-      "Відбілювання зубів за допомогою сучасних методик, таких як ультразвук та LED-лампи, дозволяє освітлити емаль на кілька тонів без пошкодження її структури. Процедура безболісна та безпечна, вона видаляє стійкі плями від кави, чаю, вина, нікотину та інших продуктів. Відбілювання забезпечує довготривалий результат, робить усмішку привабливішою та підвищує впевненість у собі. Для досягнення максимального ефекту рекомендовано повторювати процедуру кожні 12 місяців.",
-    price: "1500 грн",
-    duration: "1 год",
-  },
-  {
-    id: 3,
-    name: "Пломбування",
-    category: "Лікування зубів",
-    description:
-      "Пломбування зубів – це процедура, спрямована на лікування карієсу та відновлення анатомічної форми зуба. Ми використовуємо інноваційні фотополімерні матеріали, які мають високу міцність та естетично виглядають, не відрізняючись від природного кольору емалі. Пломбування виконується в декілька етапів: очищення каріозної порожнини, накладання ізолюючого шару та встановлення пломби з подальшою поліровкою. Завдяки сучасним методикам процедура проходить комфортно та безболісно.",
-    price: "1200 грн",
-    duration: "40 хв",
-  },
-  {
-    id: 4,
-    name: "Видалення зуба",
-    category: "Лікування зубів",
-    description:
-      "Видалення зуба – це хірургічна процедура, яка проводиться у випадках сильного руйнування зуба, його інфікування або при необхідності ортодонтичної корекції. Ми використовуємо сучасні методики анестезії, що дозволяють звести до мінімуму дискомфорт під час видалення. Наші спеціалісти дбайливо ставляться до стану ясен та оточуючих тканин, щоб процес загоєння проходив швидко і без ускладнень. У разі необхідності проводиться видалення складних ретинованих зубів мудрості.",
-    price: "2000 грн",
-    duration: "1 год",
-  },
-  {
-    id: 5,
-    name: "Ботокс для обличчя",
-    category: "Косметологія",
-    description:
-      "Ін'єкції ботулотоксину – це ефективний метод боротьби з мімічними зморшками. Процедура допомагає усунути зморшки на лобі, в куточках очей, між бровами та в інших зонах обличчя. Ботокс блокує надмірну активність м'язів, завдяки чому шкіра розгладжується та виглядає молодшою. Ефект зберігається до 6 місяців, після чого процедуру можна повторювати. Метод абсолютно безпечний, якщо виконується професійним косметологом з урахуванням усіх індивідуальних особливостей пацієнта.",
-    price: "2500 грн",
-    duration: "30 хв",
-  },
-  {
-    id: 6,
-    name: "Масаж обличчя",
-    category: "Косметологія",
-    description:
-      "Масаж обличчя – це процедура, яка поєднує приємне розслаблення та значну користь для шкіри. Він стимулює кровообіг, покращує тонус м'язів, сприяє лімфодренажу та природному оновленню клітин. Після масажу шкіра стає більш пружною, зникають набряки, обличчя виглядає свіжим та підтягнутим. Методика підходить для всіх типів шкіри та може поєднуватися з іншими косметичними процедурами для максимального ефекту.",
-    price: "600 грн",
-    duration: "45 хв",
-  },
-  {
-    id: 7,
-    name: "Лазерне шліфування",
-    category: "Косметологія",
-    description:
-      "Лазерне шліфування шкіри – це інноваційна процедура, яка допомагає позбутися нерівностей, дрібних зморшок, пігментації та рубців після акне. Завдяки променю лазера відбувається контрольоване видалення верхнього шару епідермісу, що стимулює оновлення клітин та вироблення колагену. В результаті шкіра стає гладкою, рівною та пружною. Реабілітаційний період мінімальний, а ефект омолодження триває довгий час.",
-    price: "3000 грн",
-    duration: "1.5 год",
-  },
-];
+type Service = {
+  id: number;
+  title: string;
+  description: string;
+  duration: string;
+  price: string;
+  category_id: number;
+  categories?: {
+    name: string;
+  };
+};
 
 export default function AllServices() {
-  const [selected, setSelected] = useState("Усі");
+  const [selected, setSelected] = useState<number | "Усі">("Усі");
   const [expandedServices, setExpandedServices] = useState<
     Record<number, boolean>
   >({});
+  const [services, setServices] = useState<Service[]>([]);
+  const [categories, setCategories] = useState<{ id: number; name: string }[]>(
+    []
+  );
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 3000)); //ВИДАЛИТИ РЯДОК
+      setLoading(true);
+
+      const { data: serviceData, error: serviceError } = await supabase
+        .from("all_services")
+        .select("*, categories:service_categories(name)");
+
+      const { data: categoryData, error: categoryError } = await supabase
+        .from("service_categories")
+        .select("*");
+
+      if (serviceError) {
+        console.error("Помилка при завантаженні послуг:", serviceError);
+      } else {
+        setServices(serviceData || []);
+      }
+
+      if (categoryError) {
+        console.error("Помилка при завантаженні категорій:", categoryError);
+      } else {
+        setCategories(categoryData || []);
+      }
+
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
 
   const toggleExpand = (id: number) => {
     setExpandedServices((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -81,45 +64,58 @@ export default function AllServices() {
   const filteredServices =
     selected === "Усі"
       ? services
-      : services.filter((service) => service.category === selected);
+      : services.filter((service) => service.category_id === selected);
 
   return (
     <div className={styles.container}>
       <div className={styles.options}>
-        {[
-          "Усі",
-          "Догляд за зубами",
-          "Лікування зубів",
-          "Косметологія",
-          "Ше шось",
-          "Усі2",
-          "Догляд за зубами2",
-          "Лікування зубів2",
-          "Косметологія2",
-          "Ше шось2",
-        ].map((option) => (
-          <div
-            key={option}
-            className={`${styles.option} ${
-              selected === option ? styles.active : ""
-            }`}
-            onClick={() => setSelected(option)}
-          >
-            {option}
+        {loading ? (
+          <div className={styles.sceletonOptions}>
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className={styles.sceletonOption}></div>
+            ))}
           </div>
-        ))}
+        ) : (
+          <>
+            <div
+              className={`${styles.option} ${
+                selected === "Усі" ? styles.active : ""
+              }`}
+              onClick={() => setSelected("Усі")}
+            >
+              Усі
+            </div>
+            {categories.map((cat) => (
+              <div
+                key={cat.id}
+                className={`${styles.option} ${
+                  selected === cat.id ? styles.active : ""
+                }`}
+                onClick={() => setSelected(cat.id)}
+              >
+                {cat.name}
+              </div>
+            ))}
+          </>
+        )}
       </div>
 
       <div className={styles.servicesList}>
-        {filteredServices.length > 0 ? (
+        {loading ? (
+          Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className={styles.skeletonCard}>
+
+            </div>
+          ))
+        ) : filteredServices.length > 0 ? (
           filteredServices.map((service) => (
             <div key={service.id} className={styles.serviceCard}>
-              <h3 className={styles.serviceName}>{service.name}</h3>
+              <h3 className={styles.serviceName}>{service.title}</h3>
               <div className={styles.details}>
                 <span className={styles.duration}>
-                  Тривалість: {service.duration}
+                  Тривалість: {service.duration} хв
                 </span>
-                <span className={styles.price}>Ціна: {service.price}</span>
+                <span className={styles.price}>Ціна: {service.price} грн</span>
               </div>
               <p>
                 {expandedServices[service.id]
@@ -141,29 +137,3 @@ export default function AllServices() {
     </div>
   );
 }
-
-// "use client"
-// import { useState } from "react";
-// import styles from './AllServices.module.css';
-
-// import { useRouter } from "next/navigation";
-
-// export default function AllServices() {
-//   const router = useRouter();
-
-//   const handleClick = (option : any) => {
-//     router.push(`/services?category=${option}`);
-//   };
-
-//   return (
-//     <div className={styles.container}>
-//       <div className={styles.options}>
-//         {["Усі", "Догляд за зубами", "Лікування зубів", "Косметологія", "Ше шось"].map((option) => (
-//           <div key={option} className={styles.option} onClick={() => handleClick(option)}>
-//             {option}
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }

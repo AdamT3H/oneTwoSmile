@@ -138,7 +138,7 @@
 
 @media (min-width: 300px) {
     .navWrapper {
-        padding: 0 40px;
+        padding: 0 30px;
       }
 
       .topRow {
@@ -157,7 +157,6 @@
   .bottomRow {
     display: contents;
   }
-
 
   .center {
     position: absolute;

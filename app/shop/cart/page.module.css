@@ -1,0 +1,395 @@
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.cartedItems {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 500;
+  /* position: absolute;
+    left: 0; */
+}
+
+.total {
+  font-size: 17px;
+  /* position: absolute;
+    right: 0; */
+  display: flex;
+  align-items: baseline;
+  margin-left: auto;
+  color: #666;
+  font-weight: 600;
+}
+
+.totalPrice {
+  font-size: 29px;
+  color: #222222;
+  font-weight: 500;
+}
+
+.titleWrapper {
+  display: flex;
+  /* position: relative; */
+}
+
+.actyalCart {
+  width: 100%;
+  display: flex;
+  border-bottom: 3px solid #b9b9b9;
+  padding: 30px 0px;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; /* для приємного "прилипання" */
+  scrollbar-width: thin; /* для Firefox */
+  min-height: 337px;
+}
+
+.actyalCart::-webkit-scrollbar {
+  height: 6px;
+}
+
+.actyalCart::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 3px;
+}
+
+.productImage {
+  object-fit: contain;
+  width: 110px;
+  height: 110px;
+  border-radius: 8px;
+  display: block;
+}
+
+.productItem {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  min-width: 180px;
+  max-width: 190px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s;
+}
+
+.productImage {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.productTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.productTitle a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.productPrice {
+  font-size: 15px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.quantityControl {
+  background-color: #f0f0f0;
+  width: 80px;
+  padding: 0px 3px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.quantityButton {
+  background-color: #9c9c9c; /* Темний фон */
+  color: #e6e6e6; /* Білі символи */
+  font-size: 16px; /* Розмір тексту */
+  width: 20px; /* Ширина кнопки */
+  height: 20px; /* Висота кнопки */
+  border: none;
+  border-radius: 50%; /* Округлість кнопки */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Анімація для фонового кольору та масштабування */
+}
+
+.quantityButton:hover {
+  background-color: #979797; /* Світліший фон при наведенні */
+  transform: scale(1.1); /* Легке збільшення розміру кнопки при наведенні */
+}
+
+.quantityButton:focus {
+  outline: none; /* Прибираємо контур при фокусуванні */
+}
+
+.quantityControl:hover .quantityButton {
+  background-color: #707070; /* Кнопки світлішають при наведенні на контейнер */
+}
+
+.deleteButton {
+  background-color: #f0f0f0;
+  color: #444;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 15px;
+}
+
+.deleteButton:hover {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  flex-grow: 1;
+  padding-top: 5px;
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 0px 0;
+  }
+
+  .title {
+    font-size: 26px;
+    font-weight: 400;
+  }
+
+  .totalPrice {
+    font-size: 25px;
+    color: #222;
+    font-weight: 400;
+  }
+
+  .total {
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+.containerDost {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.note {
+  color: #707070;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.typeOfDeliveryWrapper {
+  gap: 40px;
+  display: flex;
+}
+
+.typeOfDeliveryWrapper label {
+  gap: 1px;
+  display: flex;
+}
+
+.customRadio {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #4f4f4f;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+
+.customRadio input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radioMark {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18px;
+  width: 18px;
+  background-color: #eee;
+  border: 2px solid #aaa;
+  border-radius: 30%;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.customRadio:hover .radioMark {
+  border-color: #666;
+}
+
+.customRadio input:checked ~ .radioMark {
+  background-color: #4f4f4f;
+  border-color: #4f4f4f;
+}
+
+.radioMark::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.customRadio input:checked ~ .radioMark::after {
+  display: block;
+}
+
+.customRadio .radioMark::after {
+  left: 4px;
+  top: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+
+.personalInfoNameWrapper {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.inputField {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fcfcfc;
+  color: #333;
+  font-size: 16px;
+  transition: border 0.2s ease-in-out, background-color 0.2s;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #999;
+  background-color: #fff;
+}
+
+.personalInfoNamberWrapper {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #d2d2d2;
+}
+
+.noteNP {
+  color: #707070;
+  font-weight: 500;
+  font-size: 14px;
+  margin-left: 2px;
+}
+
+.novaWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.containerSelf {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0px;
+  gap: 10px;
+}
+
+.containerSelf p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.location {
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.containerDost {
+  border-bottom: 3px solid #b9b9b9;
+  padding-bottom: 28px;
+}
+
+@media (max-width: 500px) {
+  .novaWrapper {
+    display: block;
+  }
+}
+
+.containerPayment {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+  border-bottom: 3px solid #b9b9b9;
+}
+
+.containerComment {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+  border-bottom: 3px solid #b9b9b9;
+}
+
+.inputFieldComment {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fcfcfc;
+    color: #333;
+    font-size: 16px;
+    transition: border 0.2s ease-in-out, background-color 0.2s;
+    width: 100%;
+    resize: none; /* не дає користувачу вручну розтягувати */
+    overflow-y: hidden; /* приховує скрол */
+    min-height: 40px;
+    margin-top: 15px;
+  }
+  
+  .inputFieldComment:focus {
+    outline: none;
+    border-color: #999;
+    background-color: #fff;
+  }

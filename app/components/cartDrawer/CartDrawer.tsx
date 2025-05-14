@@ -2,59 +2,122 @@
 import { useState, useEffect } from "react";
 import styles from "./CartDrawer.module.css";
 import Image from "next/image";
+import Link from "next/link";
+import { supabase } from "@/lib/supabase.js";
 
 interface CartDrawerProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+interface Product {
+  id: number;
+  title: string;
+  main_image_url: string;
+  price: string;
+  in_stock: number;
+  quantity: number;
+}
+
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
-  const [cartedItems, setCartedItems] = useState([
-    {
-      id: 1,
-      title: "Крем для обличчя",
-      imageUrl: "/shop/IMG_1962.png",
-      price: "350₴",
-      quantity: 1,
-    },
-    {
-      id: 2,
-      title: "Маска для шкіри",
-      imageUrl: "/shop/IMG_1981.png",
-      price: "280₴",
-      quantity: 1,
-    },
-    {
-      id: 3,
-      title: "Сироватка",
-      imageUrl: "/shop/IMG_1984.png",
-      price: "410₴",
-      quantity: 1,
-    },
-    {
-      id: 4,
-      title: "Сироватка",
-      imageUrl: "/shop/IMG_1984.png",
-      price: "410₴",
-      quantity: 1,
-    },
-    {
-      id: 5,
-      title: "Сироватка піздата шо пздц",
-      imageUrl: "/shop/IMG_1984.png",
-      price: "410₴",
-      quantity: 1,
-    },
-  ]);
+  const [cartedItems, setCartedItems] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchCartedItems = async () => {
+      const stored = localStorage.getItem("cartedProducts");
+      if (!stored) return;
+
+      setIsLoading(true);
+      try {
+        const cartedData: { id: number; quantity: number }[] =
+          JSON.parse(stored);
+        if (Array.isArray(cartedData) && cartedData.length > 0) {
+          const cartedIDs = cartedData.map((item) => item.id);
+
+          const { data, error } = await supabase
+            .from("products")
+            .select("*")
+            .in("id", cartedIDs);
+
+          if (!error && data) {
+            const merged = data.map((product) => {
+              const match = cartedData.find((item) => item.id === product.id);
+              return {
+                ...product,
+                quantity: match?.quantity ?? 1,
+              };
+            });
+
+            setCartedItems(merged);
+          } else {
+            console.error("Error fetching carted products:", error);
+          }
+        } else {
+          setCartedItems([]);
+        }
+      } catch (err) {
+        console.error("Failed to parse carted products:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (isOpen) {
+      fetchCartedItems();
+    }
+  }, [isOpen]);
+
+  const handleRemove = (id: number) => {
+    const stored = localStorage.getItem("cartedProducts");
+    if (!stored) return;
+
+    try {
+      const cartedItems: { id: number; quantity: number }[] =
+        JSON.parse(stored);
+      const updatedItems = cartedItems.filter((item) => item.id !== id);
+
+      localStorage.setItem("cartedProducts", JSON.stringify(updatedItems));
+
+      setCartedItems((prevItems) => prevItems.filter((item) => item.id !== id));
+
+      window.dispatchEvent(new Event("storage"));
+    } catch (err) {
+      console.error("Помилка при видаленні товару з корзини:", err);
+    }
+  };
 
   const handleQuantityChange = (id: number, change: number) => {
-    setCartedItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + change) }
-          : item
-      )
-    );
+    setCartedItems((prevItems) => {
+      const updatedItems = prevItems.map((item) => {
+        if (item.id === id) {
+          const newQuantity = item.quantity + change;
+
+          // Гарантуємо, що кількість не менша за 1 і не більша за in_stock
+          const clampedQuantity = Math.max(
+            1,
+            Math.min(item.in_stock, newQuantity)
+          );
+
+          return { ...item, quantity: clampedQuantity };
+        }
+        return item;
+      });
+
+      saveCartToLocalStorage(updatedItems);
+      return updatedItems;
+    });
+  };
+
+  const saveCartToLocalStorage = (items: Product[]) => {
+    const cartToStore = items.map((item) => ({
+      id: item.id,
+      quantity: item.quantity,
+    }));
+    localStorage.setItem("cartedProducts", JSON.stringify(cartToStore));
+
+    // Викликаємо подію для синхронізації з іншими вкладками, якщо треба
+    window.dispatchEvent(new Event("storage"));
   };
 
   useEffect(() => {
@@ -88,17 +151,23 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           ) : (
             <ul className={styles.productList}>
               {cartedItems.map((product) => (
-                <li key={product.id} className={styles.productItem}>
-                  <Image
-                    src={product.imageUrl}
-                    alt={product.title}
-                    width={90}
-                    height={90}
-                    className={styles.productImage}
-                  />
+                <div key={product.id} className={styles.productItem}>
+                  <Link href={`/product/${product.id}`}>
+                    <Image
+                      src={product.main_image_url}
+                      alt={product.title}
+                      width={90}
+                      height={90}
+                      className={styles.productImage}
+                    />
+                  </Link>
                   <div className={styles.productInfo}>
-                    <p className={styles.productTitle}>{product.title}</p>
-                    <p className={styles.productPrice}>{product.price}</p>
+                    <p className={styles.productTitle}>
+                      <Link href={`/product/${product.id}`}>
+                        {product.title}
+                      </Link>
+                    </p>
+                    <p className={styles.productPrice}>{product.price} ₴</p>
                     <div className={styles.quantityControl}>
                       <button
                         className={styles.quantityButton}
@@ -117,14 +186,26 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                       </button>
                     </div>
                     <button
-                    className={styles.deleteButton}
-                  >
-                    Видалити
-                  </button>
+                      className={styles.deleteButton}
+                      onClick={() => handleRemove(product.id)}
+                    >
+                      Видалити
+                    </button>
                   </div>
-                </li>
+                </div>
               ))}
             </ul>
+          )}
+        </div>
+        <div className={styles.linkWrapper}>
+          {cartedItems.length > 0 ? (
+            <Link href="/shop/cart" className={styles.link}>
+              Замовити
+            </Link>
+          ) : (
+            <button className={styles.disabledButton} disabled>
+              Замовити
+            </button>
           )}
         </div>
       </div>

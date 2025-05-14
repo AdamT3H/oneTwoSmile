@@ -1,8 +1,7 @@
+/* Основні стилі контейнерів та заголовків */
 .container {
-  padding-left: clamp(32px, 8vw, 128px);
-  padding-right: clamp(32px, 8vw, 128px);
+  padding: clamp(32px, 8vw, 128px) clamp(32px, 8vw, 128px) 40px;
   padding-top: 30px;
-  padding-bottom: 40px;
 }
 
 .title {
@@ -16,7 +15,6 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   justify-items: center;
   gap: 40px;
-  max-width: 100%;
   width: 100%;
   padding: 20px;
 }
@@ -29,7 +27,6 @@
 
 .productCard {
   padding: 20px;
-
   text-align: center;
   position: relative;
   display: flex;
@@ -38,26 +35,16 @@
   align-items: center;
   transition: transform 0.3s ease;
   border-radius: 10px;
-  box-shadow: 0 0px 7px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  max-width: 220px;
 }
 
-/* Додаємо роздільник */
-/* .productCard::after {
-    content: "";
-    position: absolute;
-    top: 10%;
-    bottom: 10%;
-    left: 100%;
-    margin-left: 45px; 
-    width: 4px;
-    background-color: #ccc;
-    border-radius: 3px;
-  } */
-
-.productImage {
+.productLink{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
 }
 
 .productImageWrapper {
@@ -69,10 +56,18 @@
   overflow: hidden;
 }
 
+.productImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Стиль тексту і ціни */
 .bold {
   font-weight: bold;
 }
 
+/* Кнопки у картці */
 .cardButtons {
   position: absolute;
   top: 11px;
@@ -86,10 +81,9 @@
 .cartButton {
   background-color: rgb(238, 237, 237);
   padding: 9px;
-  display: inline-block;
+  border: 2px solid rgba(0, 0, 0, 0.03);
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-  border: 2px solid rgba(0, 0, 0, 0.03);
   cursor: pointer;
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -101,22 +95,13 @@
   transform: scale(1.1);
 }
 
+/* Анімації для кнопок */
 @keyframes heartbeat {
-  0% {
-    transform: scale(1);
-  }
-  14% {
-    transform: scale(1.25);
-  }
-  28% {
-    transform: scale(1);
-  }
-  42% {
-    transform: scale(1.25);
-  }
-  70% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  14% { transform: scale(1.25); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.25); }
+  70% { transform: scale(1); }
 }
 
 .heartImage {
@@ -128,29 +113,13 @@
 }
 
 @keyframes toCart {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  15% {
-    transform: scale(1.25);
-    opacity: 1;
-  }
-  30% {
-    transform: scale(0.9);
-  }
-  45% {
-    transform: scale(1.12);
-  }
-  60% {
-    transform: scale(0.92);
-  }
-  75% {
-    transform: scale(1.04);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); opacity: 0.8; }
+  15% { transform: scale(1.25); opacity: 1; }
+  30% { transform: scale(0.9); }
+  45% { transform: scale(1.12); }
+  60% { transform: scale(0.92); }
+  75% { transform: scale(1.04); }
+  100% { transform: scale(1); }
 }
 
 .cartImage {
@@ -161,176 +130,255 @@
   animation: toCart 1.3s ease;
 }
 
+/* Видаляємо псевдоелемент для кожної 5-ї картки */
 .productCard:nth-child(5n)::after {
   display: none;
 }
 
-
+/* Стилі пагінації */
 .paginationWrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 30px;
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    background-color: #fff;
-    width: fit-content;
-    padding: 10px 25px;
-    font-size: 15px;
-    border-radius: 50px;
-    box-shadow: 0 0px 13px rgba(0, 0, 0, 0.1);
-  }
-  
-  .pagination button {
-    padding: 2px 10px;
-    border: none;
-    background-color: #f0f0f0;
-    color: #333;
-    font-weight: 500;
-    border-radius: 30px;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-  }
-  
-  .pagination button:hover {
-    background-color: #e0e0e0; /* сірий фон при наведенні */
-    transform: translateY(-2px); /* ефект підняття кнопки */
-  }
-  
-  .pagination button:disabled {
-    cursor: not-allowed;
-    background-color: #e0e0e0; /* сірий фон для неактивних кнопок */
-    color: #999; /* сірий текст */
-  }
-  
-  .pagination .activePage {
-    background-color: #636363; /* зелений фон для активної сторінки */
-    color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* легка тінь для акценту */
-    transform: translateY(-2px); /* ефект підняття активної кнопки */
-  }
-  
-  .pagination .activePage:hover {
-    background-color: #454545;
-  }
-  
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
 
-/* @media (max-width: 1705px) {
-  .productCard:nth-child(5n)::after {
-    display: block;
-  }
+.desktopPagination {
+  display: flex;
+}
 
-  .productCard:nth-child(4n)::after {
-    display: none;
-  }
-} */
+.mobilePagination {
+  display: none;
+}
 
-/* @media (max-width: 1380px) {
-  .productCard:nth-child(4n)::after {
-    display: block;
-  }
+.pagination {
+  justify-content: center;
+  gap: 15px;
+  background-color: #fff;
+  width: fit-content;
+  padding: 10px 25px;
+  font-size: 15px;
+  border-radius: 50px;
+  box-shadow: 0 0 13px rgba(0, 0, 0, 0.1);
+}
 
-  .productCard:nth-child(3n)::after {
-    display: none;
-  }
-} */
+.pagination button {
+  padding: 2px 10px;
+  border: none;
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: 500;
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
 
+.pagination button:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  background-color: #e0e0e0; 
+  color: #999;
+}
+
+.pagination .activePage {
+  background-color: #636363; 
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px); 
+}
+
+.pagination .activePage:hover {
+  background-color: #454545;
+}
+
+.productCard p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.titleSceleton {
+  width: 220px;
+  height: 1.8rem;
+  background-color: #e5e7eb;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  animation: pulse 1.5s infinite;
+}
+
+.productListWraperSceleton{
+  width: 100%;
+}
+
+.titleSceletonWrapper{
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+}
+
+.containerSceleton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px clamp(8px, 5vw, 128px);
+}
+
+.productListSceleton {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-items: center;
+  gap: 40px;
+  width: 100%;
+}
+
+.productCardSceleton {
+  width: 180px;
+  height: 260px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  animation: pulse 1.5s infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* При ширині екрану до 1035px */
 @media (max-width: 1035px) {
   .productList {
     grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
   }
 }
 
-/* @media (max-width: 874px) {
-  .productCard:nth-child(3n)::after {
-    display: block;
+/* Мобільний варіант (до 690px) */
+@media (max-width: 690px) {
+  /* Забезпечуємо, що картки займають менше простору */
+  .productCard {
+    width: 180px;
+    padding: 15px;
   }
-
-  .productCard:nth-child(2n)::after {
+  
+  .productImageWrapper {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .desktopPagination {
     display: none;
   }
-} */
-
-@media (max-width: 690px) {
-  .productCard::after {
-    display: none !important;
+  
+  .mobilePagination {
+    display: flex;
   }
-
   
   .pagination {
     padding: 8px 10px;
     gap: 10px;
   }
-
-  .CategoryPage-module__jAtDda__productCard {
-    padding: 15px;
-  }
-
+  
   .productList {
     gap: 20px;
     padding: 0px;
   }
-
+  
   .title {
     font-size: 25px;
+    padding-left: clamp(8px, 2vw, 16px);
   }
-
+  
   .container {
     padding-left: clamp(20px, 1vw, 16px);
     padding-right: clamp(20px, 1vw, 16px);
-    
   }
-
-  .title {
-    padding-left: clamp(8px, 2vw, 16px);
-  }
-
+  
   .likeButton,
   .cartButton {
     padding: 6px;
     border-radius: 12px;
   }
-
-  .productList {
-    gap: 45px 40px;
+  .desktopPagination {
+    display: none;
   }
+  
+  .mobilePagination {
+    display: flex;
+  }
+
 }
 
+/* Для ширини до 550px */
 @media (max-width: 550px) {
+  .productListSceleton {
+    grid-template-columns: repeat(2, 1fr); /* рівно 2 колонки */
+    gap: 20px;
+    justify-items: center;
+  }
+  .productCard {
+    width: 190px;
+    padding: 15px;
+  }
+
   .productList {
     grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   }
 }
 
+/* Для вузьких екранів до 505px */
 @media (max-width: 505px) {
+  .productCard {
+    width: 170px;
+    padding: 15px;
+  }
+
+  .productCardSceleton {
+    width: 140px;
+    height: 180px;
+
+  }
+
   .pagination {
     font-size: 13px !important;
   }
-  .productImageWrapper {
-    width: 140px;
-    height: 140px;
-  }
-
+  
   .productList {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
 
+/* Для дуже вузьких екранів до 379px */
 @media (max-width: 379px) {
-    .pagination {
-      font-size: 13px !important;
-    }
-    .productImageWrapper {
-      width: 110px;
-      height: 110px;
-    }
-  
-    .productList {
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    }
+  .productCard {
+    width: 140px;
+    padding: 15px;
   }
+
+  .pagination {
+    font-size: 13px !important;
+  }
+  
+  .productImageWrapper {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .productList {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
