@@ -4,7 +4,7 @@ import { useState } from "react";
 import styles from "./NotWayForPayElem.module.css";
 
 export default function NotWayForPayElem() {
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
 
   return (
     <div className={styles.wrapper}>

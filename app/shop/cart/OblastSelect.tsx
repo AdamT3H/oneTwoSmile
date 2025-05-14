@@ -20,7 +20,7 @@ interface Props {
 export default function OblastSelect({ onChange }: Props) {
   const [options, setOptions] = useState<Option[]>([]);
   const [selected, setSelected] = useState<Option | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+//   const [loading, setLoading] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
 
   const customStyles: StylesConfig<Option, false, GroupBase<Option>> = {
@@ -55,7 +55,7 @@ export default function OblastSelect({ onChange }: Props) {
   useEffect(() => {
     const fetchOblasts = async () => {
       try {
-        setLoading(true); 
+        // setLoading(true); 
         const res = await fetch("/api/get_oblast");
         const data = await res.json();
         const oblastOptions = data.map((oblast: Oblast) => ({
@@ -66,7 +66,7 @@ export default function OblastSelect({ onChange }: Props) {
       } catch (error) {
         console.error("Помилка при отриманні областей:", error);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 

@@ -146,7 +146,9 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           </button>
         </div>
         <div className={styles.content}>
-          {cartedItems.length === 0 ? (
+          {isLoading ? (
+            <p className={styles.loadingText}>Завантаження...</p>
+          ) : cartedItems.length === 0 ? (
             <p className={styles.noContent}>Ваша корзинка порожня</p>
           ) : (
             <ul className={styles.productList}>

@@ -6,9 +6,9 @@ export async function POST(req: NextRequest) {
 
   const {
     transactionStatus,
-    orderReference,
-    amount,
-    email,
+    // orderReference,
+    // amount,
+    // email,
     // та інші поля, які надсилає WayForPay
   } = body;
 

@@ -85,7 +85,7 @@ export default function WayForPayElem({
       } else {
         setErrorMessage("Не вдалося отримати посилання на оплату.");
       }
-    } catch (err) {
+    } catch (_) {
       setErrorMessage("Сталася помилка під час обробки платежу.");
     } finally {
       setLoading(false);

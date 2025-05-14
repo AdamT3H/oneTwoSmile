@@ -41,7 +41,13 @@ export async function GET(request: Request) {
 
     const data = await res.json();
     return NextResponse.json(data.data || []);
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    let message = "Unknown error";
+  
+    if (error instanceof Error) {
+      message = error.message;
+    }
+  
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

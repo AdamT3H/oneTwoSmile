@@ -198,6 +198,13 @@
   transition: all 0.3s ease;
 }
 
+.loadingText {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
+  color: #777;
+}
+
 .disabledButton {
   background-color: #ccc;
   color: #666;

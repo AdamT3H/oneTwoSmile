@@ -34,7 +34,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   const [quantity, setQuantity] = useState(1);
   const [inlineWidth, setInlineWidth] = useState<number | null>(null);
   const [activeHeartId, setActiveHeartId] = useState<number | null>(null);
-  const [activeCartId, setActiveCartId] = useState<number | null>(null);
+  // const [activeCartId, setActiveCartId] = useState<number | null>(null);
 
   const [likedProducts, setLikedProducts] = useState<number[]>([]);
   const [cartedProducts, setCartedProducts] = useState<CartedProduct[]>([]);
@@ -173,10 +173,10 @@ export default function ProductPage({ params }: ProductPageProps) {
     setCartedProducts(updatedCarts);
     localStorage.setItem("cartedProducts", JSON.stringify(updatedCarts));
 
-    setActiveCartId(productId);
-    setTimeout(() => {
-      setActiveCartId(null);
-    }, 700);
+    // setActiveCartId(productId);
+    // setTimeout(() => {
+    //   setActiveCartId(null);
+    // }, 700);
   };
 
   useEffect(() => {
