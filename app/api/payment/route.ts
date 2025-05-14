@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
     productPrice,
     clientEmail,
     // returnUrl: 'http://localhost:3000/shop/success',
-    returnUrl: 'https://one-two-smile.vercel.app/shop/success'
+    returnUrl: 'https://one-two-smile.vercel.app/api/wayforpay-return',
   };
 
   const response = await fetch('https://api.wayforpay.com/api', {
