@@ -52,7 +52,8 @@ export async function POST(req: NextRequest) {
     merchantSignature,
     apiVersion: 1,
     language: 'UA',
-    serviceUrl: 'http://localhost:3000/callback',
+    // serviceUrl: 'http://localhost:3000/callback', 
+    serviceUrl: 'https://one-two-smile.vercel.app/callback',
     orderReference,
     orderDate,
     amount,
@@ -62,7 +63,8 @@ export async function POST(req: NextRequest) {
     productCount,
     productPrice,
     clientEmail,
-    returnUrl: 'http://localhost:3000/shop/success',
+    // returnUrl: 'http://localhost:3000/shop/success',
+    returnUrl: 'https://one-two-smile.vercel.app/shop/success',
   };
 
   const response = await fetch('https://api.wayforpay.com/api', {
