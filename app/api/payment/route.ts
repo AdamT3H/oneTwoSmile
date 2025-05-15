@@ -56,7 +56,6 @@ export async function POST(req: NextRequest) {
     .update(signatureSource)
     .digest('hex');
 
-  // ЗБЕРЕЖЕННЯ В SUPABASE
   const { error } = await supabase.from('orders').insert({
     order_reference: orderReference,
     order_date: new Date(orderDate * 1000).toISOString(),
@@ -80,7 +79,6 @@ export async function POST(req: NextRequest) {
     return new Response('Помилка збереження в базу', { status: 500 });
   }
 
-  // ВІДПРАВКА ЗАПИТУ НА ОПЛАТУ
   const payload = {
     transactionType: 'CREATE_INVOICE',
     merchantAccount,

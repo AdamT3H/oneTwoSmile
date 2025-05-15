@@ -12,6 +12,14 @@
   box-sizing: border-box;
 }
 
+.CartDrawer-module__xeFsHW__drawer,
+.LikeDrawer-module__qjBfCG__drawer,
+.CategorySection-module__BCVNCa__products {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
 body {
   font-family: "IBM Plex Sans", serif;
   margin: 0;
