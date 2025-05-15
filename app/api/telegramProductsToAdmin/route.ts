@@ -2,17 +2,28 @@
 const TELEGRAM_TOKEN = "7375273017:AAHvLfUOnqo9rCmc8q5yTbLxQE5r0y-Eh3c";
 const TELEGRAM_CHAT_ID = "818686269";
 
-export async function sendTelegramMessage(order: any) {
-  const productNames = order.product_names;
-  const productCounts = order.product_counts;
-  const productPrices = order.product_prices;
+interface PaymentBody {
+  amount: number;
+  product_names: string[];
+  product_counts: number[];
+  product_prices: number[];
+  client_email: string;
+  customer_name: string;
+  phone: string;
+  oblast_name: string;
+  city: string;
+  warehouse: string;
+}
 
-  const formattedGoods = productNames.map((name: string, index: number) => {
+export async function sendTelegramMessage(order: PaymentBody) {
+  const { product_names, product_counts, product_prices } = order;
+
+  const formattedGoods = product_names.map((name, index) => {
     return (
       `      📦 Товар ${index + 1}:\n` +
       `              Назва: ${name}\n` +
-      `              Кількість: ${productCounts[index]}\n` +
-      `              Ціна: ${productPrices[index]} ₴\n\n`
+      `              Кількість: ${product_counts[index]}\n` +
+      `              Ціна: ${product_prices[index]} ₴\n\n`
     );
   }).join("");
 
