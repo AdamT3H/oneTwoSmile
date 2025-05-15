@@ -63,9 +63,13 @@ export async function POST(request: Request) {
     const body: PaymentBody = await request.json();
     await sendTelegramMessage(body);
     return new Response(JSON.stringify({ success: true }), { status: 200 });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    let message = "Unknown error";
+    if (error instanceof Error) {
+      message = error.message;
+    }
     return new Response(
-      JSON.stringify({ success: false, message: error.message }),
+      JSON.stringify({ success: false, message }),
       { status: 500 }
     );
   }
