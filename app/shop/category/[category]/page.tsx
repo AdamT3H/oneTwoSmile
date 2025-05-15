@@ -63,7 +63,7 @@ export default function CategoryPage({
     const handleStorageChange = () => {
       const stored = localStorage.getItem("likedProducts");
       if (stored) {
-        setLikedProducts(JSON.parse(stored)); // або будь-який твій механізм
+        setLikedProducts(JSON.parse(stored));
       }
     };
   
@@ -112,12 +112,12 @@ export default function CategoryPage({
           (cat: Category) => cat.name === category
         );
 
-        setCategoryTitle(currentCategory.title);
-
         if (!currentCategory) {
           notFound();
           return;
         }
+
+        setCategoryTitle(currentCategory.title);
 
         const { data: productsData, error: productsError } = await supabase
           .from("products")
@@ -172,7 +172,7 @@ export default function CategoryPage({
 
     if (existing) {
       if (existing.quantity === quantity) {
-        updatedCarts = cartedProducts.filter((p) => p.id !== productId); // toggle off
+        updatedCarts = cartedProducts.filter((p) => p.id !== productId);
       } else {
         updatedCarts = cartedProducts.map((p) =>
           p.id === productId ? { ...p, quantity } : p

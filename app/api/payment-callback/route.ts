@@ -5,6 +5,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     const { transactionStatus } = body;
+    console.log("HHH!!!", body)
 
     if (transactionStatus === 'Approved') {
       console.log('✅ УСПІШНА ОПЛАТА — НАДСИЛАЮ EMAIL!');
@@ -24,6 +25,7 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   return new Response('✅ Callback route is alive (GET)', { status: 200 });
 }
+
 // import { NextRequest } from 'next/server';
 
 // export async function POST(req: NextRequest) {
