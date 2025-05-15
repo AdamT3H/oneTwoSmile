@@ -12,7 +12,7 @@ interface PaymentBody {
   phone: string;
   deliveryInfo: {
     deliveryType: string;
-    oblastRef?: string | null;
+    oblastName?: string | null;
     city?: string | null;
   };
 }
@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
     customer_name: customerName,
     phone,
     delivery_type: deliveryInfo.deliveryType,
-    oblast_ref: deliveryInfo.oblastRef,
+    oblast_name: deliveryInfo.oblastName,
     city: deliveryInfo.city,
     status: 'pending',
   });
