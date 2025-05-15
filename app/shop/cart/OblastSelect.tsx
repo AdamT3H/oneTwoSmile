@@ -14,8 +14,8 @@ interface Option {
 }
 
 interface Props {
-  onChange: (ref: string | null) => void;
-}
+    onChange: (value: { ref: string | null; name: string | null }) => void;
+  }
 
 export default function OblastSelect({ onChange }: Props) {
   const [options, setOptions] = useState<Option[]>([]);
@@ -81,7 +81,7 @@ export default function OblastSelect({ onChange }: Props) {
           value={selected}
           onChange={(option) => {
             setSelected(option);
-            onChange(option ? option.value : null);
+            onChange(option ? { ref: option.value, name: option.label } : { ref: null, name: null });
           }}
           placeholder="Область"
           isSearchable

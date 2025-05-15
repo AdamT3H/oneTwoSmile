@@ -19,7 +19,7 @@ interface WayForPayProps {
   phone: string;
   email: string;
   deliveryType: string;
-  oblastRef?: string | null;
+  oblastName?: string | null;
   selectedCity?: { label: string } | null;
 }
 
@@ -32,7 +32,7 @@ export default function WayForPayElem({
   phone,
   email,
   deliveryType,
-  oblastRef,
+  oblastName,
   selectedCity,
 }: WayForPayProps) {
   const [loading, setLoading] = useState(false);
@@ -46,7 +46,7 @@ export default function WayForPayElem({
       phone,
       email,
       deliveryType,
-      oblastRef,
+      oblastName,
       selectedCity,
     });
   
@@ -72,7 +72,7 @@ export default function WayForPayElem({
           phone,
           deliveryInfo: {
             deliveryType,
-            oblastRef,
+            oblastName,
             city: selectedCity?.label,
           },
         }),

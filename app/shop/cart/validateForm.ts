@@ -1,4 +1,3 @@
-// validateForm.ts
 
 interface ValidateFormParams {
     lastName: string;
@@ -7,7 +6,7 @@ interface ValidateFormParams {
     phone: string;
     email: string;
     deliveryType: string;
-    oblastRef?: string | null;
+    oblastName?: string | null;
     selectedCity?: { label?: string } | null;
   }
   
@@ -18,7 +17,7 @@ interface ValidateFormParams {
     phone,
     email,
     deliveryType,
-    oblastRef,
+    oblastName,
     selectedCity,
   }: ValidateFormParams): string | null => {
     if (!lastName || !firstName || !middleName || !phone || !email) {
@@ -26,7 +25,7 @@ interface ValidateFormParams {
     }
   
     if (deliveryType === "nova_poshta") {
-      if (!oblastRef || !selectedCity || !selectedCity.label) {
+      if (!oblastName || !selectedCity || !selectedCity.label) {
         return "Будь ласка, заповніть дані Нової Пошти.";
       }
     }

@@ -45,6 +45,7 @@ export default function Cart() {
   const [errorMessage] = useState("");
 
   const [oblastRef, setOblastRef] = useState<string | null>(null);
+  const [oblastName, setOblastName] = useState<string | null>(null);
   const [selectedCity, setSelectedCity] = useState<{
     value: string;
     label: string;
@@ -335,7 +336,12 @@ export default function Cart() {
                     </div>
                     <p className={styles.noteNP}>Дані доставки Новою Поштою:</p>
                     <div className={styles.novaWrapper}>
-                      <OblastSelect onChange={(ref) => setOblastRef(ref)} />
+                      <OblastSelect
+                        onChange={({ ref, name }) => {
+                          setOblastRef(ref);
+                          setOblastName(name);
+                        }}
+                      />
                       <CitySelect
                         oblastRef={oblastRef}
                         onChange={setSelectedCity}
@@ -345,58 +351,59 @@ export default function Cart() {
                   </>
                 ) : (
                   <>
+                    <div className={styles.personalInfoNameWrapper}>
+                      <input
+                        type="text"
+                        placeholder="Прізвище"
+                        className={styles.inputField}
+                        onInput={handleLettersOnly}
+                        onChange={(e) => setLastName(e.target.value)}
+                      />
+                      <input
+                        type="text"
+                        placeholder="Ім’я"
+                        className={styles.inputField}
+                        onInput={handleLettersOnly}
+                        onChange={(e) => setFirstName(e.target.value)}
+                      />
+                      <input
+                        type="text"
+                        placeholder="По батькові"
+                        className={styles.inputField}
+                        onInput={handleLettersOnly}
+                        onChange={(e) => setMiddleName(e.target.value)}
+                      />
+                    </div>
 
-                  <div className={styles.personalInfoNameWrapper}>
-                  <input
-                    type="text"
-                    placeholder="Прізвище"
-                    className={styles.inputField}
-                    onInput={handleLettersOnly}
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Ім’я"
-                    className={styles.inputField}
-                    onInput={handleLettersOnly}
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
-                  <input
-                    type="text"
-                    placeholder="По батькові"
-                    className={styles.inputField}
-                    onInput={handleLettersOnly}
-                    onChange={(e) => setMiddleName(e.target.value)}
-                  />
-                </div>
+                    <div className={styles.personalInfoNamberWrapper}>
+                      <input
+                        type="tel"
+                        placeholder="+380 (__) ___ __ __"
+                        className={styles.inputField}
+                        onInput={handlePhoneInput}
+                        onChange={(e) => setPhone(e.target.value)}
+                      />
 
-                <div className={styles.personalInfoNamberWrapper}>
-                  <input
-                    type="tel"
-                    placeholder="+380 (__) ___ __ __"
-                    className={styles.inputField}
-                    onInput={handlePhoneInput}
-                    onChange={(e) => setPhone(e.target.value)}
-                  />
+                      <input
+                        type="email"
+                        placeholder="example@gmail.com"
+                        className={styles.inputField}
+                        onInput={handleEmailInput}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
 
-                  <input
-                    type="email"
-                    placeholder="example@gmail.com"
-                    className={styles.inputField}
-                    onInput={handleEmailInput}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                  
-                  <div className={styles.containerSelf}>
-                    <p>Заберіть товар, у фізичному магазині, у цій локації: </p>
-                    <Link
-                      className={styles.location}
-                      href={"https://maps.app.goo.gl/LZ2czQejsunVQqNA8"}
-                    >
-                      Україна, м.Львів, вул.Замарстинівська,127 (ЖК Барселона)
-                    </Link>
-                  </div>
+                    <div className={styles.containerSelf}>
+                      <p>
+                        Заберіть товар, у фізичному магазині, у цій локації:{" "}
+                      </p>
+                      <Link
+                        className={styles.location}
+                        href={"https://maps.app.goo.gl/LZ2czQejsunVQqNA8"}
+                      >
+                        Україна, м.Львів, вул.Замарстинівська,127 (ЖК Барселона)
+                      </Link>
+                    </div>
                   </>
                 )}
               </div>
@@ -473,7 +480,7 @@ export default function Cart() {
               phone={phone}
               email={email}
               deliveryType={deliveryType}
-              oblastRef={oblastRef}
+              oblastName={oblastName}
               selectedCity={selectedCity}
             />
           )}
