@@ -30,20 +30,25 @@ export async function POST(req: NextRequest) {
       })
       .join("");
 
-    const htmlBody = `
-      <div style="background-image: url('https://onetwosmileshop.com/header/bg.png'); background-size: cover; padding: 40px 20px; font-family: Arial, sans-serif; color: #333;">
-        <div style="max-width: 600px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-          <div style="text-align: center;">
-            <img src="https://onetwosmileshop.com/header/logo.png" alt="One Two Smile Shop" style="max-width: 150px; margin-bottom: 20px;" />
-                <h2 style="color: #333;">Дякуємо за ваше замовлення, ${clientName}!</h2>
+      const htmlBody = `
+      <div style="background: #f0f2f5; padding: 40px 20px; font-family: 'Arial', sans-serif; color: #333;">
+        <div style="max-width: 600px; margin: auto; background: #ffffff; padding: 40px 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+          
+          <div style="text-align: center; margin-bottom: 30px;">
+            <h2 style="color: #222; font-size: 24px;">Дякуємо за ваше замовлення, ${clientName}!</h2>
           </div>
-          <p>Ви придбали наступні товари:</p>
-          <ul style="padding-left: 20px;">
+    
+          <p style="font-size: 16px; margin-bottom: 10px;">Ви придбали наступні товари:</p>
+          <ul style="padding-left: 20px; margin-bottom: 20px; font-size: 16px; line-height: 1.6;">
             ${productList}
           </ul>
-          <p><strong>Сума замовлення:</strong> ₴${amount}</p>
-          <p>Очікуйте підтвердження доставки. Гарного дня!</p>
-          <hr style="margin-top: 30px;" />
+    
+          <p style="font-size: 18px; font-weight: bold; margin-bottom: 20px;">Сума замовлення: ₴${amount}</p>
+    
+          <p style="font-size: 16px;">Очікуйте підтвердження доставки. Гарного дня!</p>
+    
+          <hr style="margin: 40px 0; border: none; border-top: 1px solid #eee;" />
+    
           <p style="font-size: 12px; color: #888; text-align: center;">Цей лист сформовано автоматично. Якщо ви не робили замовлення — просто проігноруйте його.</p>
         </div>
       </div>
