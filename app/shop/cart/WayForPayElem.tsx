@@ -87,7 +87,12 @@ export default function WayForPayElem({
       }
     } catch (err) {
       console.error("Payment error:", err);
-      setErrorMessage("Сталася помилка під час обробки платежу.");
+
+      if (err instanceof Error) {
+        setErrorMessage(err.message);
+      } else {
+        setErrorMessage("Сталася помилка під час обробки платежу.");
+      }
     } finally {
       setLoading(false);
     }
