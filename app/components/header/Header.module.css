@@ -138,6 +138,7 @@
 .overlayVisible {
     opacity: 1;
     visibility: visible;
+    max-width: 100%;
 }
 
 .moreOptionsContainer{
