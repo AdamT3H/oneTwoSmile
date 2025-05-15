@@ -25,9 +25,9 @@ export async function POST(req: NextRequest) {
 
       const emailPayload = {
         amount: order.amount,
-        productName: JSON.parse(order.product_names),
-        productCount: JSON.parse(order.product_counts),
-        productPrice: JSON.parse(order.product_prices),
+        productName: order.product_names,
+        productCount: order.product_counts,
+        productPrice: order.product_prices,
         clientEmail: order.client_email,
       };
 
