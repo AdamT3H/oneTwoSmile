@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
       });
   
       const result = await transporter.sendMail({
-        from: `"One Two Smile Shop" <itstepmerch@gmail.com>`,
+        from: `"One Two Smile Shop" <onetwosmileshop@gmail.com>`,
         to: clientEmail,
         subject: 'Ваше замовлення оформлено!',
         html: htmlBody,
