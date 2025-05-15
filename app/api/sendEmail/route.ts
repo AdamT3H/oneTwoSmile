@@ -12,7 +12,6 @@ interface PaymentBody {
 export async function POST(req: NextRequest) {
     try {
       const body: PaymentBody = await req.json();
-      console.log("📨 Отримано запит на email:", body);
   
       const { amount, productName, productCount, productPrice, clientEmail } = body;
   
@@ -40,15 +39,15 @@ export async function POST(req: NextRequest) {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: "itstepmerch@gmail.com",
-          pass: "qhsb jomd wubz jadw", // App Password
+          user: "onetwosmileshop@gmail.com",
+          pass: "xsxj awdx xspp xbqw", 
         },
       });
   
       const result = await transporter.sendMail({
-        from: `"Step Merch" <itstepmerch@gmail.com>`,
+        from: `"One Two Smile Shop" <itstepmerch@gmail.com>`,
         to: clientEmail,
-        subject: 'Ваше замовлення оформлено',
+        subject: 'Ваше замовлення оформлено!',
         html: htmlBody,
       });
   
