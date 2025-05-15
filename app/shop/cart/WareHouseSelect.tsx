@@ -13,11 +13,13 @@ interface Option {
   label: string;
 }
 
-interface Props {
+type Props = {
   nameCity: string | null;
-}
+  onChange: (option: { value: string; label: string } | null) => void;
+};
 
-export default function WarehouseSelect({ nameCity }: Props) {
+
+export default function WarehouseSelect({ nameCity, onChange }: Props) {
   const [options, setOptions] = useState<Option[]>([]);
   const [selected, setSelected] = useState<Option | null>(null);
   const [inputValue, setInputValue] = useState("");
@@ -98,7 +100,10 @@ export default function WarehouseSelect({ nameCity }: Props) {
         id="warehouse-select"
         options={options}
         value={selected}
-        onChange={(option) => setSelected(option)}
+        onChange={(option) => {
+          setSelected(option);
+          onChange(option);
+        }}
         placeholder="Склад"
         isSearchable
         styles={customStyles}

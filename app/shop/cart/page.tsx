@@ -51,6 +51,11 @@ export default function Cart() {
     label: string;
   } | null>(null);
 
+  const [selectedWarehouse, setSelectedWarehouse] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
+
   const [lastName, setLastName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
@@ -346,7 +351,10 @@ export default function Cart() {
                         oblastRef={oblastRef}
                         onChange={setSelectedCity}
                       />
-                      <WarehouseSelect nameCity={selectedCity?.label ?? ""} />
+                      <WarehouseSelect
+                        nameCity={selectedCity?.label ?? ""}
+                        onChange={setSelectedWarehouse}
+                      />
                     </div>
                   </>
                 ) : (
@@ -482,6 +490,7 @@ export default function Cart() {
               deliveryType={deliveryType}
               oblastName={oblastName}
               selectedCity={selectedCity}
+              selectedWarehouse={selectedWarehouse}
             />
           )}
 

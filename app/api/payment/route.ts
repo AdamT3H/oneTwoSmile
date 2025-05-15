@@ -14,6 +14,7 @@ interface PaymentBody {
     deliveryType: string;
     oblastName?: string | null;
     city?: string | null;
+    warehouse?: string | null,
   };
 }
 
@@ -70,6 +71,7 @@ export async function POST(req: NextRequest) {
     delivery_type: deliveryInfo.deliveryType,
     oblast_name: deliveryInfo.oblastName,
     city: deliveryInfo.city,
+    warehouse: deliveryInfo.warehouse,
     status: 'pending',
   });
 

@@ -8,6 +8,7 @@ interface ValidateFormParams {
     deliveryType: string;
     oblastName?: string | null;
     selectedCity?: { label?: string } | null;
+    selectedWarehouse?: { label?: string } | null;
   }
   
   export const validateForm = ({
@@ -19,13 +20,14 @@ interface ValidateFormParams {
     deliveryType,
     oblastName,
     selectedCity,
+    selectedWarehouse,
   }: ValidateFormParams): string | null => {
     if (!lastName || !firstName || !middleName || !phone || !email) {
       return "Будь ласка, заповніть усі обов’язкові поля.";
     }
   
     if (deliveryType === "nova_poshta") {
-      if (!oblastName || !selectedCity || !selectedCity.label) {
+      if (!oblastName || !selectedCity || !selectedCity.label || !selectedWarehouse?.label ) {
         return "Будь ласка, заповніть дані Нової Пошти.";
       }
     }

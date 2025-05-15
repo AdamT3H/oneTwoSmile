@@ -21,6 +21,7 @@ interface WayForPayProps {
   deliveryType: string;
   oblastName?: string | null;
   selectedCity?: { label: string } | null;
+  selectedWarehouse?: { label: string } | null;
 }
 
 export default function WayForPayElem({
@@ -34,6 +35,7 @@ export default function WayForPayElem({
   deliveryType,
   oblastName,
   selectedCity,
+  selectedWarehouse,
 }: WayForPayProps) {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -48,6 +50,7 @@ export default function WayForPayElem({
       deliveryType,
       oblastName,
       selectedCity,
+      selectedWarehouse,
     });
   
     if (error) {
@@ -74,6 +77,7 @@ export default function WayForPayElem({
             deliveryType,
             oblastName,
             city: selectedCity?.label,
+            warehouse: selectedWarehouse?.label,
           },
         }),
       });
