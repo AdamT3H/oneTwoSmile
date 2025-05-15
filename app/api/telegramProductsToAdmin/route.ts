@@ -1,4 +1,3 @@
-
 const TELEGRAM_TOKEN = "7375273017:AAHvLfUOnqo9rCmc8q5yTbLxQE5r0y-Eh3c";
 const TELEGRAM_CHAT_ID = "818686269";
 
@@ -15,7 +14,7 @@ interface PaymentBody {
   warehouse: string;
 }
 
-export async function sendTelegramMessage(order: PaymentBody) {
+async function sendTelegramMessage(order: PaymentBody) {
   const { product_names, product_counts, product_prices } = order;
 
   const formattedGoods = product_names.map((name, index) => {
@@ -55,5 +54,19 @@ export async function sendTelegramMessage(order: PaymentBody) {
   if (!res.ok) {
     const text = await res.text();
     console.error("❌ Telegram помилка:", text);
+    throw new Error("Telegram error: " + text);
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    const body: PaymentBody = await request.json();
+    await sendTelegramMessage(body);
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+  } catch (error: any) {
+    return new Response(
+      JSON.stringify({ success: false, message: error.message }),
+      { status: 500 }
+    );
   }
 }

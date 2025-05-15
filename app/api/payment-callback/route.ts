@@ -1,6 +1,5 @@
 import { NextRequest } from "next/server";
 import { supabase } from '@/lib/supabase';
-import { sendTelegramMessage } from "../telegramProductsToAdmin/route.ts";
 
 export async function POST(req: NextRequest) {
   try {
@@ -51,7 +50,24 @@ export async function POST(req: NextRequest) {
         return new Response("Email error", { status: 500 });
       }
 
-      await sendTelegramMessage(order);
+      await fetch("/api/telegramProductsToAdmin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: 450,
+          product_names: ["Товар A", "Товар B"],
+          product_counts: [1, 2],
+          product_prices: [200, 250],
+          client_email: "client@example.com",
+          customer_name: "Іван Іванович",
+          phone: "+380991234567",
+          oblast_name: "Львівська",
+          city: "Львів",
+          warehouse: "№17",
+        }),
+      });
 
       const { error: updateError } = await supabase
         .from("orders")
