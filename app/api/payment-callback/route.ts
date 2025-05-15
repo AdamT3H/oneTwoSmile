@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
         return new Response("Email error", { status: 500 });
       }
 
-      await fetch("/api/telegramProductsToAdmin", {
+      await fetch("https://one-two-smile.vercel.app/api/telegramProductsToAdmin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
