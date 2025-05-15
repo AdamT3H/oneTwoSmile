@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-// import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,16 +11,35 @@ export async function POST(req: NextRequest) {
     if (transactionStatus === "Approved") {
       console.log("✅ УСПІШНА ОПЛАТА — НАДСИЛАЮ EMAIL!", orderReference);
 
-    //   const { data: order, error } = await supabase
-    //     .from("orders")
-    //     .select("*")
-    //     .eq("order_reference", orderReference)
-    //     .single();
+      const { data: order, error } = await supabase
+        .from("orders")
+        .select("*")
+        .eq("order_reference", orderReference)
+        .single();
 
-    //   if (error || !order) {
-    //     console.error("❌ Не вдалося знайти замовлення в базі:", error);
-    //     return new Response("Order not found", { status: 404 });
-    //   }
+      if (error || !order) {
+        console.error("❌ Не вдалося знайти замовлення в базі:", error);
+        return new Response("Order not found", { status: 404 });
+      }
+
+      const emailPayload = {
+        amount: order.amount,
+        productName: JSON.parse(order.product_names),
+        productCount: JSON.parse(order.product_counts),
+        productPrice: JSON.parse(order.product_prices),
+        clientEmail: order.client_email,
+      };
+
+      const sendEmailRes = await fetch(`https://one-two-smile.vercel.app/api/send-email`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(emailPayload),
+      });
+
+      if (!sendEmailRes.ok) {
+        console.error("❌ Помилка надсилання листа через API");
+        return new Response("Email error", { status: 500 });
+      }
 
       return new Response(JSON.stringify({ reason: "Success" }), {
         status: 200,
