@@ -9,6 +9,7 @@ interface PaymentBody {
   client_email: string;
   customer_name: string;
   phone: string;
+  type: string,
   oblast_name: string;
   city: string;
   warehouse: string;
@@ -26,14 +27,16 @@ async function sendTelegramMessage(order: PaymentBody) {
     );
   }).join("");
 
+  const deliveryText = order.type === "nova_poshta"
+    ? `🚚 Доставка: Нова Пошта\n🌍 ${order.oblast_name}, 🏙️ ${order.city}, 🏤 ${order.warehouse}`
+    : `❓ Невідомий спосіб доставки`;
+
   const message =
     `🛒 НОВЕ ЗАМОВЛЕННЯ:\n\n` +
     `👤 Ім'я: ${order.customer_name || "Невідомо"}\n` +
     `📧 Email: ${order.client_email || "Невідомо"}\n` +
     `📞 Телефон: ${order.phone || "Невідомо"}\n` +
-    `🌍 Область: ${order.oblast_name || "Невідомо"}\n` +
-    `🏙️ Місто: ${order.city || "Невідомо"}\n` +
-    `🏤 Відділення: ${order.warehouse || "Невідомо"}\n` +
+    `${deliveryText}\n` +
     `💳 Оплата: Оплачено\n\n` +
     `🛍️ Товари:\n${formattedGoods}\n` +
     `💰 Кінцева сума: ${order.amount} ₴`;

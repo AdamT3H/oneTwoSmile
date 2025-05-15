@@ -63,6 +63,7 @@ export async function POST(req: NextRequest) {
           client_email: order.client_email,
           customer_name: order.customer_name,
           phone: order.phone,
+          type: order.delivery_type,
           oblast_name: order.oblast_name,
           city: order.city,
           warehouse: order.warehouse,
