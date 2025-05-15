@@ -23,7 +23,10 @@ export async function POST(req: NextRequest) {
 
       console.log("!!!!!!!", order);
 
+
       
+
+
       const emailPayload = {
         amount: order.amount,
         productName: order.product_names,
