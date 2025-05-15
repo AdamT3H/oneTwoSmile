@@ -6,7 +6,6 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     const { transactionStatus, orderReference } = body;
-    console.log("HHH!!!", body);
 
     if (transactionStatus === "Approved") {
       console.log("✅ УСПІШНА ОПЛАТА — НАДСИЛАЮ EMAIL!", orderReference);
@@ -21,6 +20,8 @@ export async function POST(req: NextRequest) {
         console.error("❌ Не вдалося знайти замовлення в базі:", error);
         return new Response("Order not found", { status: 404 });
       }
+
+      console.log("!!!!!!!", order);
 
       const emailPayload = {
         amount: order.amount,
