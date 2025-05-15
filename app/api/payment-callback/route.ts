@@ -38,7 +38,8 @@ export async function POST(req: NextRequest) {
       });
 
       if (!sendEmailRes.ok) {
-        console.error("❌ Помилка надсилання листа через API");
+        const errorText = await sendEmailRes.text();
+        console.error("❌ Помилка надсилання листа через API:", errorText);
         return new Response("Email error", { status: 500 });
       }
 
