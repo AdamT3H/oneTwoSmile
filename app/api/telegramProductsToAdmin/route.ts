@@ -28,8 +28,8 @@ async function sendTelegramMessage(order: PaymentBody) {
   }).join("");
 
   const deliveryText = order.type === "nova_poshta"
-    ? `🚚 Доставка: Нова Пошта\n🌍 ${order.oblast_name}, 🏙️ ${order.city}, 🏤 ${order.warehouse}`
-    : `❓ Невідомий спосіб доставки`;
+    ? `🚚 Доставка: Нова Пошта\nОбласть: ${order.oblast_name}\nМісто: ${order.city}\nВідділення: ${order.warehouse}`
+    : `❓ Заберуть у фізичному магазині`;
 
   const message =
     `🛒 НОВЕ ЗАМОВЛЕННЯ:\n\n` +
