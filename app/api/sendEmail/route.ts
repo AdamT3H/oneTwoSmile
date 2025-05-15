@@ -7,13 +7,14 @@ interface PaymentBody {
   productCount: number[];
   productPrice: number[];
   clientEmail: string;
+  clientName: string;
 }
 
 export async function POST(req: NextRequest) {
   try {
     const body: PaymentBody = await req.json();
 
-    const { amount, productName, productCount, productPrice, clientEmail } =
+    const { amount, productName, productCount, productPrice, clientEmail, clientName } =
       body;
 
     if (!clientEmail) {
@@ -34,7 +35,7 @@ export async function POST(req: NextRequest) {
         <div style="max-width: 600px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
           <div style="text-align: center;">
             <img src="https://onetwosmileshop.com/header/logo.png" alt="One Two Smile Shop" style="max-width: 150px; margin-bottom: 20px;" />
-            <h2 style="color: #333;">Дякуємо за ваше замовлення!</h2>
+                <h2 style="color: #333;">Дякуємо за ваше замовлення, ${clientName}!</h2>
           </div>
           <p>Ви придбали наступні товари:</p>
           <ul style="padding-left: 20px;">

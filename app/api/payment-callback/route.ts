@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
         productCount: order.product_counts,
         productPrice: order.product_prices,
         clientEmail: order.client_email,
+        clientName: order.customer_name,
       };
 
       const sendEmailRes = await fetch(`https://one-two-smile.vercel.app/api/sendEmail`, {
