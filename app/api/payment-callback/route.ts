@@ -4,11 +4,10 @@ import { supabase } from '@/lib/supabase';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-
     const { transactionStatus, orderReference } = body;
 
     if (transactionStatus === "Approved") {
-      console.log("✅ УСПІШНА ОПЛАТА — НАДСИЛАЮ EMAIL!", orderReference);
+      console.log("✅ УСПІШНА ОПЛАТА — ОБРОБКА ЗАМОВЛЕННЯ", orderReference);
 
       const { data: order, error } = await supabase
         .from("orders")
@@ -21,11 +20,10 @@ export async function POST(req: NextRequest) {
         return new Response("Order not found", { status: 404 });
       }
 
-      console.log("!!!!!!!", order);
-
-
-      
-
+      if (order.status === "paid") {
+        console.warn("⚠️ Замовлення вже оброблено — пропускаємо повторну обробку.");
+        return new Response("Already processed", { status: 200 });
+      }
 
       const emailPayload = {
         amount: order.amount,
@@ -48,6 +46,16 @@ export async function POST(req: NextRequest) {
         return new Response("Email error", { status: 500 });
       }
 
+      const { error: updateError } = await supabase
+        .from("orders")
+        .update({ status: "paid" })
+        .eq("order_reference", orderReference);
+
+      if (updateError) {
+        console.error("❌ Не вдалося оновити статус замовлення:", updateError);
+        return new Response("DB update error", { status: 500 });
+      }
+
       return new Response(JSON.stringify({ reason: "Success" }), {
         status: 200,
         headers: { "Content-Type": "application/json" },
@@ -64,6 +72,7 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   return new Response("✅ Callback route is alive (GET)", { status: 200 });
 }
+
 
 // import { NextRequest } from 'next/server';
 
