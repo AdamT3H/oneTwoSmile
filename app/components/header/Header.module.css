@@ -96,6 +96,12 @@
     transform: scale(1.1);
 }
 
+.moreOptions {
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
 .moreOptions{
     width: 100%;
     background-color: rgb(255, 255, 255);
