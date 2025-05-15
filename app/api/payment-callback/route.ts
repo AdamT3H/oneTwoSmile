@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
         clientEmail: order.client_email,
       };
 
-      const sendEmailRes = await fetch(`https://one-two-smile.vercel.app/api/send-email`, {
+      const sendEmailRes = await fetch(`https://one-two-smile.vercel.app/api/sendEmail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emailPayload),
