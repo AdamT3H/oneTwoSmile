@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { supabase } from '@/lib/supabase';
+import { sendTelegramMessage } from "../telegramProductsToAdmin/route.ts";
 
 export async function POST(req: NextRequest) {
   try {
@@ -49,6 +50,8 @@ export async function POST(req: NextRequest) {
         console.error("❌ Помилка надсилання листа через API:", errorText);
         return new Response("Email error", { status: 500 });
       }
+
+      await sendTelegramMessage(order);
 
       const { error: updateError } = await supabase
         .from("orders")
