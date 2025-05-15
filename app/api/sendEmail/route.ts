@@ -8,14 +8,28 @@ interface PaymentBody {
   productPrice: number[];
   clientEmail: string;
   clientName: string;
+  phone: string,
+  oblastNP: string,
+  cityNP: string,
+  warehouseNP: string,
 }
 
 export async function POST(req: NextRequest) {
   try {
     const body: PaymentBody = await req.json();
 
-    const { amount, productName, productCount, productPrice, clientEmail, clientName } =
-      body;
+    const {
+        amount,
+        productName,
+        productCount,
+        productPrice,
+        clientEmail,
+        clientName,
+        phone,
+        oblastNP,
+        cityNP,
+        warehouseNP,
+      } = body;
 
     if (!clientEmail) {
       console.error("❌ Немає clientEmail!");
@@ -37,18 +51,26 @@ export async function POST(req: NextRequest) {
           <div style="text-align: center; margin-bottom: 30px;">
             <h2 style="color: #222; font-size: 24px;">Дякуємо за ваше замовлення, ${clientName}!</h2>
           </div>
-    
+
           <p style="font-size: 16px; margin-bottom: 10px;">Ви придбали наступні товари:</p>
           <ul style="padding-left: 20px; margin-bottom: 20px; font-size: 16px; line-height: 1.6;">
             ${productList}
           </ul>
-    
+
           <p style="font-size: 18px; font-weight: bold; margin-bottom: 20px;">Сума замовлення: ₴${amount}</p>
-    
+
+          <div style="font-size: 16px; margin-bottom: 20px;">
+            <p><b>Номер телефону:</b> ${phone}</p>
+            <p><b>Email:</b> ${clientEmail}</p>
+            <p><b>Область:</b> ${oblastNP}</p>
+            <p><b>Місто:</b> ${cityNP}</p>
+            <p><b>Відділення Нової Пошти:</b> ${warehouseNP}</p>
+          </div>
+
           <p style="font-size: 16px;">Очікуйте підтвердження доставки. Гарного дня!</p>
-    
+
           <hr style="margin: 40px 0; border: none; border-top: 1px solid #eee;" />
-    
+
           <p style="font-size: 12px; color: #888; text-align: center;">Цей лист сформовано автоматично. Якщо ви не робили замовлення — просто проігноруйте його.</p>
         </div>
       </div>

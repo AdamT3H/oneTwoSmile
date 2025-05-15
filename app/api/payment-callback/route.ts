@@ -32,6 +32,10 @@ export async function POST(req: NextRequest) {
         productPrice: order.product_prices,
         clientEmail: order.client_email,
         clientName: order.customer_name,
+        phone: order.phone,
+        oblastNP: order.oblast_name,
+        cityNP: order.city,
+        warehouseNP: order.warehouse
       };
 
       const sendEmailRes = await fetch(`https://one-two-smile.vercel.app/api/sendEmail`, {
@@ -88,8 +92,6 @@ export async function GET() {
 //   } = body;
 
 //   if (transactionStatus === 'Approved') {
-//     // 1. Надіслати листа клієнту
-//     // await sendEmailToClient(email, orderReference, amount);
 
 //     // 2. Надіслати повідомлення адміну в Telegram
 //     // await notifyAdminInTelegram(orderReference, amount, email);
