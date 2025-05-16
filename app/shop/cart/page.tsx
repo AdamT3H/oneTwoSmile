@@ -482,6 +482,7 @@ export default function Cart() {
                 count: item.quantity,
                 price: item.price,
                 id: item.id,
+                inStock: item.in_stock,
               }))}
               lastName={lastName}
               firstName={firstName}

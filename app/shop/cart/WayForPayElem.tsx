@@ -9,6 +9,7 @@ interface ProductPay {
   count: number;
   price: number;
   id: number;
+  inStock: number;
 }
 
 interface WayForPayProps {
@@ -54,6 +55,7 @@ export default function WayForPayElem({
       oblastName,
       selectedCity,
       selectedWarehouse,
+      items,
     });
   
     if (error) {
