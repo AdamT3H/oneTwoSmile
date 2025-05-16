@@ -96,7 +96,6 @@ export default function Cart() {
               };
             });
 
-            console.log("merged" ,merged)
             setCartedItems(merged);
           } else {
             console.error("Error fetching carted products:", error);
