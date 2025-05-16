@@ -10,6 +10,7 @@ interface PaymentBody {
   clientEmail: string;
   customerName: string;
   phone: string;
+  comment: string;
   deliveryInfo: {
     deliveryType: string;
     oblastName?: string | null;
@@ -29,6 +30,7 @@ export async function POST(req: NextRequest) {
     clientEmail,
     customerName,
     phone,
+    comment,
     deliveryInfo
   } = body;
 
@@ -67,6 +69,7 @@ export async function POST(req: NextRequest) {
     client_email: clientEmail,
     customer_name: customerName,
     phone,
+    comment,
     delivery_type: deliveryInfo.deliveryType,
     oblast_name: deliveryInfo.oblastName,
     city: deliveryInfo.city,

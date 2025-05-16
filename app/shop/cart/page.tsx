@@ -61,7 +61,7 @@ export default function Cart() {
   const [middleName, setMiddleName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  // const [comment, setComment] = useState("");
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
     const total = cartedItems.reduce((sum, item) => {
@@ -428,7 +428,7 @@ export default function Cart() {
             type="text"
             placeholder="Коментар"
             className={styles.inputFieldComment}
-            // onChange={(e) => setComment(e.target.value)}
+            onChange={(e) => setComment(e.target.value)}
           />
         </div>
 
@@ -486,6 +486,7 @@ export default function Cart() {
               firstName={firstName}
               middleName={middleName}
               phone={phone}
+              comment={comment}
               email={email}
               deliveryType={deliveryType}
               oblastName={oblastName}
