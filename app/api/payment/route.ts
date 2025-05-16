@@ -7,6 +7,7 @@ interface PaymentBody {
   productName: string[];
   productCount: number[];
   productPrice: number[];
+  productId: number[];
   clientEmail: string;
   customerName: string;
   phone: string;
@@ -27,6 +28,7 @@ export async function POST(req: NextRequest) {
     productName,
     productCount,
     productPrice,
+    productId,
     clientEmail,
     customerName,
     phone,
@@ -66,6 +68,7 @@ export async function POST(req: NextRequest) {
     product_names: productName,
     product_counts: productCount,
     product_prices: productPrice,
+    product_ids: productId,
     client_email: clientEmail,
     customer_name: customerName,
     phone,

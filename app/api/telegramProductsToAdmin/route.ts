@@ -37,7 +37,7 @@ async function sendTelegramMessage(order: PaymentBody) {
     `👤 Ім'я: ${order.customer_name || "Невідомо"}\n` +
     `📧 Email: ${order.client_email || "Невідомо"}\n` +
     `📞 Телефон: ${order.phone || "Невідомо"}\n` +
-    (order.comment ? `📝 Коментар: ${order.comment}` : "") +
+    (order.comment ? `📝 Коментар: ${order.comment}\n` : "") +
     `${deliveryText}\n` +
     `💳 Оплата: Оплачено\n\n` +
     `🛍️ Товари:\n${formattedGoods}\n` +

@@ -481,6 +481,7 @@ export default function Cart() {
                 name: item.title,
                 count: item.quantity,
                 price: item.price,
+                id: item.id,
               }))}
               lastName={lastName}
               firstName={firstName}

@@ -8,6 +8,7 @@ interface ProductPay {
   name: string;
   count: number;
   price: number;
+  id: number;
 }
 
 interface WayForPayProps {
@@ -72,6 +73,7 @@ export default function WayForPayElem({
           productName: items.map((i) => i.name),
           productCount: items.map((i) => i.count),
           productPrice: items.map((i) => i.price),
+          productId: items.map((i) => i.id),
           clientEmail: email,
           customerName: `${lastName} ${firstName} ${middleName}`,
           phone,
