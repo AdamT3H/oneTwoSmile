@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
             `⚠️ Продукт ${productId} має недостатній запас — залишилось ${product.in_stock}, потрібно ${countToSubtract}`
           );
           // Можеш або зупинити обробку, або поставити 0:
-        //   return new Response("Not enough stock", { status: 400 });
+          return new Response("Not enough stock", { status: 400 });
         }
 
         const { error: updateProductError } = await supabase
