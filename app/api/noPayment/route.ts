@@ -1,4 +1,3 @@
-// app/api/noPayment/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { v4 as uuidv4 } from "uuid";
@@ -27,11 +26,11 @@ export async function POST(req: NextRequest) {
   try {
     body = await req.json();
   } catch (err) {
-  console.error("❌ Помилка при розборі JSON:", err);
-  return NextResponse.json(
-    { error: "Невірний JSON у запиті." },
-    { status: 400 }
-  );
+    console.error("❌ Помилка при розборі JSON:", err);
+    return NextResponse.json(
+      { error: "Невірний JSON у запиті." },
+      { status: 400 }
+    );
   }
 
   const {
@@ -51,7 +50,7 @@ export async function POST(req: NextRequest) {
   const orderDate = new Date().toISOString();
 
   const { error } = await supabase.from("orders").insert({
-    order_reference: orderReference,
+    order_reference: null,
     order_date: orderDate,
     amount,
     currency: "UAH",
@@ -76,6 +75,46 @@ export async function POST(req: NextRequest) {
       { error: "Помилка збереження в базу." },
       { status: 500 }
     );
+  }
+
+  try {
+    const telegramRes = await fetch(
+      "https://one-two-smile.vercel.app/api/telegramProductsToAdmin",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount,
+          product_names: productName,
+          product_counts: productCount,
+          product_prices: productPrice,
+          client_email: clientEmail,
+          customer_name: customerName,
+          phone,
+          comment,
+          type: deliveryInfo.deliveryType,
+          oblast_name: deliveryInfo.oblastName,
+          city: deliveryInfo.city,
+          warehouse: deliveryInfo.warehouse,
+        }),
+      }
+    );
+
+    if (!telegramRes.ok) {
+      const errorText = await telegramRes.text();
+      console.error(
+        "❌ Помилка надсилання повідомлення в Telegram:",
+        errorText
+      );
+    }
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error("❌ Telegram API fetch failed:", err.message);
+    } else {
+      console.error("❌ Telegram API fetch failed. Unknown error:", err);
+    }
   }
 
   return NextResponse.json(
