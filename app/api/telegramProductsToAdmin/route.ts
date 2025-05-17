@@ -34,7 +34,7 @@ async function sendTelegramMessage(order: PaymentBody) {
   const deliveryText =
     order.type === "nova_poshta"
       ? `🚚 Доставка: Нова Пошта\nОбласть: ${order.oblast_name}\nМісто: ${order.city}\nВідділення: ${order.warehouse}`
-      : `❓ Заберуть у фізичному магазині`;
+      : `🚚 Доставка: Заберуть у фізичному магазині`;
 
   const paymentText =
     order.paymentType === "card"
@@ -49,7 +49,6 @@ async function sendTelegramMessage(order: PaymentBody) {
     (order.comment ? `📝 Коментар: ${order.comment}\n` : "") +
     `${paymentText}\n\n` +
     `${deliveryText}\n` +
-    `💳 Оплата: Оплачено\n\n` +
     `🛍️ Товари:\n${formattedGoods}\n` +
     `💰 Кінцева сума: ${order.amount} ₴`;
 
