@@ -28,20 +28,21 @@ interface NoPaymentProps {
 }
 
 export default function NoPaymentElem({
-  totalPrice,
+  // totalPrice,
   items,
   lastName,
   firstName,
   middleName,
   phone,
-  comment,
+  // comment,
   email,
   deliveryType,
   oblastName,
   selectedCity,
   selectedWarehouse,
 }: NoPaymentProps) {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
