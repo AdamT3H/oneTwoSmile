@@ -103,7 +103,7 @@ export async function POST(req: NextRequest) {
     productCount,
     productPrice,
     clientEmail,
-    returnUrl: `https://one-two-smile.vercel.app/success?ref=${orderReference}`,
+    returnUrl: `https://one-two-smile.vercel.app/api/wayforpay-return?ref=${orderReference}`,
   };
 
   const response = await fetch('https://api.wayforpay.com/api', {
