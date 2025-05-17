@@ -97,7 +97,7 @@ export default function NoPaymentElem({
       const data = await res.json();
 
       if (res.ok) {
-        router.push("/successnc");
+        router.push("/shop/successnc");
       } else {
         setErrorMessage(data?.message || "Не вдалося оформити замовлення.");
       }
