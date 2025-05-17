@@ -23,14 +23,15 @@ interface NoPaymentBody {
 
 export async function POST(req: NextRequest) {
   let body: NoPaymentBody;
-  
+
   try {
     body = await req.json();
   } catch (err) {
-    return NextResponse.json(
-      { error: "Невірний JSON у запиті." },
-      { status: 400 }
-    );
+  console.error("❌ Помилка при розборі JSON:", err);
+  return NextResponse.json(
+    { error: "Невірний JSON у запиті." },
+    { status: 400 }
+  );
   }
 
   const {
