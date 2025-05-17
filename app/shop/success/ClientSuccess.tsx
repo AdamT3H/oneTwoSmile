@@ -77,9 +77,6 @@ export default function ClientSuccess() {
             <p className={styles.thankText}>
               Дякуємо, {order.customer_name}! Ваше замовлення #{order.id} прийнято.
             </p>
-            <p className={styles.alertText}>
-              Статус: <strong>{order.status}</strong>
-            </p>
           </>
         ) : (
           <p>Завантажуємо інформацію про замовлення…</p>

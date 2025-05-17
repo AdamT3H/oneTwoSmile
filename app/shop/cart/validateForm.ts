@@ -29,7 +29,7 @@ export const validateForm = ({
   oblastName,
   selectedCity,
   selectedWarehouse,
-  items,
+  items
 }: ValidateFormParams): string | null => {
   if (!lastName || !firstName || !middleName || !phone || !email) {
     return "Будь ласка, заповніть усі обов’язкові поля.";

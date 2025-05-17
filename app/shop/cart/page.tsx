@@ -502,7 +502,23 @@ export default function Cart() {
               <p>
                 Ви обрали накладний платіж. Оплатіть замовлення при отриманні.
               </p>
-              <NotWayForPayElem />
+              <NotWayForPayElem
+                totalPrice={totalPrice}
+                items={cartedItems.map((item) => ({
+                  name: item.title,
+                  count: item.quantity,
+                  price: item.price,
+                  id: item.id,
+                  inStock: item.in_stock,
+                }))}
+                lastName={lastName}
+                firstName={firstName}
+                middleName={middleName}
+                phone={phone}
+                comment={comment}
+                email={email}
+                deliveryType={deliveryType}
+              />
             </div>
           )}
         </div>
