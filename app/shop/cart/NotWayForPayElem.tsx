@@ -19,6 +19,7 @@ interface NoPaymentProps {
   firstName: string;
   middleName: string;
   phone: string;
+  paymentType: string;
   comment: string;
   email: string;
   deliveryType: string;
@@ -34,6 +35,7 @@ export default function NoPaymentElem({
   firstName,
   middleName,
   phone,
+  paymentType,
   comment,
   email,
   deliveryType,
@@ -81,6 +83,7 @@ export default function NoPaymentElem({
           clientEmail: email,
           customerName: `${lastName} ${firstName} ${middleName}`,
           phone,
+          paymentType,
           comment,
           deliveryInfo: {
             deliveryType,

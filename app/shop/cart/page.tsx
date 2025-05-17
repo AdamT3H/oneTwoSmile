@@ -516,6 +516,7 @@ export default function Cart() {
                 firstName={firstName}
                 middleName={middleName}
                 phone={phone}
+                paymentType={paymentType}
                 comment={comment}
                 email={email}
                 deliveryType={deliveryType}
