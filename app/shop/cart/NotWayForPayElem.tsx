@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./WayForPayElem.module.css";
 import { validateForm } from "./validateForm.ts";
+import { useRouter } from "next/navigation";
 
 interface ProductPay {
   name: string;
@@ -43,9 +44,9 @@ export default function NoPaymentElem({
   selectedCity,
   selectedWarehouse,
 }: NoPaymentProps) {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const handleSubmit = async () => {
     const error = validateForm({
@@ -67,7 +68,6 @@ export default function NoPaymentElem({
     }
 
     setErrorMessage(null);
-    setSuccessMessage(null);
     setLoading(true);
 
     try {
@@ -97,7 +97,7 @@ export default function NoPaymentElem({
       const data = await res.json();
 
       if (res.ok) {
-        setSuccessMessage("Замовлення успішно оформлено. Очікуйте на дзвінок оператора.");
+        router.push("/successnc");
       } else {
         setErrorMessage(data?.message || "Не вдалося оформити замовлення.");
       }
@@ -124,9 +124,6 @@ export default function NoPaymentElem({
       </button>
       {errorMessage && (
         <div className={styles.errorMessage}>{errorMessage}</div>
-      )}
-      {successMessage && (
-        <div className={styles.successMessage}>{successMessage}</div>
       )}
     </div>
   );

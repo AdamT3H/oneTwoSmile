@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* margin-top: 30px; */
+}
+
+.wrapper{
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.mainText{
+  font-size: 33px;
+  font-weight: 500;
+}
+
+.thankText{
+  color:#666;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.alertText{
+  margin-top: 30px;
+  font-weight: 400;
+  font-size: 18px;
+}
