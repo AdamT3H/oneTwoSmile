@@ -98,6 +98,7 @@ export default function NoPaymentElem({
 
       if (res.ok) {
         router.push("/shop/successnc");
+        localStorage.removeItem("cartedProducts");
       } else {
         setErrorMessage(data?.message || "Не вдалося оформити замовлення.");
       }
