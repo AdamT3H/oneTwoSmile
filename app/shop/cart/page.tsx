@@ -518,6 +518,9 @@ export default function Cart() {
                 comment={comment}
                 email={email}
                 deliveryType={deliveryType}
+                oblastName={oblastName}
+                selectedCity={selectedCity}
+                selectedWarehouse={selectedWarehouse}
               />
             </div>
           )}
