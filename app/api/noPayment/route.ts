@@ -121,6 +121,41 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  try {
+    const emailRes = await fetch(
+      "https://one-two-smile.vercel.app/api/send-email",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount,
+          productName,
+          productCount,
+          productPrice,
+          clientEmail,
+          clientName: customerName,
+          phone,
+          oblastNP: deliveryInfo.oblastName ?? "",
+          cityNP: deliveryInfo.city ?? "",
+          warehouseNP: deliveryInfo.warehouse ?? "",
+        }),
+      }
+    );
+
+    if (!emailRes.ok) {
+      const errorText = await emailRes.text();
+      console.error("❌ Помилка надсилання email:", errorText);
+    }
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error("❌ Email API fetch failed:", err.message);
+    } else {
+      console.error("❌ Email API fetch failed. Unknown error:", err);
+    }
+  }
+
   return NextResponse.json(
     {
       message: "Замовлення прийнято в обробку.",
