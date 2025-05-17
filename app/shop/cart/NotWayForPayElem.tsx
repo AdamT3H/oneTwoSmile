@@ -66,48 +66,48 @@ export default function NoPaymentElem({
 
     setErrorMessage(null);
     setSuccessMessage(null);
-    setLoading(true);
+    // setLoading(true);
 
-    try {
-      const res = await fetch("/api/noPayment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          amount: totalPrice,
-          productName: items.map((i) => i.name),
-          productCount: items.map((i) => i.count),
-          productPrice: items.map((i) => i.price),
-          productId: items.map((i) => i.id),
-          clientEmail: email,
-          customerName: `${lastName} ${firstName} ${middleName}`,
-          phone,
-          comment,
-          deliveryInfo: {
-            deliveryType,
-            oblastName,
-            city: selectedCity?.label,
-            warehouse: selectedWarehouse?.label,
-          },
-        }),
-      });
+    // try {
+    //   const res = await fetch("/api/noPayment", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({
+    //       amount: totalPrice,
+    //       productName: items.map((i) => i.name),
+    //       productCount: items.map((i) => i.count),
+    //       productPrice: items.map((i) => i.price),
+    //       productId: items.map((i) => i.id),
+    //       clientEmail: email,
+    //       customerName: `${lastName} ${firstName} ${middleName}`,
+    //       phone,
+    //       comment,
+    //       deliveryInfo: {
+    //         deliveryType,
+    //         oblastName,
+    //         city: selectedCity?.label,
+    //         warehouse: selectedWarehouse?.label,
+    //       },
+    //     }),
+    //   });
 
-      const data = await res.json();
+    //   const data = await res.json();
 
-      if (res.ok) {
-        setSuccessMessage("Замовлення успішно оформлено. Очікуйте на дзвінок оператора.");
-      } else {
-        setErrorMessage(data?.message || "Не вдалося оформити замовлення.");
-      }
-    } catch (err) {
-      console.error("NoPayment error:", err);
-      if (err instanceof Error) {
-        setErrorMessage(err.message);
-      } else {
-        setErrorMessage("Сталася помилка при надсиланні замовлення.");
-      }
-    } finally {
-      setLoading(false);
-    }
+    //   if (res.ok) {
+    //     setSuccessMessage("Замовлення успішно оформлено. Очікуйте на дзвінок оператора.");
+    //   } else {
+    //     setErrorMessage(data?.message || "Не вдалося оформити замовлення.");
+    //   }
+    // } catch (err) {
+    //   console.error("NoPayment error:", err);
+    //   if (err instanceof Error) {
+    //     setErrorMessage(err.message);
+    //   } else {
+    //     setErrorMessage("Сталася помилка при надсиланні замовлення.");
+    //   }
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (
@@ -117,7 +117,7 @@ export default function NoPaymentElem({
         disabled={loading}
         className={`${styles.payButton} ${loading ? styles.loading : ""}`}
       >
-        {loading ? "Очікуйте..." : "Оформити замовлення (накладний платіж)"}
+        {loading ? "Очікуйте..." : "Оформити замовлення"}
       </button>
       {errorMessage && (
         <div className={styles.errorMessage}>{errorMessage}</div>
