@@ -123,7 +123,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const emailRes = await fetch(
-      "https://one-two-smile.vercel.app/api/send-email",
+      "https://one-two-smile.vercel.app/api/sendEmail",
       {
         method: "POST",
         headers: {
