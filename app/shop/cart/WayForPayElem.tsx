@@ -19,6 +19,7 @@ interface WayForPayProps {
   firstName: string;
   middleName: string;
   phone: string;
+  paymentType: string;
   comment: string;
   email: string;
   deliveryType: string;
@@ -34,6 +35,7 @@ export default function WayForPayElem({
   firstName,
   middleName,
   phone,
+  paymentType,
   comment,
   email,
   deliveryType,
@@ -79,6 +81,7 @@ export default function WayForPayElem({
           clientEmail: email,
           customerName: `${lastName} ${firstName} ${middleName}`,
           phone,
+          paymentType,
           comment,
           deliveryInfo: {
             deliveryType,
