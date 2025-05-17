@@ -96,6 +96,7 @@ export async function POST(req: NextRequest) {
           client_email: clientEmail,
           customer_name: customerName,
           phone,
+          paymentType,
           comment,
           type: deliveryInfo.deliveryType,
           oblast_name: deliveryInfo.oblastName,
