@@ -1,0 +1,23 @@
+.container {
+  width: 80%;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.container h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #111;
+  text-align: center;
+}
+
+.container h2 {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 3rem;
+  color: #444;
+  text-align: justify;
+}

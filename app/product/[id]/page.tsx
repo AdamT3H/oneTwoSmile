@@ -6,6 +6,40 @@ import { use } from "react";
 import ShopNav from "@/app/components/shopNav/ShopNav.tsx";
 import { supabase } from "@/lib/supabase.js";
 import { useRef, useEffect, useState } from "react";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const { data: product, error } = await supabase
+    .from("products")
+    .select("title, description, main_image_url")
+    .eq("id", params.id)
+    .single();
+
+  if (error || !product) {
+    return {
+      title: "Товар не знайдено",
+      description: "Цей товар не знайдено на нашому сайті.",
+    };
+  }
+
+  return {
+    title: product.title,
+    description: product.description,
+    openGraph: {
+      title: product.title,
+      description: product.description,
+      images: [
+        {
+          url: product.main_image_url,
+        },
+      ],
+    },
+  };
+}
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;
@@ -95,16 +129,19 @@ export default function ProductPage({ params }: ProductPageProps) {
         try {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed)) {
-            setCartedProducts(parsed); 
+            setCartedProducts(parsed);
           }
         } catch (err) {
-          console.error("Помилка при читанні cartedProducts із localStorage:", err);
+          console.error(
+            "Помилка при читанні cartedProducts із localStorage:",
+            err
+          );
         }
       } else {
         setCartedProducts([]);
       }
     };
-  
+
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
@@ -113,10 +150,10 @@ export default function ProductPage({ params }: ProductPageProps) {
     const handleStorageChange = () => {
       const stored = localStorage.getItem("likedProducts");
       if (stored) {
-        setLikedProducts(JSON.parse(stored)); 
+        setLikedProducts(JSON.parse(stored));
       }
     };
-  
+
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
