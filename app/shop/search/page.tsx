@@ -175,7 +175,7 @@ export default function SearchPage() {
   }, [query]);
 
   const getSortedProducts = () => {
-    let sorted = [...products];
+    const sorted = [...products];
     switch (sortBy) {
       case "price-asc":
         sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
