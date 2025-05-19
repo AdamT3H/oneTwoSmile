@@ -6,7 +6,7 @@ import ShopNav from "@/app/components/shopNav/ShopNav";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
+import { Suspense } from "react";
 
 interface Product {
   id: number;
@@ -20,7 +20,7 @@ interface CartedProduct {
   quantity: number;
 }
 
-export default function SearchPage() {
+function SearchPage() {
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
 
@@ -201,223 +201,216 @@ export default function SearchPage() {
   );
 
   return (
-    <React.Suspense fallback={<p>Завантаження…</p>}>
-      <div style={{ width: "100%" }}>
-        <ShopNav />
-        {loading ? (
-          <>
-            <div className={styles.containerSceleton}>
-              <div className={styles.titleSceletonWrapper}>
-                <h1 className={styles.titleSceleton}></h1>
-              </div>
+    <div style={{ width: "100%" }}>
+      <ShopNav />
+      {loading ? (
+        <>
+          <div className={styles.containerSceleton}>
+            <div className={styles.titleSceletonWrapper}>
+              <h1 className={styles.titleSceleton}></h1>
+            </div>
 
-              <div className={styles.productListWraperSceleton}>
-                <div className={styles.productListSceleton}>
-                  {Array.from({ length: 8 }).map((_, index) => (
-                    <div
-                      key={index}
-                      className={styles.productCardSceleton}
-                    ></div>
-                  ))}
-                </div>
+            <div className={styles.productListWraperSceleton}>
+              <div className={styles.productListSceleton}>
+                {Array.from({ length: 8 }).map((_, index) => (
+                  <div key={index} className={styles.productCardSceleton}></div>
+                ))}
               </div>
             </div>
-          </>
-        ) : (
-          <>
-            <div className={styles.container}>
-              <h1 className={styles.title}>Пошук: {query}</h1>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={styles.container}>
+            <h1 className={styles.title}>Пошук: {query}</h1>
 
-              <div className={styles.sortContainer}>
-                <label htmlFor="sort" className={styles.sortLabel}>
-                  Сортувати:
-                </label>
-                <select
-                  id="sort"
-                  className={styles.sortSelect}
-                  value={sortBy}
-                  onChange={(e) => {
-                    setSortBy(e.target.value);
-                    setCurrentPage(1);
-                  }}
-                >
-                  <option value="">Без сортування</option>
-                  <option value="price-asc">Дешевше - дороще</option>
-                  <option value="price-desc">Дороще - дешевше</option>
-                  <option value="title-asc">Від А до Я</option>
-                  <option value="title-desc">Від Я до A</option>
-                </select>
-              </div>
+            <div className={styles.sortContainer}>
+              <label htmlFor="sort" className={styles.sortLabel}>
+                Сортувати:
+              </label>
+              <select
+                id="sort"
+                className={styles.sortSelect}
+                value={sortBy}
+                onChange={(e) => {
+                  setSortBy(e.target.value);
+                  setCurrentPage(1);
+                }}
+              >
+                <option value="">Без сортування</option>
+                <option value="price-asc">Дешевше - дороще</option>
+                <option value="price-desc">Дороще - дешевше</option>
+                <option value="title-asc">Від А до Я</option>
+                <option value="title-desc">Від Я до A</option>
+              </select>
+            </div>
 
-              {products.length === 0 ? (
-                <p>Нічого не знайдено.</p>
-              ) : (
-                <>
-                  <div className={styles.productListWraper}>
-                    <div className={styles.productList}>
-                      {currentProducts.map((product) => (
-                        <div key={product.id} className={styles.productCard}>
-                          <div className={styles.cardButtons}>
-                            <button
-                              className={styles.likeButton}
-                              onClick={() =>
-                                handleLikeClickOnProduct(product.id)
-                              }
-                            >
-                              <Image
-                                src={
-                                  likedProducts.includes(product.id)
-                                    ? "/shop/likeRed.png"
-                                    : "/shop/like.png"
-                                }
-                                alt="Liked products"
-                                width={20}
-                                height={20}
-                                className={`${styles.heartImage} ${
-                                  activeHeartId === product.id
-                                    ? styles.animate
-                                    : ""
-                                }`}
-                              />
-                            </button>
-                            <button
-                              className={styles.cartButton}
-                              onClick={() =>
-                                handleCartClickOnProduct(product.id, 1)
-                              }
-                            >
-                              <Image
-                                src={
-                                  cartedProducts.some(
-                                    (p) => p.id === product.id
-                                  )
-                                    ? "/shop/cartBlue.png"
-                                    : "/shop/cart.png"
-                                }
-                                alt="Shopping cart"
-                                width={20}
-                                height={20}
-                                className={`${styles.cartImage} ${
-                                  activeCartId === product.id
-                                    ? styles.animate
-                                    : ""
-                                }`}
-                              />
-                            </button>
-                          </div>
-                          <Link
-                            href={`/product/${product.id}`}
-                            className={styles.productLink}
-                          >
-                            <div className={styles.productImageWrapper}>
-                              <img
-                                src={product.main_image_url}
-                                alt={product.title}
-                                className={styles.productImage}
-                              />
-                            </div>
-                            <p>{product.title}</p>
-                            <p className={styles.bold}>{product.price}₴</p>
-                          </Link>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Пагінація */}
-                  <div className={styles.paginationWrapper}>
-                    <div
-                      className={`${styles.pagination} ${styles.desktopPagination}`}
-                    >
-                      <button
-                        onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}
-                      >
-                        Попередня
-                      </button>
-
-                      {currentPage > range + 1 && (
-                        <>
-                          <button onClick={() => handlePageChange(1)}>1</button>
-                          <span>...</span>
-                        </>
-                      )}
-
-                      {Array.from(
-                        { length: endPage - startPage + 1 },
-                        (_, index) => (
+            {products.length === 0 ? (
+              <p>Нічого не знайдено.</p>
+            ) : (
+              <>
+                <div className={styles.productListWraper}>
+                  <div className={styles.productList}>
+                    {currentProducts.map((product) => (
+                      <div key={product.id} className={styles.productCard}>
+                        <div className={styles.cardButtons}>
                           <button
-                            key={startPage + index}
-                            onClick={() => handlePageChange(startPage + index)}
-                            className={
-                              currentPage === startPage + index
-                                ? styles.activePage
-                                : ""
+                            className={styles.likeButton}
+                            onClick={() => handleLikeClickOnProduct(product.id)}
+                          >
+                            <Image
+                              src={
+                                likedProducts.includes(product.id)
+                                  ? "/shop/likeRed.png"
+                                  : "/shop/like.png"
+                              }
+                              alt="Liked products"
+                              width={20}
+                              height={20}
+                              className={`${styles.heartImage} ${
+                                activeHeartId === product.id
+                                  ? styles.animate
+                                  : ""
+                              }`}
+                            />
+                          </button>
+                          <button
+                            className={styles.cartButton}
+                            onClick={() =>
+                              handleCartClickOnProduct(product.id, 1)
                             }
                           >
-                            {startPage + index}
+                            <Image
+                              src={
+                                cartedProducts.some((p) => p.id === product.id)
+                                  ? "/shop/cartBlue.png"
+                                  : "/shop/cart.png"
+                              }
+                              alt="Shopping cart"
+                              width={20}
+                              height={20}
+                              className={`${styles.cartImage} ${
+                                activeCartId === product.id
+                                  ? styles.animate
+                                  : ""
+                              }`}
+                            />
                           </button>
-                        )
-                      )}
+                        </div>
+                        <Link
+                          href={`/product/${product.id}`}
+                          className={styles.productLink}
+                        >
+                          <div className={styles.productImageWrapper}>
+                            <img
+                              src={product.main_image_url}
+                              alt={product.title}
+                              className={styles.productImage}
+                            />
+                          </div>
+                          <p>{product.title}</p>
+                          <p className={styles.bold}>{product.price}₴</p>
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-                      {currentPage < totalPages - range && (
-                        <>
-                          <span>...</span>
-                          <button onClick={() => handlePageChange(totalPages)}>
-                            {totalPages}
-                          </button>
-                        </>
-                      )}
-                    </div>
-
-                    {/* Пагінація для телефонів */}
-                    <div
-                      className={`${styles.pagination} ${styles.mobilePagination}`}
+                {/* Пагінація */}
+                <div className={styles.paginationWrapper}>
+                  <div
+                    className={`${styles.pagination} ${styles.desktopPagination}`}
+                  >
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
                     >
-                      <button
-                        onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}
-                      >
-                        Попередня
-                      </button>
+                      Попередня
+                    </button>
 
-                      {currentPage > 1 && (
+                    {currentPage > range + 1 && (
+                      <>
+                        <button onClick={() => handlePageChange(1)}>1</button>
+                        <span>...</span>
+                      </>
+                    )}
+
+                    {Array.from(
+                      { length: endPage - startPage + 1 },
+                      (_, index) => (
                         <button
-                          onClick={() => handlePageChange(currentPage - 1)}
+                          key={startPage + index}
+                          onClick={() => handlePageChange(startPage + index)}
+                          className={
+                            currentPage === startPage + index
+                              ? styles.activePage
+                              : ""
+                          }
                         >
-                          {currentPage - 1}
+                          {startPage + index}
                         </button>
-                      )}
+                      )
+                    )}
 
-                      <button className={styles.activePage}>
-                        {currentPage}
-                      </button>
-
-                      {currentPage < totalPages && (
-                        <button
-                          onClick={() => handlePageChange(currentPage + 1)}
-                        >
-                          {currentPage + 1}
-                        </button>
-                      )}
-
-                      {currentPage + 2 < totalPages && (
-                        <span className={styles.dots}>...</span>
-                      )}
-
-                      {currentPage + 1 < totalPages && (
+                    {currentPage < totalPages - range && (
+                      <>
+                        <span>...</span>
                         <button onClick={() => handlePageChange(totalPages)}>
                           {totalPages}
                         </button>
-                      )}
-                    </div>
+                      </>
+                    )}
                   </div>
-                </>
-              )}
-            </div>
-          </>
-        )}
-      </div>
-    </React.Suspense>
+
+                  {/* Пагінація для телефонів */}
+                  <div
+                    className={`${styles.pagination} ${styles.mobilePagination}`}
+                  >
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      Попередня
+                    </button>
+
+                    {currentPage > 1 && (
+                      <button onClick={() => handlePageChange(currentPage - 1)}>
+                        {currentPage - 1}
+                      </button>
+                    )}
+
+                    <button className={styles.activePage}>{currentPage}</button>
+
+                    {currentPage < totalPages && (
+                      <button onClick={() => handlePageChange(currentPage + 1)}>
+                        {currentPage + 1}
+                      </button>
+                    )}
+
+                    {currentPage + 2 < totalPages && (
+                      <span className={styles.dots}>...</span>
+                    )}
+
+                    {currentPage + 1 < totalPages && (
+                      <button onClick={() => handlePageChange(totalPages)}>
+                        {totalPages}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Завантаження…</p>}>
+      <SearchPage />
+    </Suspense>
   );
 }
