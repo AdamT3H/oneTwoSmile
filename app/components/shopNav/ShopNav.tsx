@@ -5,10 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import CartDrawer from "@/app/components/cartDrawer/CartDrawer.tsx";
 import LikeDrawer from "@/app/components/likeDrawer/LikeDrawer.tsx";
+import { useRouter } from "next/navigation";
 
 export default function ShopNav() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLikeOpen, setIsLikeOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
 
   return (
     <>
@@ -30,8 +33,10 @@ export default function ShopNav() {
 
             <div className={styles.right}>
               <div className={styles.likesAndCartContainer}>
-                <button className={styles.iconButton}
-                 onClick={() => setIsLikeOpen(true)}>
+                <button
+                  className={styles.iconButton}
+                  onClick={() => setIsLikeOpen(true)}
+                >
                   <Image
                     src="/shop/like.png"
                     alt="Liked products"
@@ -59,9 +64,20 @@ export default function ShopNav() {
                 <input
                   className={styles.searchInShopListInput}
                   placeholder="Search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
 
-                <button className={styles.searchInShopListLoopButton}>
+                <button
+                  className={styles.searchInShopListLoopButton}
+                  onClick={() => {
+                    if (searchQuery.trim()) {
+                      router.push(
+                        `/shop/search?query=${encodeURIComponent(searchQuery)}`
+                      );
+                    }
+                  }}
+                >
                   <Image
                     src="/shop/search.png"
                     alt="Search button"

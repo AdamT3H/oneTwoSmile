@@ -42,6 +42,8 @@ export default function CategoryPage({
   const [likedProducts, setLikedProducts] = useState<number[]>([]);
   const [cartedProducts, setCartedProducts] = useState<CartedProduct[]>([]);
 
+  const [sortBy, setSortBy] = useState<string>("default");
+
   if (!products) {
     notFound();
   }
@@ -66,7 +68,7 @@ export default function CategoryPage({
         setLikedProducts(JSON.parse(stored));
       }
     };
-  
+
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
@@ -78,16 +80,19 @@ export default function CategoryPage({
         try {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed)) {
-            setCartedProducts(parsed); 
+            setCartedProducts(parsed);
           }
         } catch (err) {
-          console.error("Помилка при читанні cartedProducts із localStorage:", err);
+          console.error(
+            "Помилка при читанні cartedProducts із localStorage:",
+            err
+          );
         }
       } else {
         setCartedProducts([]);
       }
     };
-  
+
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
@@ -191,16 +196,11 @@ export default function CategoryPage({
     }, 700);
   };
 
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
 
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = products.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
 
   // const [isMobile, setIsMobile] = useState(false);
 
@@ -223,6 +223,31 @@ export default function CategoryPage({
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
+
+  const getSortedProducts = () => {
+    let sorted = [...products];
+    switch (sortBy) {
+      case "price-asc":
+        sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        break;
+      case "price-desc":
+        sorted.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+        break;
+      case "title-asc":
+        sorted.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "title-desc":
+        sorted.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+    }
+    return sorted;
+  };
+
+  const sortedProducts = getSortedProducts();
+  const currentProducts = sortedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   return (
     <div style={{ width: "100%" }}>
@@ -249,6 +274,28 @@ export default function CategoryPage({
         <>
           <div className={styles.container}>
             <h1 className={styles.title}>Категорія: {categoryTitle}</h1>
+
+            <div className={styles.sortContainer}>
+              <label htmlFor="sort" className={styles.sortLabel}>
+                Сортувати:
+              </label>
+              <select
+                id="sort"
+                className={styles.sortSelect}
+                value={sortBy}
+                onChange={(e) => {
+                  setSortBy(e.target.value);
+                  setCurrentPage(1);
+                }}
+              >
+                <option value="">Без сортування</option>
+                <option value="price-asc">Дешевше - дороще</option>
+                <option value="price-desc">Дороще - дешевше</option>
+                <option value="title-asc">Від А до Я</option>
+                <option value="title-desc">Від Я до A</option>
+              </select>
+            </div>
+
             <div className={styles.productListWraper}>
               <div className={styles.productList}>
                 {currentProducts.map((product) => (
@@ -261,7 +308,7 @@ export default function CategoryPage({
                         <Image
                           src={
                             likedProducts.includes(product.id)
-                              ? "/shop/likeRed.png" 
+                              ? "/shop/likeRed.png"
                               : "/shop/like.png"
                           }
                           alt="Liked products"
@@ -277,11 +324,11 @@ export default function CategoryPage({
                         onClick={() => handleCartClickOnProduct(product.id, 1)}
                       >
                         <Image
-                         src={
-                          cartedProducts.some((p) => p.id === product.id)
-                            ? "/shop/cartBlue.png"
-                            : "/shop/cart.png"
-                        }
+                          src={
+                            cartedProducts.some((p) => p.id === product.id)
+                              ? "/shop/cartBlue.png"
+                              : "/shop/cart.png"
+                          }
                           alt="Shopping cart"
                           width={20}
                           height={20}

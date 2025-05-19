@@ -5,6 +5,7 @@ import {Footer} from "@/app/components/index"
 import Script from "next/script";
 
 
+
 export default function RootLayout({
   children,
 }: Readonly<{

@@ -251,14 +251,6 @@
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-}
 
 
 .sortContainer {
@@ -304,6 +296,15 @@
   background-color: #fff;
 }
 
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
 /* При ширині екрану до 1035px */
 @media (max-width: 1035px) {
   .productList {
@@ -341,6 +342,7 @@
     gap: 20px;
     padding: 0px;
   }
+
 
   .sortContainer{
     padding-left: clamp(8px, 2vw, 16px);
