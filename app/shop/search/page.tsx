@@ -6,6 +6,7 @@ import ShopNav from "@/app/components/shopNav/ShopNav";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { Suspense } from "react";
 
 interface Product {
   id: number;
@@ -200,6 +201,7 @@ export default function SearchPage() {
   );
 
   return (
+    <Suspense fallback={<div>Завантаження результатів...</div>}>
     <div style={{ width: "100%" }}>
       <ShopNav />
       {loading ? (
@@ -403,5 +405,6 @@ export default function SearchPage() {
         </>
       )}
     </div>
+    </Suspense>
   );
 }
