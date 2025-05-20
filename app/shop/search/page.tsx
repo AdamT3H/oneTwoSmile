@@ -137,10 +137,6 @@ function SearchPage() {
 
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  // const currentProducts = products.slice(
-  //   indexOfFirstProduct,
-  //   indexOfLastProduct
-  // );
 
   const totalPages = Math.ceil(products.length / itemsPerPage);
 

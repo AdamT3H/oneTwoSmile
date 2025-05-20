@@ -28,7 +28,6 @@ export default function AllServices() {
 
   useEffect(() => {
     const fetchData = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 3000)); //ВИДАЛИТИ РЯДОК
       setLoading(true);
 
       const { data: serviceData, error: serviceError } = await supabase

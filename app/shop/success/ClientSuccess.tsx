@@ -5,13 +5,11 @@ import { useSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 import { supabase } from "@/lib/supabase";
 
-// Тип для замовлення
 interface Order {
   id: number;
   order_reference: string;
   status: string;
   customer_name: string;
-  // Додайте інші поля, якщо потрібно
 }
 
 export default function ClientSuccess() {
@@ -26,7 +24,6 @@ export default function ClientSuccess() {
   useEffect(() => {
     if (!ref) return;
 
-    // Отримання замовлення
     supabase
       .from("orders")
       .select("*")
@@ -44,7 +41,6 @@ export default function ClientSuccess() {
         }
       });
 
-    // Підписка на оновлення статусу замовлення
     const subscription = supabase
       .channel("public:orders")
       .on(

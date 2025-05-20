@@ -79,7 +79,7 @@ export default function CitySelect({ oblastRef, onChange }: Props) {
       };
 
       fetchCities();
-    }, 400); // трохи затримки, щоб не спамити запити
+    }, 400);
 
     return () => clearTimeout(delayDebounce);
   }, [inputValue, oblastRef]);
@@ -98,8 +98,8 @@ export default function CitySelect({ oblastRef, onChange }: Props) {
           isSearchable
           styles={customStyles}
           isDisabled={!oblastRef}
-          onInputChange={(value) => setInputValue(value)} // Зберігаємо введений текст
-          inputValue={inputValue} // Встановлюємо введене значення після завантаження
+          onInputChange={(value) => setInputValue(value)} 
+          inputValue={inputValue} 
           noOptionsMessage={() =>
             inputValue.length < 2
               ? "Введіть мінімум 2 літери"

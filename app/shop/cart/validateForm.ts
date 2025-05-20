@@ -57,5 +57,5 @@ export const validateForm = ({
     return "Введіть коректну електронну адресу.";
   }
 
-  return null; // Усе гаразд
+  return null; 
 };

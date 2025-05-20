@@ -35,8 +35,6 @@ export default function Shop() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Штучна затримка для наочності
-        await new Promise((res) => setTimeout(res, 1000));
 
         const { data: categoriesData, error: categoriesError } = await supabase
           .from("shop_categories")

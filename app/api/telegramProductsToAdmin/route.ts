@@ -14,7 +14,7 @@ interface PaymentBody {
   oblast_name: string;
   city: string;
   warehouse: string;
-  paymentType: "card" | "paper"; // додано
+  paymentType: "card" | "paper";
 }
 
 async function sendTelegramMessage(order: PaymentBody) {

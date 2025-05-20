@@ -117,7 +117,6 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     }));
     localStorage.setItem("cartedProducts", JSON.stringify(cartToStore));
 
-    // Викликаємо подію для синхронізації з іншими вкладками, якщо треба
     window.dispatchEvent(new Event("storage"));
   };
 

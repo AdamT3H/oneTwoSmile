@@ -23,7 +23,6 @@ export default function AboutTeamGrid() {
 
   useEffect(() => {
     const fetchTeam = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 5000)); //ВИДАЛИТИ РЯДОК
 
       const { data, error } = await supabase.from("team-members-info").select("*");
       if (error) {

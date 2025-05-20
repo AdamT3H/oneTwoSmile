@@ -64,8 +64,6 @@ export async function POST(req: NextRequest) {
           console.warn(
             `⚠️ Продукт ${productId} має недостатній запас — залишилось ${product.in_stock}, потрібно ${countToSubtract}`
           );
-          // Можеш або зупинити обробку, або поставити 0:
-        //   return new Response("Not enough stock", { status: 400 });
         }
 
         const { error: updateProductError } = await supabase
@@ -161,35 +159,3 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   return new Response("✅ Callback route is alive (GET)", { status: 200 });
 }
-
-// import { NextRequest } from 'next/server';
-
-// export async function POST(req: NextRequest) {
-//   const body = await req.json();
-
-//   const {
-//     transactionStatus,
-//     // orderReference,
-//     // amount,
-//     // email,
-//     // та інші поля, які надсилає WayForPay
-//   } = body;
-
-//   if (transactionStatus === 'Approved') {
-
-//     // 2. Надіслати повідомлення адміну в Telegram
-//     // await notifyAdminInTelegram(orderReference, amount, email);
-
-//     // 3. Очистити корзину користувача (якщо є авторизація)
-//     // 4. Оновити склад (зменшити кількість товарів)
-
-//     console.log("НАДСИЛАЮ НА ПОШТУ БІБІ БА БА")
-
-//     return new Response(JSON.stringify({ reason: "Success" }), {
-//       status: 200,
-//       headers: { 'Content-Type': 'application/json' }
-//     });
-//   }
-
-//   return new Response("Ignored", { status: 200 });
-// }

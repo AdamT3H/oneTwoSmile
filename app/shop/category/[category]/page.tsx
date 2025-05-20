@@ -101,8 +101,6 @@ export default function CategoryPage({
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Штучна затримка для наочності
-        await new Promise((res) => setTimeout(res, 1000));
 
         setLoading(true);
 
@@ -202,18 +200,6 @@ export default function CategoryPage({
 
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-
-  // const [isMobile, setIsMobile] = useState(false);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setIsMobile(window.innerWidth < 768);
-  //   };
-
-  //   handleResize();
-  //   window.addEventListener("resize", handleResize);
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
 
   const totalPages = Math.ceil(products.length / itemsPerPage);
 

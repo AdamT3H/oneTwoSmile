@@ -108,7 +108,7 @@ export default function CategorySection({
 
     if (existing) {
       if (existing.quantity === quantity) {
-        updatedCarts = cartedProducts.filter((p) => p.id !== productId); // toggle off
+        updatedCarts = cartedProducts.filter((p) => p.id !== productId);
       } else {
         updatedCarts = cartedProducts.map((p) =>
           p.id === productId ? { ...p, quantity } : p

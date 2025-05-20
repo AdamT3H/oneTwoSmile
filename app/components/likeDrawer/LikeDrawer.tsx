@@ -28,7 +28,7 @@ export default function LikeDrawer({ isOpen, onClose }: LikeDrawerProps) {
 
       setIsLoading(true);
       try {
-        const likedIDs = JSON.parse(stored); // [1, 2, 3]
+        const likedIDs = JSON.parse(stored);
         if (Array.isArray(likedIDs) && likedIDs.length > 0) {
           const { data, error } = await supabase
             .from("products")

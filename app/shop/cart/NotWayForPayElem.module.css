@@ -7,7 +7,7 @@
 }
 
 .payButton {
-  background-image: url("/header/bg.png"); /* Без /public */
+  background-image: url("/header/bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

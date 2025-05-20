@@ -20,7 +20,6 @@ interface Props {
 export default function OblastSelect({ onChange }: Props) {
   const [options, setOptions] = useState<Option[]>([]);
   const [selected, setSelected] = useState<Option | null>(null);
-//   const [loading, setLoading] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
 
   const customStyles: StylesConfig<Option, false, GroupBase<Option>> = {
@@ -55,7 +54,6 @@ export default function OblastSelect({ onChange }: Props) {
   useEffect(() => {
     const fetchOblasts = async () => {
       try {
-        // setLoading(true); 
         const res = await fetch("/api/get_oblast");
         const data = await res.json();
         const oblastOptions = data.map((oblast: Oblast) => ({
@@ -65,8 +63,6 @@ export default function OblastSelect({ onChange }: Props) {
         setOptions(oblastOptions);
       } catch (error) {
         console.error("Помилка при отриманні областей:", error);
-      } finally {
-        // setLoading(false);
       }
     };
 
@@ -86,8 +82,8 @@ export default function OblastSelect({ onChange }: Props) {
           placeholder="Область"
           isSearchable
           styles={customStyles}
-          onInputChange={(value) => setInputValue(value)} // Зберігаємо введений текст
-          inputValue={inputValue} // Встановлюємо введене значення після завантаження
+          onInputChange={(value) => setInputValue(value)}
+          inputValue={inputValue} 
         />
     </div>
   );

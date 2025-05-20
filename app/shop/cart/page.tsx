@@ -38,7 +38,6 @@ interface Product {
 
 export default function Cart() {
   const [cartedItems, setCartedItems] = useState<Product[]>([]);
-  // const [isLoading, setIsLoading] = useState(false);
   const [deliveryType, setDeliveryType] = useState("nova_poshta");
   const [paymentType, setPaymentType] = useState("card");
   const [totalPrice, setTotalPrice] = useState<number>(0);
@@ -75,7 +74,6 @@ export default function Cart() {
       const stored = localStorage.getItem("cartedProducts");
       if (!stored) return;
 
-      // setIsLoading(true);
       try {
         const cartedData: { id: number; quantity: number }[] =
           JSON.parse(stored);
@@ -105,8 +103,6 @@ export default function Cart() {
         }
       } catch (err) {
         console.error("Failed to parse carted products:", err);
-      } finally {
-        // setIsLoading(false);
       }
     };
 
