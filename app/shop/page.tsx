@@ -35,7 +35,6 @@ export default function Shop() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-
         const { data: categoriesData, error: categoriesError } = await supabase
           .from("shop_categories")
           .select("*");

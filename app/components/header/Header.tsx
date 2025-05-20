@@ -2,16 +2,16 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-
 import styles from './Header.module.css';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-
+import { useTranslation } from 'next-i18next';
 import clinicInfo from '@/data/clinicInfo';
 
 export default function Header() {
   const [isMoreOptionsVisible, setMoreOptionsVisible] = useState(false);
   const pathname = usePathname();
+  const { t } = useTranslation('common');
 
   return (
     <>
@@ -26,7 +26,7 @@ export default function Header() {
               objectFit="cover"
               className={styles.imageMargin}
             />
-            <h1 className={styles.logoText}>Інноваційна клініка стоматології та косметології</h1>
+            <h1 className={styles.logoText}>{t('clinicName')}</h1>
           </div>
 
           <nav className={styles.burger}>
