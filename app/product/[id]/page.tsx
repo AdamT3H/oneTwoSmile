@@ -1,6 +1,3 @@
-import { generateMetadata } from "./metadata.ts";
-export { generateMetadata };
-
 "use client";
 
 import Image from "next/image";
