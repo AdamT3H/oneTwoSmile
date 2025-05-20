@@ -1,11 +1,5 @@
 "use client";
 
-export const metadata = {
-  title: "Магазин — One Two Smile",
-  description:
-    "Перегляньте наші косметичні товари та засоби для догляду. Якість, доступність та швидка доставка від One Two Smile.",
-};
-
 import { useEffect, useState } from "react";
 import ShopNav from "@/app/components/shopNav/ShopNav";
 import BannerShopPage from "@/app/components/bannerShopPage/BannerShopPage";

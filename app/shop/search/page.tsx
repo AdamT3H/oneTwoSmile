@@ -7,15 +7,6 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { Suspense } from "react";
-import { Metadata } from "next";
-
-export function generateMetadata({ searchParams }: { searchParams: { query?: string } }): Metadata {
-  const query = searchParams.query || "Результати пошуку";
-  return {
-    title: `Пошук: ${query} | Назва сайту`,
-    description: `Результати пошуку за запитом "${query}" у нашому магазині.`,
-  };
-}
 
 interface Product {
   id: number;

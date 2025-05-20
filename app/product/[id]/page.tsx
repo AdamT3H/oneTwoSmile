@@ -1,4 +1,5 @@
 import { generateMetadata } from "./metadata.ts";
+export { generateMetadata };
 
 "use client";
 
