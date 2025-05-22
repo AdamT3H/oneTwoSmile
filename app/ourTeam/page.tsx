@@ -4,8 +4,8 @@ export const metadata = {
     "Познайомтеся з нашою командою фахівців, які щодня працюють над тим, щоб ви отримували найкращий сервіс і результати. Довіра починається з людей.",
 };
 
-import AboutTeam from "@/app/components/pageOurTeamAboutTeam/aboutTeam.tsx";
-import AboutTeamGrid from "@/app/components/pageOurTeamAboutTeamGrid/aboutTeamGrid.tsx";
+import AboutTeam from "@/app/components/pageOurTeamAboutTeam/aboutTeam";
+import AboutTeamGrid from "@/app/components/pageOurTeamAboutTeamGrid/aboutTeamGrid";
 
 export default function OurTeam() {
   return (

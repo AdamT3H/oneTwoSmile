@@ -1,4 +1,4 @@
-import ShopNav from "@/app/components/shopNav/ShopNav";
+import ShopNav from "@/app/components/shopNav/ShopNav.tsx";
 import ClientSuccess from "./ClientSuccess.tsx";
 import React from "react";
 

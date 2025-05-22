@@ -3,8 +3,8 @@ import { useState } from "react";
 import styles from "./ShopNav.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import CartDrawer from "@/app/components/cartDrawer/CartDrawer.tsx";
-import LikeDrawer from "@/app/components/likeDrawer/LikeDrawer.tsx";
+import CartDrawer from "@/app/components/cartDrawer/CartDrawer";
+import LikeDrawer from "@/app/components/likeDrawer/LikeDrawer";
 import { useRouter } from "next/navigation";
 
 export default function ShopNav() {

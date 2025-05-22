@@ -1,6 +1,6 @@
 "use client";
 import styles from "./page.module.css";
-import ShopNav from "@/app/components/shopNav/ShopNav";
+import ShopNav from "@/app/components/shopNav/ShopNav.tsx";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";

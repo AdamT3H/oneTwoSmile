@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "./ProductPage.module.css";
 import { use } from "react";
-import ShopNav from "@/app/components/shopNav/ShopNav.tsx";
+import ShopNav from "@/app/components/shopNav/ShopNav";
 import { supabase } from "@/lib/supabase.js";
 import { useRef, useEffect, useState } from "react";
 

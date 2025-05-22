@@ -1,7 +1,7 @@
 "use client";
 import { use } from "react";
 import { notFound } from "next/navigation";
-import ShopNav from "@/app/components/shopNav/ShopNav.tsx";
+import ShopNav from "@/app/components/shopNav/ShopNav";
 import styles from "./CategoryPage.module.css";
 import { useState, useEffect } from "react";
 import Image from "next/image";
