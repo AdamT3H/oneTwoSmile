@@ -1,0 +1,287 @@
+.container {
+    display: flex;
+    height: 120px;
+    position: relative;
+    z-index: 1001;
+    align-items: center;
+    width: 100%;
+    padding:20px 50px 20px 50px;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+}
+  
+.logo {
+    font-weight: 100;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    position: relative
+}
+
+.imageMargin{
+    margin-bottom: 6px;
+}
+  
+.burger {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: 300;
+    overflow: hidden; 
+    white-space: nowrap;
+}
+
+.burger h1{
+    color:rgb(197, 197, 197);
+    display: flex;
+    align-items: center;
+}
+  
+.info{
+    position: absolute;
+    right: 0;
+    font-size: 16px;
+    font-weight: 300;
+    width: 210px;
+}
+
+.burgerOptionsMain, .burgerOptionsTeam, .burgerOptionsMed, .burgerOptionsService, .burgerOptionsMore {
+    transition: transform 0.23s ease, font-size 0.3s ease;
+    position: relative;
+}
+
+.burgerOptionsMore{
+    background-color: rgb(235, 235, 235);
+    padding: 1px 10px 1px 10px;
+    border-radius: 10px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+  
+.burgerOptionsMain:hover, .burgerOptionsTeam:hover, .burgerOptionsMed:hover, .burgerOptionsService:hover {
+    transform: translateY(-3px); 
+    font-size: 18px; 
+}
+
+.burgerOptionsMore:hover{
+    font-size: 18px; 
+}
+
+#OnlineBookingBtnId {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--onlineBeckGround);
+    font-weight: 400;
+    background-image: url("/header/bg.png");
+    background-size: cover;
+    background-position: center;
+    border: none;
+    padding: 10px 40px;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-position 1s ease, transform 0.3s ease-in-out;
+}
+
+#OnlineBookingBtnId:hover {
+    will-change: transform;
+    background-position: 100% 100%;
+    transform: scale(1.1);
+}
+
+.moreOptions {
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+.moreOptions{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    z-index: 1000;
+    position: absolute;
+    top: 120px;
+    opacity: 1;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease, visibility 0.3s ease;
+    display: flex;
+    justify-content: center;
+}
+
+.moreOptionsVisible{
+    max-width: 1824px;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.moreOptionsContainer {
+    max-width: 1824px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+
+.overlayVisible {
+    opacity: 1;
+    visibility: visible;
+    max-width: 100%;
+}
+
+.moreOptionsContainer{
+    max-width : 1824px;
+    width: 610px;
+    font-weight: 300;
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Додаємо можливість переносити елементи на новий рядок */
+    flex-direction: column;
+    text-align: center;
+}
+
+.moreOptionsContainer:last-child{
+    margin-bottom: 30px;
+}
+
+.option{
+    transition: 0.2s ease;
+}
+
+.option:hover{
+    will-change: transform;
+    scale: 1.2;
+}
+
+.wrapper{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    max-width : 1824px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width: 1382px) {
+    .burger > .burgerOptionsService {
+      display: none;
+    }
+
+    .moreOptionsContainer > .optionService {
+        display: block;
+    }
+}
+
+@media (max-width: 1250px) {
+    .burger > .burgerOptionsMed {
+      display: none;
+    }
+
+    .moreOptionsContainer > .optionMed {
+        display: block;
+    }
+}
+
+@media (max-width: 1094px) {
+    .burger > .burgerOptionsTeam, .burgerOptionsMain, .burgerOptionsMainDecor {
+      display: none !important;
+    }
+
+    .info {
+        display: none !important;
+    }
+
+    .moreOptionsContainer > .optionMain, .optionTeam {
+        display: block !important;
+    }
+
+    .burger{
+        right: 0; /* Розташувати правий край елемента у правого краю контейнера */
+        transform: none; /* Вимкнути зміщення */
+        left: auto;
+        width: fit-content;
+    }
+}
+
+@media (max-width: 530px) {
+    .container{
+        padding:20px 20px 20px 20px;
+        /* height: 150px; */
+    }
+
+    .logo{
+        width: 50%;
+        justify-content: center;
+    }
+
+    #OnlineBookingBtnId{
+        position: relative;
+    }
+
+    .logoText{
+        display: none;
+    }
+
+    .moreOptions{
+        top: 120px;
+    }
+
+    .imageMargin{
+        margin-bottom: 12px;
+    }
+}
+  
+.optionService, .optionMed, .optionTeam, .optionMain{
+    will-change: transform;
+    transition: transform 0.3s ease;
+    transform: scale(1);
+    display: none;
+}
+
+.optionShop, .optionAbout{
+    will-change: transform;
+    transition: transform 0.3s ease;
+    transform: scale(1);
+}
+
+.optionService:hover, .optionMed:hover, .optionTeam:hover, .optionMain:hover, .optionShop:hover, .optionAbout:hover{
+    transform: scale(1.2);
+    will-change: transform;
+}
+
+.burgerOptionsMainActive, .burgerOptionsMedActive, .burgerOptionsTeamActive, .burgerOptionsServiceActive  {
+    font-weight: 300;
+    /* background-image: url("/header/bg.png");
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text; 
+    color: transparent; */
+    filter: brightness(0.9) saturate(2.8);
+    border-bottom: 2px solid #99999949;
+    padding: 0px 2px 0px 2px;
+}
+
+.wrapperleng{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}

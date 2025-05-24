@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "globals.d.ts", "app/api/telegramProductsToAdmin"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "globals.d.ts", "app/[locale]/api/telegramProductsToAdmin", "app/i18n.js"],
   "exclude": ["node_modules"]
 }
