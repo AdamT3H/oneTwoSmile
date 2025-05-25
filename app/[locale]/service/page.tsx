@@ -8,14 +8,20 @@ import AllService from "@/components/allServices/AllServices";
 import initTranslations from "../../i18n";
 import TranslationsProvider from "@/components/TranslationsProvider.js";
 
-export default async function Service({ params }: { params: { locale: string } }) {
-  const { resources } = await initTranslations(params.locale, [""]);
+export default async function Service({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  
+  const { resources } = await initTranslations(locale, [""]);
 
   return (
     <div className="w-full">
       <TranslationsProvider
         resources={resources}
-        locale={params.locale}
+        locale={locale}
         namespaces={[""]}
       >
         <AllService />

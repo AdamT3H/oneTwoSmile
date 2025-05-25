@@ -6,12 +6,14 @@ import Image from "next/image";
 import CartDrawer from "@/components/cartDrawer/CartDrawer";
 import LikeDrawer from "@/components/likeDrawer/LikeDrawer";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 export default function ShopNav() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLikeOpen, setIsLikeOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -63,7 +65,7 @@ export default function ShopNav() {
               <div className={styles.searchInShopList}>
                 <input
                   className={styles.searchInShopListInput}
-                  placeholder="Search"
+                  placeholder={t('search')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />

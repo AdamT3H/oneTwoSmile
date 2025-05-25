@@ -26,9 +26,11 @@ import initTranslations from "../../i18n";
 export default async function Policy({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const { t } = await initTranslations(params.locale, ["policy"]);
+  const { locale } = await params;
+
+  const { t } = await initTranslations(locale, ["policy"]);
 
   return (
     <div className="w-full flex justify-center">

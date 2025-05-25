@@ -7,12 +7,17 @@ export const metadata = {
     "Дізнайтесь більше про One Two Smile — клініку краси, яка поєднує сучасні методики лікування з натуральною косметикою.",
 };
 
-export default function Home({ params }: { params: { locale: string } }) {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
 
   return (
     <div className="w-full">
-      <MainPicture locale={params.locale} />
-      <Slider locale={params.locale}/>
+      <MainPicture locale={locale} />
+      <Slider locale={locale} />
     </div>
   );
 }

@@ -8,17 +8,23 @@ import TranslationsProvider from "@/components/TranslationsProvider.js";
 import AboutTeam from "@/components/pageOurTeamAboutTeam/aboutTeam";
 import AboutTeamGrid from "@/components/pageOurTeamAboutTeamGrid/aboutTeamGrid";
 
-export default async function OurTeam({ params }: { params: { locale: string } }) {
-  const { resources } = await initTranslations(params.locale, [""]);
+export default async function OurTeam({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  const { resources } = await initTranslations(locale, [""]);
 
   return (
     <div className="w-full">
-      <AboutTeam locale={params.locale}/>
+      <AboutTeam locale={locale} />
       <TranslationsProvider
-          resources={resources}
-          locale={params.locale}
-          namespaces={[""]}
-        >
+        resources={resources}
+        locale={locale}
+        namespaces={[""]}
+      >
         <AboutTeamGrid />
       </TranslationsProvider>
     </div>

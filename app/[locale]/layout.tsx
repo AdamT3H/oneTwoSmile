@@ -6,17 +6,20 @@ import Script from "next/script";
 import TranslationsProvider from "@/components/TranslationsProvider.js";
 import initTranslations from "../i18n";
 
-export default async function RootLayout({
+export default async function LocaleLayout({
   children,
   params,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-  params: { locale: string };
-}>) {
-  const { resources } = await initTranslations(params.locale, ["header", "footer"]);
+  params: Promise<{ locale: string }>;
+}) {
+
+  const { locale } = await params;
+
+  const { resources } = await initTranslations(locale, ["header", "footer"]);
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         <Script
           src="https://widget.easyweek.io/widget.js"
@@ -34,7 +37,7 @@ export default async function RootLayout({
       <body>
         <TranslationsProvider
           resources={resources}
-          locale={params.locale}
+          locale={locale}
           namespaces={["header", "footer"]}
         >
           <Header />

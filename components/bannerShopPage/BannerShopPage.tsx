@@ -1,7 +1,18 @@
 import styles from "./BannerShopPage.module.css";
 import Image from "next/image";
+import initTranslations from "../../app/i18n";
 
-export default function BannerShopPage() {
+export default async function BannerShopPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  const { t, resources } = await initTranslations(locale, [
+    "banerOnShop",
+  ]);
+  
   return (
     <div className={styles.container}>
       <div className={styles.logoWrapper}>
@@ -14,7 +25,7 @@ export default function BannerShopPage() {
       </div>
       <div className={styles.textWrapper}>
         <h2 className={`${styles.mainText} ${styles.desktopText}`}>
-          Купуй. Доглядай. Посміхайся
+          {t('banerOnShop:text')}
         </h2>
       </div>
     </div>
