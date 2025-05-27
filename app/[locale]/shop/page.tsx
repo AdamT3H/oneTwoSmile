@@ -1,4 +1,3 @@
-import ShopNav from "@/components/shopNav/ShopNav";
 import BannerShopPage from "@/components/bannerShopPage/BannerShopPage";
 import ShopContent from "./ShopContent";
 import initTranslations from "../../i18n";
@@ -15,14 +14,6 @@ export default async function Shop({
 
   return (
     <div className="w-full">
-      <TranslationsProvider
-        resources={resources}
-        locale={locale}
-        namespaces={["searchText"]}
-      >
-        <ShopNav />
-      </TranslationsProvider>
-
       <BannerShopPage params={params} />
 
       <TranslationsProvider

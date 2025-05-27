@@ -1,15 +1,28 @@
+"use client";
 import styles from "./CartDrawer.module.css";
 import CartDrawerContext from "./CartDrawerContext";
+import TranslationsProvider from "@/components/TranslationsProvider.js";
 
-interface CartDrawerProps {
+export default function CartDrawer({
+  resources,
+  locale,
+  isOpen,
+  onClose,
+}: {
+  resources: any;
+  locale: string;
   isOpen: boolean;
   onClose: () => void;
-}
-
-export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
+}) {
   return (
     <div className={styles.container}>
-      <CartDrawerContext isOpen={isOpen} onClose={onClose} />
+      <TranslationsProvider
+        resources={resources}
+        locale={locale}
+        namespaces={["cart"]}
+      >
+        <CartDrawerContext isOpen={isOpen} onClose={onClose} />
+      </TranslationsProvider>
     </div>
   );
 }

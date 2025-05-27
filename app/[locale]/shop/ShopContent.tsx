@@ -31,7 +31,6 @@ export default function ShopContent() {
   }>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const pathname = usePathname();
   const { t } = useTranslation();
 
   useEffect(() => {

@@ -8,7 +8,15 @@ import LikeDrawer from "@/components/likeDrawer/LikeDrawer";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 
-export default function ShopNav() {
+export default function ShopNav({
+  locale,
+  cartResources,
+  likeResources,
+}: {
+  locale: string;
+  cartResources: any;
+  likeResources: any;
+}) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLikeOpen, setIsLikeOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -65,7 +73,7 @@ export default function ShopNav() {
               <div className={styles.searchInShopList}>
                 <input
                   className={styles.searchInShopListInput}
-                  placeholder={t('search')}
+                  placeholder={t("search")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -93,8 +101,18 @@ export default function ShopNav() {
           </div>
         </div>
       </nav>
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-      <LikeDrawer isOpen={isLikeOpen} onClose={() => setIsLikeOpen(false)} />
+      <CartDrawer
+        locale={locale}
+        resources={cartResources}
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+      />
+      <LikeDrawer
+        locale={locale}
+        resources={likeResources}
+        isOpen={isLikeOpen}
+        onClose={() => setIsLikeOpen(false)}
+      />
     </>
   );
 }

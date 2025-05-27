@@ -181,7 +181,7 @@ export default function CategorySection({
                 </div>
 
                 <Link
-                  href={`/product/${product.id}`}
+                  href={`/shop/product/${product.id}`}
                   className={styles.productLink}
                 >
                   <div className={styles.productImageWrapper}>

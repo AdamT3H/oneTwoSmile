@@ -1,7 +1,6 @@
 "use client";
 import { use } from "react";
 import { notFound } from "next/navigation";
-import ShopNav from "@/components/shopNav/ShopNav";
 import styles from "./CategoryPage.module.css";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -238,7 +237,7 @@ export default function CategoryPage({
 
   return (
     <div style={{ width: "100%" }}>
-      <ShopNav />
+      {/* <ShopNav /> */}
       {loading ? (
         <>
           <div className={styles.containerSceleton}>

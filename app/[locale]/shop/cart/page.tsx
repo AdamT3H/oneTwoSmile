@@ -1,6 +1,5 @@
 "use client";
 import styles from "./page.module.css";
-import ShopNav from "@/components/shopNav/ShopNav.tsx";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -187,7 +186,6 @@ export default function Cart() {
 
   return (
     <div className="w-full">
-      <ShopNav />
       <div className="w-full flex flex-col justify-center">
         <div className={styles.container}>
           <div className={styles.cartedItems}>

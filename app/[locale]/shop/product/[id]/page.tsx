@@ -3,7 +3,6 @@
 import Image from "next/image";
 import styles from "./ProductPage.module.css";
 import { use } from "react";
-import ShopNav from "@/components/shopNav/ShopNav";
 import { supabase } from "@/lib/supabase.js";
 import { useRef, useEffect, useState } from "react";
 
@@ -189,7 +188,6 @@ export default function ProductPage({ params }: ProductPageProps) {
 
   return (
     <div style={{ width: "100%" }}>
-      <ShopNav />
       {isLoading ? (
         <>
           <div className={styles.containerWrapper}>

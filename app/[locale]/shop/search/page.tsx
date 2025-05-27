@@ -2,7 +2,6 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import ShopNav from "@/components/shopNav/ShopNav";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
@@ -198,7 +197,6 @@ function SearchPage() {
 
   return (
     <div style={{ width: "100%" }}>
-      <ShopNav />
       {loading ? (
         <>
           <div className={styles.containerSceleton}>

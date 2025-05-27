@@ -5,6 +5,7 @@ import styles from "./CartDrawer.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase.js";
+import { useTranslation } from "react-i18next";
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -20,9 +21,13 @@ interface Product {
   quantity: number;
 }
 
-export default function CartDrawerContext({ isOpen, onClose }: CartDrawerProps) {
+export default function CartDrawerContext({
+  isOpen,
+  onClose,
+}: CartDrawerProps) {
   const [cartedItems, setCartedItems] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchCartedItems = async () => {
@@ -94,7 +99,6 @@ export default function CartDrawerContext({ isOpen, onClose }: CartDrawerProps) 
         if (item.id === id) {
           const newQuantity = item.quantity + change;
 
-          // Гарантуємо, що кількість не менша за 1 і не більша за in_stock
           const clampedQuantity = Math.max(
             1,
             Math.min(item.in_stock, newQuantity)
@@ -141,16 +145,16 @@ export default function CartDrawerContext({ isOpen, onClose }: CartDrawerProps) 
       />
       <div className={`${styles.drawer} ${isOpen ? styles.open : ""}`}>
         <div className={styles.header}>
-          <h2>Корзина</h2>
+          <h2>{t("title")}</h2>
           <button className={styles.closeButton} onClick={onClose}>
             ✕
           </button>
         </div>
         <div className={styles.content}>
           {isLoading ? (
-            <p className={styles.loadingText}>Завантаження...</p>
+            <p className={styles.loadingText}>{t("loading")}</p>
           ) : cartedItems.length === 0 ? (
-            <p className={styles.noContent}>Ваша корзинка порожня</p>
+            <p className={styles.noContent}>{t("empty")}</p>
           ) : (
             <ul className={styles.productList}>
               {cartedItems.map((product) => (
@@ -192,7 +196,7 @@ export default function CartDrawerContext({ isOpen, onClose }: CartDrawerProps) 
                       className={styles.deleteButton}
                       onClick={() => handleRemove(product.id)}
                     >
-                      Видалити
+                      {t("remove")}
                     </button>
                   </div>
                 </div>
@@ -202,12 +206,14 @@ export default function CartDrawerContext({ isOpen, onClose }: CartDrawerProps) 
         </div>
         <div className={styles.linkWrapper}>
           {cartedItems.length > 0 ? (
-            <Link href="/shop/cart" className={styles.link}>
-              Замовити
-            </Link>
+            <button onClick={onClose}>
+              <Link href="/shop/cart" className={styles.link}>
+                {t("order")}
+              </Link>
+            </button>
           ) : (
             <button className={styles.disabledButton} disabled>
-              Замовити
+              {t("order")}
             </button>
           )}
         </div>
