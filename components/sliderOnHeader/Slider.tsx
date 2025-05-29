@@ -3,7 +3,7 @@ import initTranslations from "../../app/i18n";
 
 async function Carousel(params: { locale: string }) {
   const { t } = await initTranslations(params.locale, ["slider"]);
-  const isEnglish = params.locale === "en";
+  // const isEnglish = params.locale === "en";
 
   return (
     <div className={styles.container}>

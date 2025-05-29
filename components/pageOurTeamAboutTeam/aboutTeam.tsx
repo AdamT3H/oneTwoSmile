@@ -3,7 +3,7 @@ import initTranslations from "../../app/i18n";
 
 export default async function AboutTeam(params: { locale: string }) {
   const { t } = await initTranslations(params.locale, ["aboutTeamHeader"]);
-  const isEnglish = params.locale === "en";
+  // const isEnglish = params.locale === "en";
 
   return (
     <div className={styles.container}>

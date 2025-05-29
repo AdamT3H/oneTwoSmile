@@ -9,7 +9,7 @@ export default async function BannerShopPage({
 }) {
   const { locale } = await params;
 
-  const { t, resources } = await initTranslations(locale, [
+  const { t } = await initTranslations(locale, [
     "banerOnShop",
   ]);
   

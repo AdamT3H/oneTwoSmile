@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import CategorySection from "@/components/categorySection/CategorySection";
 import { supabase } from "@/lib/supabase";
 import styles from "./page.module.css";
-import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 
 interface Product {
@@ -16,6 +15,19 @@ interface Product {
   galery_images_url: string[];
   description: string;
   category_id: number;
+}
+
+interface RawProduct {
+  id: number;
+  price: string;
+  in_stock: number;
+  main_image_url: string;
+  galery_images_url: string[];
+  category_id: number;
+  product_translations: {
+    title: string;
+    description: string;
+  }[];
 }
 
 interface Category {
@@ -81,7 +93,7 @@ export default function ShopContent({
             const catId = categoriesData[index].id;
       
             // Перетворимо продукти з перекладами
-            const transformed = (res.data || []).map((prod: any) => ({
+            const transformed = (res.data || []).map((prod: RawProduct) => ({
               id: prod.id,
               price: prod.price,
               in_stock: prod.in_stock,

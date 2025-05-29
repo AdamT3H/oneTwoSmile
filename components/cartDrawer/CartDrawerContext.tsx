@@ -62,7 +62,7 @@ export default function CartDrawerContext({
             .eq("product_translations.language_code", locale);
 
           if (!error && data) {
-            const merged = data.map((product) => {
+            const merged = data.map((product: { id: number; }) => {
               const match = cartedData.find((item) => item.id === product.id);
               return {
                 ...product,
