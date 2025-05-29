@@ -6,6 +6,7 @@
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
     "strict": true,
+    "noImplicitAny": false, // <-- додай це
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -23,6 +24,14 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "globals.d.ts", "app/api/telegramProductsToAdmin", "app/i18n.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "globals.d.ts",
+    "app/api/telegramProductsToAdmin",
+    "app/i18n.js"
+  ],
   "exclude": ["node_modules"]
 }

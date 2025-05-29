@@ -60,7 +60,7 @@ export default function OblastSelect({ onChange, locale}: Props) {
 
   const getPlaceholder = (locale: string): string => {
     const supportedLocales: (keyof typeof placeholderTranslations)[] = ["ua", "en", "pl"];
-    if (supportedLocales.includes(locale as any)) {
+    if (supportedLocales.includes(locale as keyof typeof placeholderTranslations)) {
       return placeholderTranslations[locale as "ua" | "en" | "pl"];
     }
     return placeholderTranslations.ua;
