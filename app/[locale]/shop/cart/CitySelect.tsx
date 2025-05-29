@@ -16,9 +16,37 @@ interface Option {
 interface Props {
   oblastRef: string | null;
   onChange: (option: Option | null) => void;
+  locale: string;
 }
 
-export default function CitySelect({ oblastRef, onChange }: Props) {
+const placeholderTranslations: Record<"ua" | "en" | "pl", string> = {
+  ua: "Місто",
+  en: "City",
+  pl: "Miasto",
+};
+
+const noOptionsTranslations: Record<"ua" | "en" | "pl", { tooShort: string; notFound: string }> = {
+  ua: {
+    tooShort: "Введіть мінімум 2 літери",
+    notFound: "Нічого не знайдено",
+  },
+  en: {
+    tooShort: "Enter at least 2 letters",
+    notFound: "Nothing found",
+  },
+  pl: {
+    tooShort: "Wpisz co najmniej 2 litery",
+    notFound: "Nic nie znaleziono",
+  },
+};
+
+const loadingTranslations: Record<"ua" | "en" | "pl", string> = {
+  ua: "Завантаження...",
+  en: "Loading...",
+  pl: "Ładowanie...",
+};
+
+export default function CitySelect({ oblastRef, onChange, locale }: Props) {
   const [options, setOptions] = useState<Option[]>([]);
   const [selected, setSelected] = useState<Option | null>(null);
   const [inputValue, setInputValue] = useState("");
@@ -48,9 +76,22 @@ export default function CitySelect({ oblastRef, onChange }: Props) {
       zIndex: 5,
     }),
     loadingMessage: (provided) => ({
-        ...provided,
-        color: "#999",
-      }),
+      ...provided,
+      color: "#999",
+    }),
+  };
+
+  const getPlaceholder = (): string => {
+    return placeholderTranslations[locale as keyof typeof placeholderTranslations] ?? placeholderTranslations.ua;
+  };
+
+  const getNoOptionsMessage = (): string => {
+    const messages = noOptionsTranslations[locale as keyof typeof noOptionsTranslations] ?? noOptionsTranslations.ua;
+    return inputValue.length < 2 ? messages.tooShort : messages.notFound;
+  };
+
+  const getLoadingMessage = (): string => {
+    return loadingTranslations[locale as keyof typeof loadingTranslations] ?? loadingTranslations.ua;
   };
 
   useEffect(() => {
@@ -86,27 +127,23 @@ export default function CitySelect({ oblastRef, onChange }: Props) {
 
   return (
     <div style={{ width: "100%", marginTop: "10px" }}>
-<Select
-          id="city-select"
-          options={options}
-          value={selected}
-          onChange={(option) => {
-            setSelected(option);
-            onChange(option);
-          }}
-          placeholder="Місто"
-          isSearchable
-          styles={customStyles}
-          isDisabled={!oblastRef}
-          onInputChange={(value) => setInputValue(value)} 
-          inputValue={inputValue} 
-          noOptionsMessage={() =>
-            inputValue.length < 2
-              ? "Введіть мінімум 2 літери"
-              : "Нічого не знайдено"
-          }
-          loadingMessage={() => loading ? "Загрузка..." : null}
-        />
+      <Select
+        id="city-select"
+        options={options}
+        value={selected}
+        onChange={(option) => {
+          setSelected(option);
+          onChange(option);
+        }}
+        placeholder={getPlaceholder()}
+        isSearchable
+        styles={customStyles}
+        isDisabled={!oblastRef}
+        onInputChange={(value) => setInputValue(value)}
+        inputValue={inputValue}
+        noOptionsMessage={getNoOptionsMessage}
+        loadingMessage={() => (loading ? getLoadingMessage() : null)}
+      />
     </div>
   );
 }

@@ -1,0 +1,11 @@
+{
+  "search": "Szukaj",
+  "sort": "Sortuj według",
+  "no_results": "Nic nie znaleziono.",
+  "sort_none": "Bez sortowania",
+  "sort_price_asc": "Cena: rosnąco",
+  "sort_price_desc": "Cena: malejąco",
+  "sort_title_asc": "Od A do Z",
+  "sort_title_desc": "Od Z do A",
+  "prev": "Poprzednia"
+}

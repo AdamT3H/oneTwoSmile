@@ -1,0 +1,11 @@
+{
+  "search": "Пошук",
+  "sort": "Сортувати",
+  "no_results": "Нічого не знайдено.",
+  "sort_none": "Без сортування",
+  "sort_price_asc": "Дешевше - дороще",
+  "sort_price_desc": "Дороще - дешевше",
+  "sort_title_asc": "Від А до Я",
+  "sort_title_desc": "Від Я до A",
+  "prev": "Попередня"
+}

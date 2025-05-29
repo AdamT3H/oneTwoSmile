@@ -21,7 +21,7 @@ export default function LikeDrawer({
         locale={locale}
         namespaces={["like"]}
       >
-        <LikeDrawerContext isOpen={isOpen} onClose={onClose} />
+        <LikeDrawerContext isOpen={isOpen} onClose={onClose} locale={locale}/>
       </TranslationsProvider>
     </div>
   );

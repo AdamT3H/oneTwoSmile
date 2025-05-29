@@ -10,20 +10,24 @@ import { useTranslation } from "react-i18next";
 interface CartDrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  locale: string;
 }
 
 interface Product {
   id: number;
-  title: string;
   main_image_url: string;
   price: string;
   in_stock: number;
   quantity: number;
+  product_translations: {
+    title: string;
+  }[];
 }
 
 export default function CartDrawerContext({
   isOpen,
   onClose,
+  locale,
 }: CartDrawerProps) {
   const [cartedItems, setCartedItems] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,8 +47,19 @@ export default function CartDrawerContext({
 
           const { data, error } = await supabase
             .from("products")
-            .select("*")
-            .in("id", cartedIDs);
+            .select(
+              `
+            id,
+            main_image_url,
+            price,
+            in_stock,
+            product_translations:product_translations_product_id_fkey (
+              title
+            )
+          `
+            )
+            .in("id", cartedIDs)
+            .eq("product_translations.language_code", locale);
 
           if (!error && data) {
             const merged = data.map((product) => {
@@ -159,10 +174,10 @@ export default function CartDrawerContext({
             <ul className={styles.productList}>
               {cartedItems.map((product) => (
                 <div key={product.id} className={styles.productItem}>
-                  <Link href={`/product/${product.id}`}>
+                  <Link href={`/shop/product/${product.id}`}>
                     <Image
                       src={product.main_image_url}
-                      alt={product.title}
+                      alt={product.product_translations?.[0]?.title || "—"}
                       width={90}
                       height={90}
                       className={styles.productImage}
@@ -170,9 +185,11 @@ export default function CartDrawerContext({
                   </Link>
                   <div className={styles.productInfo}>
                     <p className={styles.productTitle}>
-                      <Link href={`/product/${product.id}`}>
-                        {product.title}
-                      </Link>
+                      <button onClick={onClose}>
+                        <Link href={`/shop/shop/product/${product.id}`}>
+                          {product.product_translations?.[0]?.title || "—"}
+                        </Link>
+                      </button>
                     </p>
                     <p className={styles.productPrice}>{product.price} ₴</p>
                     <div className={styles.quantityControl}>

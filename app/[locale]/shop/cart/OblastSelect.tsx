@@ -14,10 +14,17 @@ interface Option {
 }
 
 interface Props {
-    onChange: (value: { ref: string | null; name: string | null }) => void;
-  }
+  onChange: (value: { ref: string | null; name: string | null }) => void;
+  locale: string; 
+}
 
-export default function OblastSelect({ onChange }: Props) {
+const placeholderTranslations: Record<"ua" | "en" | "pl", string> = {
+  ua: "Область",
+  en: "Region",
+  pl: "Obwód",
+};
+
+export default function OblastSelect({ onChange, locale}: Props) {
   const [options, setOptions] = useState<Option[]>([]);
   const [selected, setSelected] = useState<Option | null>(null);
   const [inputValue, setInputValue] = useState<string>("");
@@ -51,6 +58,14 @@ export default function OblastSelect({ onChange }: Props) {
       }),
   };
 
+  const getPlaceholder = (locale: string): string => {
+    const supportedLocales: (keyof typeof placeholderTranslations)[] = ["ua", "en", "pl"];
+    if (supportedLocales.includes(locale as any)) {
+      return placeholderTranslations[locale as "ua" | "en" | "pl"];
+    }
+    return placeholderTranslations.ua;
+  };
+
   useEffect(() => {
     const fetchOblasts = async () => {
       try {
@@ -79,7 +94,7 @@ export default function OblastSelect({ onChange }: Props) {
             setSelected(option);
             onChange(option ? { ref: option.value, name: option.label } : { ref: null, name: null });
           }}
-          placeholder="Область"
+          placeholder={getPlaceholder(locale)}
           isSearchable
           styles={customStyles}
           onInputChange={(value) => setInputValue(value)}

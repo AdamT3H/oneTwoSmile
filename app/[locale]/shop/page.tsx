@@ -10,7 +10,7 @@ export default async function Shop({
 }) {
   const { locale } = await params;
 
-  const { resources } = await initTranslations(locale, ["searchText"]);
+  const { resources } = await initTranslations(locale, ["searchText", "categorySection"]);
 
   return (
     <div className="w-full">
@@ -19,9 +19,9 @@ export default async function Shop({
       <TranslationsProvider
         resources={resources}
         locale={locale}
-        namespaces={[""]}
+        namespaces={["categorySection"]}
       >
-        <ShopContent />
+        <ShopContent locale={locale} />
       </TranslationsProvider>
     </div>
   );

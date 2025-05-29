@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./WayForPayElem.module.css";
 import { validateForm } from "./validateForm.ts";
+import { TFunction } from "i18next";
 
 interface ProductPay {
   name: string;
@@ -26,6 +27,7 @@ interface WayForPayProps {
   oblastName?: string | null;
   selectedCity?: { label: string } | null;
   selectedWarehouse?: { label: string } | null;
+  t: TFunction<"WayForPay">;
 }
 
 export default function WayForPayElem({
@@ -42,6 +44,7 @@ export default function WayForPayElem({
   oblastName,
   selectedCity,
   selectedWarehouse,
+  t,
 }: WayForPayProps) {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -112,7 +115,6 @@ export default function WayForPayElem({
     }
   };
   
-
   return (
     <div className={styles.wrapper}>
       <button
@@ -120,7 +122,7 @@ export default function WayForPayElem({
         disabled={loading}
         className={`${styles.payButton} ${loading ? styles.loading : ""}`}
       >
-        {loading ? "Очікуйте..." : "Оформити замовлення"}
+        {loading ? "Очікуйте..." : t('WayForPay:text')}
       </button>
       {errorMessage && (
         <div className={styles.errorMessage}>{errorMessage}</div>

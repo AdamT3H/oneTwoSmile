@@ -16,10 +16,39 @@ interface Option {
 type Props = {
   nameCity: string | null;
   onChange: (option: { value: string; label: string } | null) => void;
+  locale: string;
+};
+
+const getLocaleValue = (
+  translations: Record<"ua" | "en" | "pl", string>,
+  locale: string
+): string => {
+  if (locale in translations) {
+    return translations[locale as "ua" | "en" | "pl"];
+  }
+  return translations.ua; // fallback
+};
+
+const placeholderTranslations: Record<"ua" | "en" | "pl", string> = {
+  ua: "Склад",
+  en: "Warehouse",
+  pl: "Magazyn",
+};
+
+const noOptionsTranslations: Record<"ua" | "en" | "pl", string> = {
+  ua: "Складів не знайдено",
+  en: "No warehouses found",
+  pl: "Nie znaleziono magazynów",
+};
+
+const loadingTranslations: Record<"ua" | "en" | "pl", string> = {
+  ua: "Завантаження...",
+  en: "Loading...",
+  pl: "Ładowanie...",
 };
 
 
-export default function WarehouseSelect({ nameCity, onChange }: Props) {
+export default function WarehouseSelect({ nameCity, onChange, locale }: Props) {
   const [options, setOptions] = useState<Option[]>([]);
   const [selected, setSelected] = useState<Option | null>(null);
   const [inputValue, setInputValue] = useState("");
@@ -96,7 +125,7 @@ export default function WarehouseSelect({ nameCity, onChange }: Props) {
 
   return (
     <div style={{ width: "100%", marginTop: "10px", position: "relative" }}>
-        <Select
+      <Select
         id="warehouse-select"
         options={options}
         value={selected}
@@ -104,7 +133,7 @@ export default function WarehouseSelect({ nameCity, onChange }: Props) {
           setSelected(option);
           onChange(option);
         }}
-        placeholder="Склад"
+        placeholder={getLocaleValue(placeholderTranslations, locale)}
         isSearchable
         styles={customStyles}
         isDisabled={!nameCity}
@@ -112,8 +141,8 @@ export default function WarehouseSelect({ nameCity, onChange }: Props) {
         filterOption={(option, inputValue) =>
           option.label.toLowerCase().includes(inputValue.toLowerCase())
         }
-        noOptionsMessage={() => "Складів не знайдено"}
-        loadingMessage={() => loading ? "Загрузка..." : null}
+        noOptionsMessage={() => getLocaleValue(noOptionsTranslations, locale)}
+        loadingMessage={() => loading ? getLocaleValue(loadingTranslations, locale) : null}
       />
     </div>
   );

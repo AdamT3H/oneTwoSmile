@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "./CategorySection.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import type { TFunction } from "i18next";
 
 interface Product {
   id: number;
@@ -15,6 +16,7 @@ interface CategorySectionProps {
   title: string;
   categoryLink: string;
   products: Product[];
+  t: TFunction<"categorySection">;
 }
 
 interface CartedProduct {
@@ -26,6 +28,7 @@ export default function CategorySection({
   title,
   categoryLink,
   products,
+  t,
 }: CategorySectionProps) {
   const [activeHeartId, setActiveHeartId] = useState<number | null>(null);
   const [activeCartId, setActiveCartId] = useState<number | null>(null);
@@ -133,7 +136,7 @@ export default function CategorySection({
         <div className={styles.header}>
           <h3 className={styles.title}>{title}</h3>
           <Link href={categoryLink} className={styles.moreButton}>
-            Більше →
+            {t("more")} →
           </Link>
         </div>
 

@@ -1,0 +1,12 @@
+{
+  "categoryTitle": "Kategoria",
+  "sortLabel": "Sortuj:",
+  "noSort": "Bez sortowania",
+  "priceAsc": "Tańsze - droższe",
+  "priceDesc": "Droższe - tańsze",
+  "titleAsc": "Od A do Z",
+  "titleDesc": "Od Z do A",
+  "prev": "Poprzednia",
+  "next": "Następna",
+  "notFound": "Nie znaleziono produktów"
+}

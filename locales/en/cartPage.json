@@ -1,0 +1,23 @@
+{
+  "cart": "Cart:",
+  "total": "Total",
+  "delete": "Delete",
+  "delivery": "Delivery:",
+  "delivery_note": "Delivery via Nova Poshta or self-pickup available",
+  "nova_poshta": "Nova Poshta",
+  "pickup": "Self-pickup",
+  "lastname": "Last name",
+  "firstname": "First name",
+  "middlename": "Middle name",
+  "phone": "Phone",
+  "email": "Email",
+  "np_note": "Nova Poshta delivery details:",
+  "pickup_location_note": "Pick up the item at our physical store at:",
+  "pickup_location_address": "Ukraine, Lviv, Zamarsynivska St, 127 (Barcelona complex)",
+  "comment": "Comment:",
+  "comment_placeholder": "Comment",
+  "payment": "Payment:",
+  "payment_card": "Card payment",
+  "payment_cash": "Cash on delivery",
+  "cash_payment_note": "You selected cash on delivery. Pay upon receiving the order."
+}

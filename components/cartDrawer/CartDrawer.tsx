@@ -21,7 +21,7 @@ export default function CartDrawer({
         locale={locale}
         namespaces={["cart"]}
       >
-        <CartDrawerContext isOpen={isOpen} onClose={onClose} />
+        <CartDrawerContext isOpen={isOpen} onClose={onClose} locale={locale} />
       </TranslationsProvider>
     </div>
   );

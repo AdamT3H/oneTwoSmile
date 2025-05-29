@@ -1,0 +1,23 @@
+{
+  "cart": "Koszyk:",
+  "total": "Razem",
+  "delete": "Usuń",
+  "delivery": "Dostawa:",
+  "delivery_note": "Możliwa dostawa przez Nową Pocztę lub odbiór osobisty",
+  "nova_poshta": "Nowa Poczta",
+  "pickup": "Odbiór osobisty",
+  "lastname": "Nazwisko",
+  "firstname": "Imię",
+  "middlename": "Drugie imię",
+  "phone": "Telefon",
+  "email": "Email",
+  "np_note": "Dane dostawy przez Nową Pocztę:",
+  "pickup_location_note": "Odbierz towar w sklepie stacjonarnym pod adresem:",
+  "pickup_location_address": "Ukraina, Lwów, ul. Zamartynowska 127 (Osiedle Barcelona)",
+  "comment": "Komentarz:",
+  "comment_placeholder": "Komentarz",
+  "payment": "Płatność:",
+  "payment_card": "Płatność kartą",
+  "payment_cash": "Płatność za pobraniem",
+  "cash_payment_note": "Wybrałeś płatność za pobraniem. Zapłać przy odbiorze."
+}

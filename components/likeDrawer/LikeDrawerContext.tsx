@@ -9,18 +9,22 @@ import { useTranslation } from "react-i18next";
 interface LikeDrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  locale: string;
 }
 
 interface Product {
   id: number;
-  title: string;
   main_image_url: string;
   price: string;
+  product_translations: {
+    title: string;
+  }[];
 }
 
 export default function LikeDrawerContext({
   isOpen,
   onClose,
+  locale,
 }: LikeDrawerProps) {
   const [likedItems, setLikedItems] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,8 +41,19 @@ export default function LikeDrawerContext({
         if (Array.isArray(likedIDs) && likedIDs.length > 0) {
           const { data, error } = await supabase
             .from("products")
-            .select("*")
-            .in("id", likedIDs);
+            .select(
+              `
+              id,
+              main_image_url,
+              price,
+              in_stock,
+              product_translations:product_translations_product_id_fkey (
+                title
+              )
+            `
+            )
+            .in("id", likedIDs)
+            .eq("product_translations.language_code", locale);
 
           if (!error && data) {
             setLikedItems(data);
@@ -105,9 +120,9 @@ export default function LikeDrawerContext({
         </div>
         <div className={styles.content}>
           {isLoading ? (
-            <p className={styles.loading}>{t('loading')}</p>
+            <p className={styles.loading}>{t("loading")}</p>
           ) : likedItems.length === 0 ? (
-            <p className={styles.noContent}>{t('empty')}</p>
+            <p className={styles.noContent}>{t("empty")}</p>
           ) : (
             <ul className={styles.productList}>
               {likedItems.map((product) => (
@@ -116,7 +131,7 @@ export default function LikeDrawerContext({
                     <Link href={`/product/${product.id}`}>
                       <Image
                         src={product.main_image_url}
-                        alt={product.title}
+                        alt={product.product_translations?.[0]?.title || "—"}
                         width={90}
                         height={90}
                         className={styles.productImage}
@@ -124,12 +139,14 @@ export default function LikeDrawerContext({
                     </Link>
                   </div>
                   <div className={styles.productInfo}>
-                    <Link
-                      href={`/product/${product.id}`}
-                      className={styles.productTitle}
-                    >
-                      {product.title}
-                    </Link>
+                    <button onClick={onClose}>
+                      <Link
+                        href={`/shop/product/${product.id}`}
+                        className={styles.productTitle}
+                      >
+                        {product.product_translations?.[0]?.title || "—"}
+                      </Link>
+                    </button>
                     <p className={styles.productPrice}>{product.price} ₴</p>
                     <button
                       className={styles.deleteButton}
@@ -139,7 +156,7 @@ export default function LikeDrawerContext({
                         handleRemove(product.id);
                       }}
                     >
-                      {t('remove')}
+                      {t("remove")}
                     </button>
                   </div>
                 </li>
