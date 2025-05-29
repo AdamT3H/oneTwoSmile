@@ -140,6 +140,7 @@ export default function CartContent({ locale }: { locale: string }) {
 
       setCartedItems((prevItems) => prevItems.filter((item) => item.id !== id));
 
+      
       window.dispatchEvent(new Event("storage"));
     } catch (err) {
       console.error("Помилка при видаленні товару з корзини:", err);
