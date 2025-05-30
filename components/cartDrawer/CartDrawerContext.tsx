@@ -24,16 +24,6 @@ interface Product {
   }[];
 }
 
-interface ProductFromDB {
-  id: number;
-  main_image_url: string;
-  price: string;
-  in_stock: number;
-  product_translations: {
-    title: string;
-  }[];
-}
-
 export default function CartDrawerContext({
   isOpen,
   onClose,

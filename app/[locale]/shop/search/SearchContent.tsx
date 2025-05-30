@@ -20,6 +20,17 @@ interface CartedProduct {
   quantity: number;
 }
 
+interface SupabaseProduct {
+  id: number;
+  price: string;
+  main_image_url: string;
+  product_translations: {
+    title: string;
+    description: string;
+    language_code: string;
+  }[];
+}
+
 export default function SearchPage({
   locale,
 }: {
@@ -180,7 +191,7 @@ export default function SearchPage({
       if (error) {
         console.error("Search error:", error.message);
       } else {
-        const mapped = (data || []).map((item: any) => ({
+        const mapped = (data as SupabaseProduct[]).map((item) => ({
           id: item.id,
           price: item.price,
           main_image_url: item.main_image_url,

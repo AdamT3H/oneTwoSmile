@@ -1,6 +1,7 @@
 "use client";
 import styles from "./CartDrawer.module.css";
 import CartDrawerContext from "./CartDrawerContext";
+import { Resource } from "i18next";
 import TranslationsProvider from "@/components/TranslationsProvider.js";
 
 export default function CartDrawer({
@@ -9,7 +10,7 @@ export default function CartDrawer({
   isOpen,
   onClose,
 }: {
-  resources: any;
+  resources: Resource;
   locale: string;
   isOpen: boolean;
   onClose: () => void;

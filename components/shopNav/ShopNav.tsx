@@ -7,6 +7,8 @@ import CartDrawer from "@/components/cartDrawer/CartDrawer";
 import LikeDrawer from "@/components/likeDrawer/LikeDrawer";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { Resource } from "i18next";
+
 
 export default function ShopNav({
   locale,
@@ -14,8 +16,8 @@ export default function ShopNav({
   likeResources,
 }: {
   locale: string;
-  cartResources: any;
-  likeResources: any;
+  cartResources: Resource;
+  likeResources: Resource;
 }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLikeOpen, setIsLikeOpen] = useState(false);
