@@ -16,6 +16,17 @@ interface Product {
   category_id: number;
 }
 
+interface ProductWithTranslations {
+  id: number;
+  price: string;
+  main_image_url: string;
+  category_id: number;
+  product_translations?: {
+    title: string;
+    language_code: string;
+  }[];
+}
+
 interface Category {
   id: number;
   name: string;
@@ -157,7 +168,7 @@ export default function CategoryPageContent({
           throw new Error(productsError.message);
         }
 
-        const mapped = (productsData || []).map((item: any) => ({
+        const mapped = (productsData || []).map((item: ProductWithTranslations) => ({
             id: item.id,
             price: item.price,
             main_image_url: item.main_image_url,

@@ -24,6 +24,16 @@ interface Product {
   }[];
 }
 
+interface ProductFromDB {
+  id: number;
+  main_image_url: string;
+  price: string;
+  in_stock: number;
+  product_translations: {
+    title: string;
+  }[];
+}
+
 export default function CartDrawerContext({
   isOpen,
   onClose,
@@ -61,17 +71,17 @@ export default function CartDrawerContext({
             .in("id", cartedIDs)
             .eq("product_translations.language_code", locale);
 
-          if (!error && data) {
-            const merged = data.map((product: { id: number; }) => {
-              const match = cartedData.find((item) => item.id === product.id);
-              return {
-                ...product,
-                quantity: match?.quantity ?? 1,
-              };
-            });
-
-            setCartedItems(merged);
-          } else {
+            if (!error && data) {
+              const merged: Product[] = data.map((product) => {
+                const match = cartedData.find((item) => item.id === product.id);
+                return {
+                  ...product,
+                  quantity: match?.quantity ?? 1,
+                };
+              });
+            
+              setCartedItems(merged);
+            } else {
             console.error("Error fetching carted products:", error);
           }
         } else {

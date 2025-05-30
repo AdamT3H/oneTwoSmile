@@ -3,13 +3,19 @@ import styles from "./LikeDrawer.module.css";
 import LikeDrawerContext from "./LikeDrawerContext";
 import TranslationsProvider from "@/components/TranslationsProvider.js";
 
+interface I18nResources {
+  [namespace: string]: {
+    [key: string]: string | Record<string, string>;
+  };
+}
+
 export default function LikeDrawer({
   resources,
   locale,
   isOpen,
   onClose,
 }: {
-  resources: any;
+  resources: I18nResources;
   locale: string;
   isOpen: boolean;
   onClose: () => void;
@@ -21,7 +27,7 @@ export default function LikeDrawer({
         locale={locale}
         namespaces={["like"]}
       >
-        <LikeDrawerContext isOpen={isOpen} onClose={onClose} locale={locale}/>
+        <LikeDrawerContext isOpen={isOpen} onClose={onClose} locale={locale} />
       </TranslationsProvider>
     </div>
   );

@@ -139,14 +139,15 @@ export default function LikeDrawerContext({
                     </Link>
                   </div>
                   <div className={styles.productInfo}>
-                    <button onClick={onClose}>
+
                       <Link
                         href={`/shop/product/${product.id}`}
                         className={styles.productTitle}
-                      >
+                      >                    <button onClick={onClose}>
                         {product.product_translations?.[0]?.title || "—"}
+                        </button>
                       </Link>
-                    </button>
+
                     <p className={styles.productPrice}>{product.price} ₴</p>
                     <button
                       className={styles.deleteButton}

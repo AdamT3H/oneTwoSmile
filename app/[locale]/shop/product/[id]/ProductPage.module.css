@@ -181,6 +181,7 @@
 
 .heartImage {
   transition: transform 0.2s ease;
+  max-width: none;
 }
 
 .heartImage.animate {

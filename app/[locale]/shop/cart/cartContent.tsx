@@ -36,6 +36,17 @@ interface Product {
   quantity: number;
 }
 
+interface RawSupabaseProduct {
+  id: number;
+  price: number;
+  main_image_url: string;
+  in_stock: number;
+  product_translations: {
+    title: string;
+    language_code: string;
+  }[];
+}
+
 export default function CartContent({ locale }: { locale: string }) {
   const [cartedItems, setCartedItems] = useState<Product[]>([]);
   const [deliveryType, setDeliveryType] = useState("nova_poshta");
@@ -99,7 +110,7 @@ export default function CartContent({ locale }: { locale: string }) {
             .filter("product_translations.language_code", "eq", locale);
 
           if (!error && data) {
-            const mapped = (data || []).map((item: any) => {
+            const mapped = (data || []).map((item: RawSupabaseProduct) => {
               const match = cartedData.find((p) => p.id === item.id);
             
               return {
