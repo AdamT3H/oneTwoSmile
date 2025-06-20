@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 import { supabase } from "@/lib/supabase";
+import { useTranslation } from "react-i18next";
 
 interface Order {
   id: number;
@@ -16,6 +17,7 @@ export default function ClientSuccess() {
   const searchParams = useSearchParams();
   const ref = searchParams.get("ref");
   const [order, setOrder] = useState<Order | null>(null);
+  const { t } = useTranslation("");
 
   const clearCart = () => {
     localStorage.removeItem("cartedProducts");
@@ -45,7 +47,12 @@ export default function ClientSuccess() {
       .channel("public:orders")
       .on(
         "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "orders", filter: `order_reference=eq.${ref}` },
+        {
+          event: "UPDATE",
+          schema: "public",
+          table: "orders",
+          filter: `order_reference=eq.${ref}`,
+        },
         (payload) => {
           const updated: Order = payload.new as Order;
           setOrder(updated);
@@ -62,24 +69,22 @@ export default function ClientSuccess() {
     };
   }, [ref]);
 
-  if (!ref) return <p className={styles.alertText}>Не знайдено референсу замовлення.</p>;
+  if (!ref) return <p className={styles.alertText}>{t("no_ref")}</p>;
 
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <h1 className={styles.mainText}>Оплата успішна!</h1>
+        <h1 className={styles.mainText}>{t("payment_successful")}</h1>
         {order ? (
           <>
             <p className={styles.thankText}>
-              Дякуємо, {order.customer_name}! Ваше замовлення #{order.id} прийнято.
+              {t("thank_you", { name: order.customer_name, id: order.id })}
             </p>
           </>
         ) : (
-          <p>Завантажуємо інформацію про замовлення…</p>
+          <p>{t("loading_order")}</p>
         )}
-        <p className={styles.alertText}>
-          Очікуйте лист на електронну пошту з підтвердженням.
-        </p>
+        <p className={styles.alertText}>{t("check_email")}</p>
       </div>
     </div>
   );

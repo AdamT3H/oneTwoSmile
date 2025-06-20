@@ -1,0 +1,8 @@
+{
+    "payment_successful": "Płatność zakończona sukcesem!",
+    "thank_you": "Dziękujemy, {{name}}! Twoje zamówienie nr {{id}} zostało przyjęte.",
+    "loading_order": "Ładowanie informacji o zamówieniu…",
+    "check_email": "Sprawdź swoją skrzynkę e-mail w celu potwierdzenia.",
+    "no_ref": "Nie znaleziono referencji zamówienia."
+  }
+  

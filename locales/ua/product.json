@@ -1,0 +1,12 @@
+{
+    "notFound": "Товар не знайдено",
+    "price": "Ціна",
+    "inStock": "На складі залишилось",
+    "quantity": "Кількість",
+    "outOfStock": "Товар закінчився",
+    "addToCart": "Додати у кошик",
+    "alreadyInCart": "Вже у кошику",
+    "productDescription": "Опис товару",
+    "currency": "грн"
+  }
+  

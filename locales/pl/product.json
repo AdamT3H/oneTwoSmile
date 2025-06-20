@@ -1,0 +1,11 @@
+{
+  "notFound": "Produkt nie znaleziony",
+  "price": "Cena",
+  "inStock": "Pozostało w magazynie",
+  "quantity": "Ilość",
+  "outOfStock": "Produkt niedostępny",
+  "addToCart": "Dodaj do koszyka",
+  "alreadyInCart": "Już w koszyku",
+  "productDescription": "Opis produktu",
+  "currency": "UAH"
+}

@@ -12,11 +12,11 @@ export default async function AboutTeam(params: { locale: string }) {
         <h2 className={styles.lowerText}>{t('subtitle')}</h2>
       </div>
       <ul className={styles.features}>
+        <li>{t('care')}</li>
         <li>{t('experience')}</li>
         <li>{t('professionalism')}</li>
-        <li>{t('modernTreatment')}</li>
-        <li>{t('care')}</li>
         <li>{t('satisfiedPatients')}</li>
+        <li>{t('modernTreatment')}</li>
       </ul>
       <div className={styles.logoText}>one two smile</div>
     </div>

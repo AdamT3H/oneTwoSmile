@@ -1,0 +1,11 @@
+{
+  "notFound": "Product not found",
+  "price": "Price",
+  "inStock": "Left in stock",
+  "quantity": "Quantity",
+  "outOfStock": "Out of stock",
+  "addToCart": "Add to cart",
+  "alreadyInCart": "Already in cart",
+  "productDescription": "Product description",
+  "currency": "UAH"
+}

@@ -27,7 +27,7 @@ interface WayForPayProps {
   oblastName?: string | null;
   selectedCity?: { label: string } | null;
   selectedWarehouse?: { label: string } | null;
-  t: TFunction<"WayForPay">;
+  t: TFunction<"WayForPay">; 
 }
 
 export default function WayForPayElem({

@@ -88,29 +88,30 @@
   border-radius: 10px;
 }
 
+.experience {
+  font-size: 14px;
+  margin-top: 8px;
+  color: #777;
+}
+
 .skeletonCard {
-    width: 250px;
-    height: 320px;
-    border-radius: 12px;
-    background: linear-gradient(
-      90deg,
-      #f5f5f5 0%,
-      #eaeaea 40%,
-      #f5f5f5 80%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 2.2s ease-in-out infinite;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  width: 250px;
+  height: 320px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #f5f5f5 0%, #eaeaea 40%, #f5f5f5 80%);
+  background-size: 200% 100%;
+  animation: shimmer 2.2s ease-in-out infinite;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
   }
-  
-  @keyframes shimmer {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
+  100% {
+    background-position: -200% 0;
   }
+}
 @media (max-width: 1582px) {
   .grid {
     max-width: 1000px;

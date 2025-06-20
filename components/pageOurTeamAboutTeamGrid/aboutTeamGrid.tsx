@@ -14,6 +14,7 @@ type TeamMember = {
   position_ENG: string;
   position_PL: string;
   nameENG_PL?: string;
+  experience: number;
 };
 
 export default function AboutTeamGrid() {
@@ -30,6 +31,22 @@ export default function AboutTeamGrid() {
   const handleFlip = () => {
     setFlipped(!flipped);
   };
+
+  function getExperienceLabel(years: number, lang: string): string {
+    if (lang === "ua") {
+      if (years === 1) return " рік досвіду";
+      if ([2, 3, 4].includes(years % 10) && ![12, 13, 14].includes(years % 100))
+        return " роки досвіду";
+      return " років досвіду";
+    }
+
+    if (lang === "pl") {
+      return years === 1 ? " rok doświadczenia" : " lat doświadczenia";
+    }
+
+    // English
+    return years === 1 ? " year of experience" : " years of experience";
+  }
 
   useEffect(() => {
     const fetchTeam = async () => {
@@ -94,6 +111,10 @@ export default function AboutTeamGrid() {
                       : lang === "en"
                       ? member.position_ENG
                       : member.position}
+                  </p>
+                  <p className={styles.experience}>
+                    {member.experience}
+                    {getExperienceLabel(member.experience, lang)}
                   </p>
                 </div>
               </div>

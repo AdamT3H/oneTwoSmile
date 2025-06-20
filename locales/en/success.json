@@ -1,0 +1,7 @@
+{
+  "payment_successful": "Payment Successful!",
+  "thank_you": "Thank you, {{name}}! Your order #{{id}} has been received.",
+  "loading_order": "Loading order information…",
+  "check_email": "Please check your email for a confirmation.",
+  "no_ref": "Order reference not found."
+}
