@@ -11,7 +11,7 @@ interface Product {
   title: string;
   main_image_url: string;
   price: string;
-  in_stock: number;
+  in_stock: boolean;
   galery_images_url: string[];
   description: string;
   category_id: number;
@@ -20,7 +20,7 @@ interface Product {
 interface RawProduct {
   id: number;
   price: string;
-  in_stock: number;
+  in_stock: boolean;
   main_image_url: string;
   galery_images_url: string[];
   category_id: number;
@@ -80,7 +80,7 @@ export default function ShopContent({
                 `
               )
               .eq("category_id", cat.id)
-              .eq("product_translations.language_code", locale) // !!! locale тут
+              .eq("product_translations.language_code", locale)
               .limit(15)
           );
       
@@ -92,7 +92,6 @@ export default function ShopContent({
             if (res.error) throw new Error(res.error.message);
             const catId = categoriesData[index].id;
       
-            // Перетворимо продукти з перекладами
             const transformed = (res.data || []).map((prod: RawProduct) => ({
               id: prod.id,
               price: prod.price,

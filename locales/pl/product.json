@@ -1,7 +1,7 @@
 {
   "notFound": "Produkt nie znaleziony",
   "price": "Cena",
-  "inStock": "Pozostało w magazynie",
+  "inStock": "Dostępny",
   "quantity": "Ilość",
   "outOfStock": "Produkt niedostępny",
   "addToCart": "Dodaj do koszyka",

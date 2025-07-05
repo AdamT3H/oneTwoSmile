@@ -17,7 +17,7 @@ interface Product {
   main_image_url: string;
   price: string;
   //   in_stock: number;
-  in_stock: number;
+  in_stock: boolean;
   galery_images_url: string[];
   description: string;
 }
@@ -154,7 +154,6 @@ export default function ProductPageContent({ params }: ProductPageProps) {
       const newQuantity = prev + change;
       if (!product) return prev;
       if (newQuantity < 1) return 1;
-      if (newQuantity > product.in_stock) return product.in_stock;
       return newQuantity;
     });
   };
@@ -182,6 +181,11 @@ export default function ProductPageContent({ params }: ProductPageProps) {
     productId: number,
     quantity: number = 1
   ) => {
+    if (isOutOfStock) {
+      console.warn("Товару немає в наявності");
+      return;
+    }
+
     let updatedCarts;
 
     const existing = cartedProducts.find((p) => p.id === productId);
@@ -211,7 +215,7 @@ export default function ProductPageContent({ params }: ProductPageProps) {
     }
   }, [product, cartedProducts]);
 
-  const isOutOfStock = product ? product.in_stock === 0 : true;
+  const isOutOfStock = product ? !product.in_stock : true;
 
   return (
     <div style={{ width: "100%" }}>
@@ -320,9 +324,7 @@ export default function ProductPageContent({ params }: ProductPageProps) {
                                 </button>
                               </div>
                             </div>
-                            <p className={styles.inStock}>
-                              {t("inStock")}: {product.in_stock}
-                            </p>
+                            <p className={styles.inStock}>{t("inStock")}</p>
                           </div>
                         </>
                       ) : (

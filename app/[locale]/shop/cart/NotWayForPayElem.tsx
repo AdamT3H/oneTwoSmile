@@ -10,7 +10,7 @@ interface ProductPay {
   count: number;
   price: number;
   id: number;
-  inStock: number;
+  inStock: boolean;
 }
 
 interface NoPaymentProps {

@@ -40,7 +40,11 @@ export async function POST(req: NextRequest) {
 
   const merchantAccount = 'one_two_smile_com';
   const merchantDomainName = 'one-two-smile.com';
-  const secretKey = 'afbdff873acdd777b90ce1f79f294c25931db42a';
+  const secretKey = process.env.WAYFORPAY_SECRET_KEY;
+
+  if (!secretKey) {
+    throw new Error("WAYFORPAY_SECRET_KEY is not set in environment variables");
+  }
   const orderReference = `ORDER-${Date.now()}`;
   const orderDate = Math.floor(Date.now() / 1000);
   const currency = 'UAH';

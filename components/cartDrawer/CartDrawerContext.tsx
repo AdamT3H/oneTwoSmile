@@ -17,7 +17,7 @@ interface Product {
   id: number;
   main_image_url: string;
   price: string;
-  in_stock: number;
+  in_stock: boolean;
   quantity: number;
   product_translations: {
     title: string;
@@ -61,17 +61,17 @@ export default function CartDrawerContext({
             .in("id", cartedIDs)
             .eq("product_translations.language_code", locale);
 
-            if (!error && data) {
-              const merged: Product[] = data.map((product) => {
-                const match = cartedData.find((item) => item.id === product.id);
-                return {
-                  ...product,
-                  quantity: match?.quantity ?? 1,
-                };
-              });
-            
-              setCartedItems(merged);
-            } else {
+          if (!error && data) {
+            const merged: Product[] = data.map((product) => {
+              const match = cartedData.find((item) => item.id === product.id);
+              return {
+                ...product,
+                quantity: match?.quantity ?? 1,
+              };
+            });
+
+            setCartedItems(merged);
+          } else {
             console.error("Error fetching carted products:", error);
           }
         } else {
@@ -84,9 +84,7 @@ export default function CartDrawerContext({
       }
     };
 
-    if (isOpen) {
       fetchCartedItems();
-    }
   }, [isOpen]);
 
   const handleRemove = (id: number) => {
@@ -109,26 +107,29 @@ export default function CartDrawerContext({
   };
 
   const handleQuantityChange = (id: number, change: number) => {
-    setCartedItems((prevItems) => {
-      const updatedItems = prevItems.map((item) => {
-        if (item.id === id) {
-          const newQuantity = item.quantity + change;
-
-          const clampedQuantity = Math.max(
-            1,
-            Math.min(item.in_stock, newQuantity)
-          );
-
-          return { ...item, quantity: clampedQuantity };
+    setCartedItems((prevItems) =>
+      prevItems.map((item) => {
+        if (item.id === id && item.in_stock) {
+          const newQuantity = Math.max(1, item.quantity + change);
+          return { ...item, quantity: newQuantity };
         }
         return item;
-      });
-
-      window.dispatchEvent(new CustomEvent("liked-products-updated"));
-      saveCartToLocalStorage(updatedItems);
-      return updatedItems;
-    });
+      })
+    );
   };
+
+  useEffect(() => {
+    const cartToStore = cartedItems.map((item) => ({
+      id: item.id,
+      quantity: item.quantity,
+    }));
+  
+    localStorage.setItem("cartedProducts", JSON.stringify(cartToStore));
+  
+    window.dispatchEvent(new Event("storage"));
+    window.dispatchEvent(new CustomEvent("liked-products-updated"));
+  }, [cartedItems]);
+  
 
   const saveCartToLocalStorage = (items: Product[]) => {
     const cartToStore = items.map((item) => ({
@@ -174,7 +175,7 @@ export default function CartDrawerContext({
             <ul className={styles.productList}>
               {cartedItems.map((product) => (
                 <div key={product.id} className={styles.productItem}>
-                  <Link href={`/shop/product/${product.id}`}>
+                  <Link href={`shop/product/${product.id}`}>
                     <Image
                       src={product.main_image_url}
                       alt={product.product_translations?.[0]?.title || "—"}
@@ -186,7 +187,7 @@ export default function CartDrawerContext({
                   <div className={styles.productInfo}>
                     <p className={styles.productTitle}>
                       <button onClick={onClose}>
-                        <Link href={`/shop/shop/product/${product.id}`}>
+                        <Link href={`/shop/product/${product.id}`}>
                           {product.product_translations?.[0]?.title || "—"}
                         </Link>
                       </button>

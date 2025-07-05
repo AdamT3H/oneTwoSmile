@@ -1,0 +1,26 @@
+{
+  "loading": "Ładowanie...",
+  "packageIncludes": "Co zawiera pakiet:",
+  "packageExplanation": "Poniżej wymieniono wszystkie usługi zawarte w tym pakiecie medycznym:",
+  "contactButton": "Skontaktuj się z nami",
+  "faqTitle": "Często zadawane pytania",
+  "faq": [
+    {
+      "question": "Czy wyżywienie jest wliczone w cenę pakietu?",
+      "answer": "Tak, pakiet zawiera pełne wyżywienie — śniadanie, obiad i kolację."
+    },
+    {
+      "question": "Czy mogę zmienić daty pobytu?",
+      "answer": "Tak, terminy można ustalić indywidualnie podczas rezerwacji."
+    },
+    {
+      "question": "Jakie języki są obsługiwane podczas leczenia?",
+      "answer": "Ukraiński, angielski, polski — z tłumaczem na miejscu."
+    },
+    {
+      "question": "Czy potrzebna jest wiza?",
+      "answer": "Obywatele UE, USA i Kanady nie potrzebują wizy na pobyt do 90 dni."
+    }
+  ],
+  "daysNights": "(dni / noce)"
+}

@@ -32,7 +32,7 @@ interface Product {
   title: string;
   main_image_url: string;
   price: number;
-  in_stock: number;
+  in_stock: boolean;
   quantity: number;
 }
 
@@ -40,7 +40,7 @@ interface RawSupabaseProduct {
   id: number;
   price: number;
   main_image_url: string;
-  in_stock: number;
+  in_stock: boolean;
   product_translations: {
     title: string;
     language_code: string;
@@ -162,18 +162,16 @@ export default function CartContent({ locale }: { locale: string }) {
     setCartedItems((prevItems) => {
       const updatedItems = prevItems.map((item) => {
         if (item.id === id) {
+          if (!item.in_stock) return item;
+  
           const newQuantity = item.quantity + change;
-
-          const clampedQuantity = Math.max(
-            1,
-            Math.min(item.in_stock, newQuantity)
-          );
-
+          const clampedQuantity = Math.max(1, newQuantity);
+  
           return { ...item, quantity: clampedQuantity };
         }
         return item;
       });
-
+  
       return updatedItems;
     });
   };

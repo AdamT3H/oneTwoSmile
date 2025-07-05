@@ -3,7 +3,7 @@ interface ProductPay {
   count: number;
   price: number;
   id: number;
-  inStock: number;
+  inStock: boolean;
 }
 
 interface ValidateFormParams {
@@ -47,8 +47,8 @@ export const validateForm = ({
   }
 
   for (const item of items) {
-    if (item.count > item.inStock) {
-      return `На складі недостатньо товару "${item.name}". Доступно: ${item.inStock} шт.`;
+    if (item.inStock === false) {
+      return `На складі недостатньо товару "${item.name}". Товару немає на складі`;
     }
   }
 

@@ -7,12 +7,17 @@ export async function GET(req: NextRequest) {
   const RefOblast = searchParams.get("RefOblast");
   const InputByUser_City = searchParams.get("InputByUser_City");
 
+  const apiKey = process.env.NOVA_POSHTA_API_KEY;
+  if (!apiKey) {
+    throw new Error("NOVA_POSHTA_API_KEY is not set");
+  }
+
   if (!RefOblast || !InputByUser_City) {
     return NextResponse.json({ error: "Missing RefOblast or InputByUser_City" }, { status: 400 });
   }
 
   const payload = {
-    apiKey: "500447b630d641ac4fc37354a781ae1e",
+    apiKey: apiKey,
     modelName: "AddressGeneral",
     calledMethod: "getSettlements",
     methodProperties: {

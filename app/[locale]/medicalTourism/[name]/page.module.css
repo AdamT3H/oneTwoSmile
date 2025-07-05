@@ -1,0 +1,211 @@
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+  padding-bottom: 4rem;
+  animation: fadeInPage 0.6s ease-in-out;
+  padding: 1rem;
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  
+}
+
+.image {
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.imageText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  text-align: center;
+  padding: 1rem;
+  z-index: 1;
+}
+
+.imageText h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.imageText p {
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
+  color: #f3f3f3;
+}
+
+.descriptionBlock {
+  margin-bottom: 2rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  background: linear-gradient(to right, #f9f9f9, #f0f0f0);
+  padding: 1.2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.section {
+  margin-top: 3rem;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+  padding-left: 10px;
+}
+
+.explanation {
+  margin-bottom: 1rem;
+  padding-left: 10px;
+  font-style: italic;
+  color: #555;
+}
+
+.options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.optionItem {
+  background: #f7f7f7;
+  margin-bottom: 1rem;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.optionItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.optionTitle {
+  padding: 1rem 1.5rem;
+  background: #ffffff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: background 0.3s;
+}
+
+.optionItem.active .optionTitle {
+  background: #e8f0ff;
+}
+
+.optionDetails {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.3s ease;
+  padding: 0 1.5rem;
+  font-size: 0.95rem;
+  color: #444;
+  background: #f0f4ff;
+}
+
+.optionItem.active .optionDetails {
+  max-height: 200px;
+  padding: 1rem 1.5rem;
+}
+
+.button {
+  background-image: url("/header/bg.png");
+  background-size: cover;
+  background-position: center;
+  color: rgb(20, 20, 20);
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.duration {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #ddd;
+  font-style: italic;
+}
+
+.faqSection {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+  .imageText h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+  }
+  
+  .imageText p {
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    color: #f3f3f3;
+  }
+
+  .duration {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #ddd;
+    font-style: italic;
+  }
+
+  .description {
+    font-size: 0.95rem;
+  }
+
+  .subtitle {
+    font-size: 1.6rem;
+  }
+
+  .button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+  }
+  
+}

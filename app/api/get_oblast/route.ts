@@ -3,8 +3,13 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const url = "https://api.novaposhta.ua/v2.0/json/";
 
+  const apiKey = process.env.NOVA_POSHTA_API_KEY;
+  if (!apiKey) {
+    throw new Error("NOVA_POSHTA_API_KEY is not set");
+  }
+
   const payload = {
-    apiKey: "500447b630d641ac4fc37354a781ae1e",
+    apiKey: apiKey,
     modelName: "AddressGeneral",
     calledMethod: "getSettlementAreas",
     methodProperties: {

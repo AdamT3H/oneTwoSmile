@@ -1,5 +1,9 @@
-const TELEGRAM_TOKEN = "7375273017:AAHvLfUOnqo9rCmc8q5yTbLxQE5r0y-Eh3c";
-const TELEGRAM_CHAT_ID = "818686269";
+const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
+if (!TELEGRAM_TOKEN || !TELEGRAM_CHAT_ID) {
+  throw new Error("Telegram token or chat id is not set");
+}
 
 interface PaymentBody {
   amount: number;

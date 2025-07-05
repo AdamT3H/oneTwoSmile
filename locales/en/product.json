@@ -1,7 +1,7 @@
 {
   "notFound": "Product not found",
   "price": "Price",
-  "inStock": "Left in stock",
+  "inStock": "In stock",
   "quantity": "Quantity",
   "outOfStock": "Out of stock",
   "addToCart": "Add to cart",

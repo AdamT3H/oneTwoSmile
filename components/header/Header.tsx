@@ -142,6 +142,13 @@ export default function Header() {
             {t("policy")}
           </Link>
           <Link
+            href="/experience"
+            onClick={() => setMoreOptionsVisible((prev) => !prev)}
+            className={styles.optionExperience}
+          >
+            {t("experience")}
+          </Link>
+          <Link
             href="/"
             onClick={() => setMoreOptionsVisible((prev) => !prev)}
             className={styles.optionMain}

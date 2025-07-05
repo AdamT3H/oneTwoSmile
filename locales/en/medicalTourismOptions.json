@@ -1,0 +1,26 @@
+{
+  "loading": "Loading...",
+  "packageIncludes": "What’s included in the package:",
+  "packageExplanation": "Below are all the services included in this medical package:",
+  "contactButton": "Contact us",
+  "faqTitle": "Frequently Asked Questions",
+  "faq": [
+    {
+      "question": "Is food included in the package?",
+      "answer": "Yes, full board is included — breakfast, lunch, and dinner."
+    },
+    {
+      "question": "Can I change the stay dates?",
+      "answer": "Yes, dates can be arranged individually when booking."
+    },
+    {
+      "question": "Which languages are supported during treatment?",
+      "answer": "Ukrainian, English, Polish — with an on-site translator."
+    },
+    {
+      "question": "Is a visa required?",
+      "answer": "No visa required for EU, US, or Canadian citizens for up to 90 days."
+    }
+  ],
+  "daysNights": "(days / nights)"
+}
