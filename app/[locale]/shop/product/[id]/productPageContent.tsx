@@ -11,15 +11,21 @@ interface ProductPageProps {
   params: Promise<{ id: string }>;
 }
 
+interface ProductTranslation {
+  title: string;
+  description: string;
+  language_code: string;
+}
+
 interface Product {
   id: number;
   title: string;
   main_image_url: string;
   price: string;
-  //   in_stock: number;
   in_stock: boolean;
   galery_images_url: string[];
   description: string;
+  product_translations?: ProductTranslation[];
 }
 
 interface CartedProduct {
@@ -44,7 +50,6 @@ export default function ProductPageContent({ params }: ProductPageProps) {
   const { t } = useTranslation("");
 
   const { i18n } = useTranslation();
-  const currentLang = i18n.language;
 
   useEffect(() => {
     const getLikes = localStorage.getItem("likedProducts");
@@ -81,7 +86,7 @@ export default function ProductPageContent({ params }: ProductPageProps) {
       if (!error && data) {
         const currentLang = i18n.language;
         const translation = data.product_translations?.find(
-          (tr: any) => tr.language_code === currentLang
+          (tr: ProductTranslation) => tr.language_code === currentLang
         );
 
         setProduct({

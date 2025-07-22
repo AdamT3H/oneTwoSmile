@@ -169,34 +169,41 @@ export default function SearchPage({
       setLoading(true);
   
       const { data, error } = await supabase
-        .from("products")
-        .select(
-          `
-            id,
-            price,
-            in_stock,
-            main_image_url,
-            galery_images_url,
-            category_id,
-            product_translations:product_translations_product_id_fkey (
-              title,
-              description,
-              language_code
-            )
-          `
+      .from("products")
+      .select(`
+        id,
+        price,
+        main_image_url,
+        product_translations:product_translations_product_id_fkey (
+          title,
+          description,
+          language_code
         )
-        .filter("product_translations.language_code", "eq", locale)
-        .ilike("product_translations.title", `%${query}%`);
+      `);
   
       if (error) {
         console.error("Search error:", error.message);
       } else {
-        const mapped = (data as SupabaseProduct[]).map((item) => ({
-          id: item.id,
-          price: item.price,
-          main_image_url: item.main_image_url,
-          title: item.product_translations?.[0]?.title || "",
-        }));
+        const filtered = (data as SupabaseProduct[]).filter((product) =>
+          product.product_translations.some(
+            (tr) =>
+              tr.language_code === locale &&
+              tr.title?.toLowerCase().includes(query.toLowerCase())
+          )
+        );
+        
+        const mapped = filtered.map((item) => {
+          const translation = item.product_translations.find(
+            (tr) => tr.language_code === locale
+          );
+        
+          return {
+            id: item.id,
+            price: item.price,
+            main_image_url: item.main_image_url,
+            title: translation?.title || "",
+          };
+        });
   
         setProducts(mapped);
       }
