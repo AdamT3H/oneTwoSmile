@@ -61,6 +61,7 @@
   border: solid 1px #ddd;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
+  width: 85%;
 }
 
 .serviceCard p {
@@ -139,6 +140,41 @@
   background-size: 200% 100%;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
+
+.photoGroup {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.singlePhoto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.singlePhoto img {
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+.singlePhoto span {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+.photoLabel {
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
 
 @keyframes pulse {
   0% {

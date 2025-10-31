@@ -1,9 +1,7 @@
 {
-  "title": "Specialists",
-  "subtitle": "The clinic has united experts in the field of care",
-  "experience": "Experience",
-  "professionalism": "Professionalism",
-  "modernTreatment": "Treatment according to modern protocols.",
-  "care": "Care",
-  "satisfiedPatients": "Always satisfied patients"
+  "title": "People Make History",
+  "subtitle1": "That’s why we’d like to introduce you to our doctors —",
+  "subtitle2": "those who combine professionalism, care, and skill every day.",
+  "outsideText1": "This is a team that walks this path with you —",
+  "outsideText2": "attentively, delicately, and with love for what they do."
 }

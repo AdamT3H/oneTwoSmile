@@ -1,13 +1,23 @@
 {
-  "whyUs": "Why choose us?",
-  "card1Title": "Personalized approach",
-  "card1Text": "Every patient is unique. We create treatment plans tailored to your needs and wishes.",
-  "card2Title": "Experience & expertise",
-  "card2Text": "Our doctors have years of experience, receive ongoing training, and apply world-class methods.",
-  "card3Title": "Modern technology",
-  "card3Text": "We use the latest equipment and materials to ensure quality, painless, and effective treatment.",
-  "card4Title": "Comfort & safety",
-  "card4Text": "Care, sterility, anesthesia, and a friendly team — we care about your peace of mind.",
-  "card5Title": "Comprehensive services",
-  "card5Text": "Everything in one place: dentistry, surgery, orthodontics, cosmetology — no need to visit other clinics."
+  "lead": "Their smiles are our pride",
+  "subtext": {
+    "line1": "Behind every smile is a person who trusted us.",
+    "line2": "A story we lived together."
+  },
+  "slide1": {
+    "quote": "It was an incredible journey. I’ll never forget this experience.",
+    "name": "Oleksandr Ivanov"
+  },
+  "slide2": {
+    "quote": "The team was amazing, and the result exceeded expectations.",
+    "name": "Maria Shevchenko"
+  },
+  "slide3": {
+    "quote": "I'm happy I chose you. You changed my life!",
+    "name": "Iryna Koval"
+  },
+  "slide4": {
+    "quote": "Everything was top-notch. Thank you for your professionalism!",
+    "name": "Dmytro Lysenko"
+  }
 }

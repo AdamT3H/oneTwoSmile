@@ -19,7 +19,7 @@ export default async function OurTeam({
 
   return (
     <div className="w-full">
-      <AboutTeam locale={locale} />
+      <AboutTeam locale={locale}/>
       <TranslationsProvider
         resources={resources}
         locale={locale}

@@ -1,24 +1,22 @@
 "use client";
 
 import styles from "./aboutTeamGrid.module.css";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { usePathname } from "next/navigation";
 
-type TeamMember = {
-  id: number;
+type TeamTranslation = {
   name: string;
-  image_url: string;
-  position: string;
-  position_ENG: string;
-  position_PL: string;
-  nameENG_PL?: string;
-  experience: number;
+  position: string[];
+  description: string[];
 };
 
+type TeamMember = {
+  id: number;
+  image_url: string;
+  translation: TeamTranslation;
+};
 export default function AboutTeamGrid() {
-  const [flipped, setFlipped] = useState(false);
   const [team, setTeam] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
@@ -28,35 +26,32 @@ export default function AboutTeamGrid() {
     ? "en"
     : "ua";
 
-  const handleFlip = () => {
-    setFlipped(!flipped);
-  };
-
-  function getExperienceLabel(years: number, lang: string): string {
-    if (lang === "ua") {
-      if (years === 1) return " рік досвіду";
-      if ([2, 3, 4].includes(years % 10) && ![12, 13, 14].includes(years % 100))
-        return " роки досвіду";
-      return " років досвіду";
-    }
-
-    if (lang === "pl") {
-      return years === 1 ? " rok doświadczenia" : " lat doświadczenia";
-    }
-
-    // English
-    return years === 1 ? " year of experience" : " years of experience";
-  }
-
   useEffect(() => {
     const fetchTeam = async () => {
       const { data, error } = await supabase
-        .from("team-members-info")
-        .select("*");
+        .from("team_member")
+        .select(
+          `
+        id,
+        image_url,
+        translation:team_member_translation (
+          name,
+          position,
+          description
+        )
+      `
+        )
+        .eq("translation.language_code", lang);
       if (error) {
         console.error("Помилка при завантаженні команди:", error);
       } else {
-        setTeam(data);
+        setTeam(
+          data.map((member: any) => ({
+            id: member.id,
+            image_url: member.image_url,
+            translation: member.translation[0],
+          }))
+        );
       }
       setLoading(false);
     };
@@ -73,54 +68,29 @@ export default function AboutTeamGrid() {
           ))}
         </div>
       ) : team.length > 0 ? (
-        <div className={styles.grid}>
-          {team.map((member) => (
-            <div
-              key={member.id}
-              className={styles.flipCard}
-              onClick={handleFlip}
-            >
-              <div className={styles.flipCardInner}>
-                <div className={styles.flipCardFront}>
-                  <Image
-                    src={member.image_url}
-                    alt="Team member"
-                    width={200}
-                    height={250}
-                    className={styles.image}
-                  />
-                  <h3 className={styles.name}>
-                    {lang === "pl"
-                      ? member.nameENG_PL
-                      : lang === "en"
-                      ? member.nameENG_PL
-                      : member.name}
-                  </h3>
-                </div>
-                <div className={styles.flipCardBack}>
-                  <h3 className={styles.name}>
-                    {lang === "pl"
-                      ? member.nameENG_PL
-                      : lang === "en"
-                      ? member.nameENG_PL
-                      : member.name}
-                  </h3>
-                  <p className={styles.role}>
-                    {lang === "pl"
-                      ? member.position_PL
-                      : lang === "en"
-                      ? member.position_ENG
-                      : member.position}
-                  </p>
-                  <p className={styles.experience}>
-                    {member.experience}
-                    {getExperienceLabel(member.experience, lang)}
-                  </p>
-                </div>
-              </div>
+        team.map((member) => (
+          <div key={member.id} className={styles.card}>
+            <img
+              src={member.image_url}
+              alt={member.translation.name}
+              className={styles.photo}
+            />
+
+            <div className={styles.content}>
+              <h3 className={styles.name}>{member.translation.name}</h3>
+
+              <p className={styles.position}>
+                {member.translation.position.join("\n")}
+              </p>
+
+              {member.translation.description.map((para, i) => (
+                <p key={`desc-${i}`} className={styles.description}>
+                  {para}
+                </p>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))
       ) : (
         <p>Команду не знайдено.</p>
       )}

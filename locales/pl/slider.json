@@ -1,13 +1,23 @@
 {
-  "whyUs": "Dlaczego nas wybierają?",
-  "card1Title": "Indywidualne podejście",
-  "card1Text": "Każdy pacjent jest wyjątkowy. Dobieramy plan leczenia dostosowany do Twoich potrzeb i oczekiwań.",
-  "card2Title": "Doświadczenie i wiedza",
-  "card2Text": "Nasi lekarze mają wieloletnie doświadczenie, stale się szkolą i stosują światowe metody leczenia.",
-  "card3Title": "Nowoczesne technologie",
-  "card3Text": "Używamy najnowszego sprzętu i materiałów, aby zapewnić skuteczne, bezbolesne leczenie najwyższej jakości.",
-  "card4Title": "Komfort i bezpieczeństwo",
-  "card4Text": "Troska, sterylność, znieczulenie i przyjazny personel – dbamy o Twój spokój.",
-  "card5Title": "Kompleksowe usługi",
-  "card5Text": "Wszystko w jednym miejscu: stomatologia, chirurgia, ortodoncja, kosmetologia – bez konieczności wizyt w innych klinikach."
+  "lead": "Ich uśmiechy to nasza duma",
+  "subtext": {
+    "line1": "Za każdym uśmiechem stoi osoba, która nam zaufała.",
+    "line2": "Historia, którą przeżyliśmy razem."
+  },
+  "slide1": {
+    "quote": "To była niesamowita podróż. Nigdy tego nie zapomnę.",
+    "name": "Ołeksandr Iwanow"
+  },
+  "slide2": {
+    "quote": "Zespół był świetny, a rezultat przeszedł moje oczekiwania.",
+    "name": "Maria Szewczenko"
+  },
+  "slide3": {
+    "quote": "Cieszę się, że wybrałam właśnie was. Zmieniliście moje życie!",
+    "name": "Iryna Kowal"
+  },
+  "slide4": {
+    "quote": "Wszystko było na najwyższym poziomie. Dziękuję za profesjonalizm!",
+    "name": "Dmytro Łysenko"
+  }
 }

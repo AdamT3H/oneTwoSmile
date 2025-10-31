@@ -24,6 +24,16 @@ export default function MedicalTurismLinks() {
   const { i18n } = useTranslation();
 
   useEffect(() => {
+    interface MedicalTourismTranslation {
+      name: string;
+      description: string;
+      language_code: string;
+    }
+  
+    interface MedicalTourismRow extends MedicalTourism {
+      medical_tourism_translations?: MedicalTourismTranslation[];
+    }
+
     const fetchMT = async () => {
       const currentLang = i18n.language;
   
@@ -45,11 +55,11 @@ export default function MedicalTurismLinks() {
         return;
       }
   
-      const results = data.map((item: any) => {
-        const translation = item.medical_tourism_translations?.find(
-          (tr: any) => tr.language_code === currentLang
-        );
-  
+    const results = (data as MedicalTourismRow[]).map((item) => {
+      const translation = item.medical_tourism_translations?.find(
+        (tr) => tr.language_code === currentLang
+      );
+      
         return {
           id: item.id,
           name: translation?.name || item.name,

@@ -3,6 +3,24 @@ import { useState, useEffect } from "react";
 import styles from "./AllServices.module.css";
 import { supabase } from "@/lib/supabase";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+
+// type Service = {
+//   id: number;
+//   title: string;
+//   title_ENG: string;
+//   title_PL: string;
+//   description: string;
+//   description_ENG: string;
+//   description_PL: string;
+//   // duration: string;
+//   price: number;
+//   price_from: number;
+//   price_to: number;
+//   category_id: number;
+//   photo_before: string;
+//   photo_after: string;
+// };
 
 type Service = {
   id: number;
@@ -12,9 +30,14 @@ type Service = {
   description: string;
   description_ENG: string;
   description_PL: string;
-  duration: string;
-  price: string;
+  price: number | null;
+  price_from: number | null;
+  price_to: number | null;
+  price_euro: number | null;
+  price_usdt: number | null;
   category_id: number;
+  photo_before: string;
+  photo_after: string;
 };
 
 type Category = {
@@ -42,14 +65,53 @@ export default function AllServices() {
     ? "en"
     : "ua";
 
-  const getTranslatedText = (
-    ua: string,
-    eng: string,
-    pl: string
-  ): string => {
+  const getTranslatedText = (ua: string, eng: string, pl: string): string => {
     if (lang === "en") return eng;
     if (lang === "pl") return pl;
     return ua;
+  };
+
+  const getFormattedPrice = (service: Service): string => {
+    const hasRange = service.price_from && service.price_to;
+    const currency = "UAH";
+
+    if (hasRange) {
+      return lang === "pl"
+        ? `Cena: od ${service.price_from} do ${service.price_to} ${currency}`
+        : lang === "en"
+        ? `Price: from ${service.price_from} to ${service.price_to} ${currency}`
+        : `Ціна: від ${service.price_from} до ${service.price_to} грн`;
+    }
+
+    if (service.price) {
+      return lang === "pl"
+        ? `Cena: ${service.price} ${currency}`
+        : lang === "en"
+        ? `Price: ${service.price} ${currency}`
+        : `Ціна: ${service.price} грн`;
+    }
+
+    if (service.price_euro) {
+      return lang === "pl"
+        ? `Cena: ${service.price_euro} EUR`
+        : lang === "en"
+        ? `Price: ${service.price_euro} EUR`
+        : `Ціна: ${service.price_euro} євро`;
+    }
+
+    if (service.price_usdt) {
+      return lang === "pl"
+        ? `Cena: ${service.price_usdt} USDT`
+        : lang === "en"
+        ? `Price: ${service.price_usdt} USDT`
+        : `Ціна: ${service.price_usdt} USDT`;
+    }
+
+    return lang === "pl"
+      ? "Cena: brak"
+      : lang === "en"
+      ? "Price: not available"
+      : "Ціна: не вказана";
   };
 
   useEffect(() => {
@@ -108,11 +170,7 @@ export default function AllServices() {
               }`}
               onClick={() => setSelected(ALL)}
             >
-              {lang === "pl"
-                ? "Wszystkie"
-                : lang === "en"
-                ? "All"
-                : "Усі"}
+              {lang === "pl" ? "Wszystkie" : lang === "en" ? "All" : "Усі"}
             </div>
             {categories.map((cat) => (
               <div
@@ -145,34 +203,62 @@ export default function AllServices() {
                 )}
               </h3>
               <div className={styles.details}>
-                <span className={styles.duration}>
+                {/* <span className={styles.duration}>
                   {lang === "pl"
                     ? `Czas trwania: ${service.duration} min`
                     : lang === "en"
                     ? `Duration: ${service.duration} min`
                     : `Тривалість: ${service.duration} хв`}
-                </span>
+                </span> */}
                 <span className={styles.price}>
-                  {lang === "pl"
-                    ? `Cena: ${service.price} UAH`
-                    : lang === "en"
-                    ? `Price: ${service.price} UAH`
-                    : `Ціна: ${service.price} грн`}
+                  {getFormattedPrice(service)}
                 </span>
               </div>
-              <p>
-                {expandedServices[service.id]
-                  ? getTranslatedText(
-                      service.description,
-                      service.description_ENG,
-                      service.description_PL
-                    )
-                  : `${getTranslatedText(
-                      service.description,
-                      service.description_ENG,
-                      service.description_PL
-                    ).slice(0, 150)}...`}
-              </p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: expandedServices[service.id]
+                    ? getTranslatedText(
+                        service.description,
+                        service.description_ENG,
+                        service.description_PL
+                      )
+                    : `${getTranslatedText(
+                        service.description,
+                        service.description_ENG,
+                        service.description_PL
+                      ).slice(0, 150)}...`,
+                }}
+              ></p>
+              {expandedServices[service.id] && (
+                <div className={styles.photoGroup}>
+                  <div className={styles.singlePhoto}>
+                    <Image
+                      src={service.photo_before}
+                      alt="Before"
+                      width={250}
+                      height={200}
+                    />
+                    <span>
+                      {lang === "pl"
+                        ? "PRZED"
+                        : lang === "en"
+                        ? "BEFORE"
+                        : "ДО"}
+                    </span>
+                  </div>
+                  <div className={styles.singlePhoto}>
+                    <Image
+                      src={service.photo_after}
+                      alt="After"
+                      width={250}
+                      height={200}
+                    />
+                    <span>
+                      {lang === "pl" ? "PO" : lang === "en" ? "AFTER" : "ПІСЛЯ"}
+                    </span>
+                  </div>
+                </div>
+              )}
               <button
                 className={styles.toggleButton}
                 onClick={() => toggleExpand(service.id)}

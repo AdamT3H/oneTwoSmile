@@ -1,0 +1,154 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.slideContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1000px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.image {
+  width: 400px;
+  height: 600px;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+.text {
+  flex: 1;
+  max-width: 500px;
+}
+
+.quote {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #333;
+}
+
+.name {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #666;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #4a4a4a;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: #000;
+}
+
+:root {
+  --swiper-navigation-color: #6a6a6a;
+}
+
+.introSection {
+  max-width: 840px;
+  margin: 0 auto 20px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.lead {
+  text-transform: uppercase;
+  color: #4a4a4a;
+  font-size: 40px;
+  font-weight: 600;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.underline {
+  width: 50%;
+  height: 4px;
+  background-image: url("../../public/header/bg.png");
+  filter: saturate(2);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 10px auto 30px;
+  border-radius: 2px;
+  animation: underlineGrow 0.6s ease-out forwards;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+.subtext {
+  font-size: 18px;
+  color: #292929;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .slideContainer {
+    flex-direction: column;
+    padding: 20px;
+    gap: 24px;
+  }
+
+  .image {
+    width: 280px;
+    height: 420px;
+  }
+
+  .text {
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .quote {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-style: italic;
+    color: #333;
+    margin-bottom: 12px;
+  }
+
+  .name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #555;
+  }
+}
+
+@media (max-width: 1000px) {
+  .lead {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lead {
+    font-size: 1.75rem;
+    margin-bottom: 28px;
+  }
+
+  .subtext {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .introSection {
+    padding: 0 5px;
+  }
+}
+
+@media (max-width: 550px) {
+  .lead {
+    font-size: 23px;
+  }
+}

@@ -131,15 +131,7 @@ export default function CartDrawerContext({
   }, [cartedItems]);
   
 
-  const saveCartToLocalStorage = (items: Product[]) => {
-    const cartToStore = items.map((item) => ({
-      id: item.id,
-      quantity: item.quantity,
-    }));
-    localStorage.setItem("cartedProducts", JSON.stringify(cartToStore));
 
-    window.dispatchEvent(new Event("storage"));
-  };
 
   useEffect(() => {
     if (isOpen) {

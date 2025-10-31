@@ -35,3 +35,12 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 900px) {
+  .swiper-button-prev,
+  .swiper-button-next,
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    display: none !important;
+  }
+}

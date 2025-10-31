@@ -1,5 +1,8 @@
 import { MainPicture } from "@/components";
-import Slider from "@/components/sliderOnHeader/Slider";
+import Philosophy from "@/components/philosophyOnMain/Philosophy";
+import PeopleSmilesSlider from "@/components/peopleSmilesSliderOnMain/peopleSmilesSlider";
+import initTranslations from "../i18n";
+import TranslationsProvider from "@/components/TranslationsProvider.js";
 
 export const metadata = {
   title: "One Two Smile",
@@ -14,10 +17,19 @@ export default async function Home({
 }) {
   const { locale } = await params;
 
+  const { resources } = await initTranslations(locale, ["slider"]);
+
   return (
     <div className="w-full">
       <MainPicture locale={locale} />
-      <Slider locale={locale} />
+      <Philosophy locale={locale} />
+      <TranslationsProvider
+        resources={resources}
+        locale={locale}
+        namespaces={["slider"]}
+      >
+        <PeopleSmilesSlider />
+      </TranslationsProvider>
     </div>
   );
 }

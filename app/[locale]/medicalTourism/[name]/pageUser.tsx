@@ -28,6 +28,35 @@ interface FaqItem {
   answer: string;
 }
 
+interface TourismTranslation {
+  name: string;
+  description: string;
+  language_code: string;
+}
+
+interface TourismOptionTranslation {
+  title: string;
+  details: string;
+  language_code: string;
+}
+
+interface TourismOptionRaw {
+  id: number;
+  medical_tourism_option_translations: TourismOptionTranslation[];
+}
+
+interface MedicalTourismRaw {
+  id: number;
+  name: string;
+  price: number;
+  duration: string;
+  photo: string;
+  description: string;
+  medical_tourism_translations: TourismTranslation[];
+  medical_tourism_options: TourismOptionRaw[];
+}
+
+
 export default function MedicalTourismLinkUser() {
   const [medicalTourism, setMedicalTourism] = useState<MedicalTourism>();
   const { name } = useParams() as { name: string };
@@ -61,8 +90,8 @@ export default function MedicalTourismLinkUser() {
           )
         `
         )
-        .eq("name_url", name) // шукаємо потрібний пакет
-        .single();
+        .eq("name_url", name)
+        .single<MedicalTourismRaw>();
 
       if (error) {
         console.error(error);
@@ -70,17 +99,17 @@ export default function MedicalTourismLinkUser() {
       }
 
       const tr = data.medical_tourism_translations?.find(
-        (t: any) => t.language_code === currentLang
+        (t) => t.language_code === currentLang
       );
 
       const options: TourismOption[] =
-        data.medical_tourism_options?.map((opt: any) => {
+        data.medical_tourism_options?.map((opt) => {
           const trOpt =
             opt.medical_tourism_option_translations?.find(
-              (t: any) => t.language_code === currentLang
+              (t) => t.language_code === currentLang
             ) ??
             opt.medical_tourism_option_translations?.find(
-              (t: any) => t.language_code === "en"
+              (t) => t.language_code === "en"
             );
 
           return {

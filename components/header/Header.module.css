@@ -257,13 +257,13 @@
     display: none;
 }
 
-.optionShop, .optionAbout, .optionExperience{
+.optionShop, .optionAbout{
     will-change: transform;
     transition: transform 0.3s ease;
     transform: scale(1);
 }
 
-.optionService:hover, .optionMed:hover, .optionTeam:hover, .optionMain:hover, .optionShop:hover, .optionAbout:hover, .optionExperience:hover{
+.optionService:hover, .optionMed:hover, .optionTeam:hover, .optionMain:hover, .optionShop:hover, .optionAbout:hover{
     transform: scale(1.2);
     will-change: transform;
 }
