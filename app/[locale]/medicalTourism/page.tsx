@@ -4,14 +4,16 @@ import MedicalTurismLinks from "@/components/pageMedicalTurismLinks/medicalTuris
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
-export default async function medicalTourism({
-  params,
-}: {
-  params: { locale: string };
-}) {
-  const { locale } = params;
+interface PageProps {
+  params: Promise<{
+    locale: string;
+  }>;
+}
 
-  const { resources } = await initTranslations(locale, ["medicalTourism"]);
+export default async function MedicalTourism({ params }: PageProps) {
+  const { locale } = await params;
+
+  const { resources } = await initTranslations(locale, ["medicalTourismOptions"]);
 
   return (
     <div className="w-full">
@@ -20,10 +22,12 @@ export default async function medicalTourism({
       <TranslationsProvider
         resources={resources}
         locale={locale}
-        namespaces={["medicalTourism"]}
+        namespaces={["medicalTourismOptions"]}
       >
         <MedicalTurismLinks />
       </TranslationsProvider>
     </div>
   );
 }
+
+
