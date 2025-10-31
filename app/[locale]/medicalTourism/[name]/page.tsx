@@ -5,7 +5,7 @@ import TranslationsProvider from "@/components/TranslationsProvider";
 export default async function MedicalTourism({
   params,
 }: {
-  params: { locale: string };
+  params: { locale: string; name: string };
 }) {
   const { locale } = params;
 
