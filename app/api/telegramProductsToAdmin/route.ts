@@ -1,10 +1,3 @@
-const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-
-if (!TELEGRAM_TOKEN || !TELEGRAM_CHAT_ID) {
-  throw new Error("Telegram token or chat id is not set");
-}
-
 interface PaymentBody {
   amount: number;
   product_names: string[];
@@ -22,6 +15,13 @@ interface PaymentBody {
 }
 
 async function sendTelegramMessage(order: PaymentBody) {
+
+  const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
+  const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
+  if (!TELEGRAM_TOKEN || !TELEGRAM_CHAT_ID) {
+    throw new Error("Telegram token or chat id is not set");
+  }
   const { product_names, product_counts, product_prices } = order;
 
   const formattedGoods = product_names
