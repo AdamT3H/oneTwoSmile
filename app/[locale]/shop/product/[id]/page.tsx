@@ -2,11 +2,14 @@ import initTranslations from "@/app/i18n";
 import ProductPageContent from "./productPageContent";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
-export default async function ProductPage({
-  params,
-}: {
-  params: { locale: string; id: string };
-}) {
+interface PageProps {
+  params: Promise<{
+    locale: string;
+    id: string;
+  }>;
+}
+
+export default async function ProductPage({ params }: PageProps) {
   const { locale, id } = await params;
 
   const { resources } = await initTranslations(locale, ["product"]);
@@ -23,3 +26,5 @@ export default async function ProductPage({
     </div>
   );
 }
+
+
