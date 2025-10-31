@@ -2,12 +2,15 @@ import initTranslations from "@/app/i18n";
 import MedicalTourismLinkUser from "./pageUser";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
-export default async function MedicalTourism({
-  params,
-}: {
-  params: { locale: string; name: string };
-}) {
-  const { locale } = params;
+interface PageProps {
+  params: Promise<{
+    locale: string;
+    name: string;
+  }>;
+}
+
+export default async function MedicalTourism({ params }: PageProps) {
+  const { locale } = await params;
 
   const { resources } = await initTranslations(locale, ["medicalTourismOptions"]);
 
