@@ -7,7 +7,7 @@ export default async function MedicalTourism({
 }: {
   params: { locale: string };
 }) {
-  const { locale } = await params;
+  const { locale } = params;
 
   const { resources } = await initTranslations(locale, ["medicalTourismOptions"]);
 
