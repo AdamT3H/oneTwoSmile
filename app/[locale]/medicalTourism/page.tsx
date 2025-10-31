@@ -9,7 +9,7 @@ export default async function medicalTourism({
 }: {
   params: { locale: string };
 }) {
-  const { locale } = await params;
+  const { locale } = params;
 
   const { resources } = await initTranslations(locale, ["medicalTourism"]);
 
