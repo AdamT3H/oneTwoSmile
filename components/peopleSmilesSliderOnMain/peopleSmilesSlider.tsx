@@ -61,7 +61,7 @@ function PeopleSmilesSlider() {
                   className={styles.image}
                 />
                 <div className={styles.text}>
-                  <p className={styles.quote}>"{t(slide.quoteKey)}"</p>
+                  <p className={styles.quote}>&quot;{t(slide.quoteKey)}&quot;</p>
                   <p className={styles.name}>— {t(slide.nameKey)}</p>
                 </div>
               </div>
