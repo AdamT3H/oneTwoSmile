@@ -128,25 +128,18 @@ export default function Header() {
       >
         <div className={styles.moreOptionsContainer}>
           <Link
-            href="/shop"
-            onClick={() => setMoreOptionsVisible((prev) => !prev)}
-            className={styles.optionShop}
-          >
-            {t("shop")}
-          </Link>
-          <Link
-            href="/policy"
-            onClick={() => setMoreOptionsVisible((prev) => !prev)}
-            className={styles.optionAbout}
-          >
-            {t("policy")}
-          </Link>
-          <Link
             href="/"
             onClick={() => setMoreOptionsVisible((prev) => !prev)}
             className={styles.optionMain}
           >
             {t("main")} 
+          </Link>
+          <Link
+            href="/shop"
+            onClick={() => setMoreOptionsVisible((prev) => !prev)}
+            className={styles.optionShop}
+          >
+            {t("shop")}
           </Link>
           <Link
             href="/ourTeam"
@@ -168,6 +161,13 @@ export default function Header() {
             className={styles.optionService}
           >
             {t("services")}
+          </Link>
+          <Link
+            href="/policy"
+            onClick={() => setMoreOptionsVisible((prev) => !prev)}
+            className={styles.optionAbout}
+          >
+            {t("policy")}
           </Link>
         </div>
       </div>

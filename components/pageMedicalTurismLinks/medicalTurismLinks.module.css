@@ -4,6 +4,8 @@
   align-items: center;
   gap: 2rem;
   padding: 2rem;
+  margin-top: 50px;
+  margin-bottom: 100px;
 }
 
 .card {
@@ -154,10 +156,12 @@
 
   .titleBlockWrapper{
     display: flex;
-    flex-direction: row;
+    
+    /* flex-direction: row; */
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     margin-bottom: 20px;
+    flex-direction: column;
   }
 
   .description {
@@ -171,5 +175,9 @@
   .rightBlock{
     justify-content: center;
     margin-top: 10px;
+  }
+
+  .card {
+    width: 90%;
   }
 }

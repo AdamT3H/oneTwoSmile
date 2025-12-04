@@ -5,7 +5,7 @@
   justify-content: center;
   flex-direction: column;
   padding: 0px 20px;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 
 .mainText {
@@ -77,7 +77,7 @@
   flex-direction: column;
   align-items: start;
   gap: 40px;
-  margin-top: 120px;
+  margin-top: 150px;
 }
 
 .logoTextExpElem{
@@ -134,7 +134,7 @@
   }
 
   .logoTextExp{
-    margin-top: 90px;
+    margin-top: 120px;
   }
 
   .finalWordsText{
@@ -163,11 +163,11 @@
   }
 
   .logoTextExpElemText{
-    font-size: 16px;
+    font-size: 19px;
   }
 
   .logoTextExp{
-    margin-top: 80px;
+    margin-top: 110px;
   }
 
   .finalWordsText{
@@ -190,19 +190,21 @@
 }
 
 @media (max-width: 850px) {
-  .container {
+   /* .container {
     padding: 5px 0px;
     margin-bottom: 80px;
-  }
+  } */
 
-  .OneTwoSmileContainer {
+   .OneTwoSmileContainer {
     width: 97%;
-    gap: 18px;
+  } 
+
+  .slogan {
+    display: none;
   }
 
   .secondaryContainer {
     width: 97%;
-    
   }
 
   .logoTextExp{
@@ -213,36 +215,40 @@
   .logoTextExpElem{
     gap: 10px;
   }
-}
-
-@media (max-width: 740px) {
-  .logoRow {
-    gap: 12px;
-  }
 
   .logoWord {
-    height: 17px;
+    height: 23px;
     object-fit: contain;
   }
 }
 
+@media (max-width: 740px) {
+  /* .logoRow {
+    gap: 12px;
+  } */
+}
+
 @media (max-width: 700px) {
-  .mainText {
+  /* .mainText {
     font-size: 32px;
-  }
+  } */
 
   .underline {
     width: 50%;
+  }
+
+  .onlyDesktop{
+    display: none;
   }
 }
 
 @media (max-width: 510px) {
   .logoWord {
-    height: 13px;
+    height: 20px;
   }
 
   .logoRow {
-    gap: 9px;
+    gap: 16px;
   }
 
   .slogan {
@@ -256,13 +262,13 @@
   }
 
   .secondaryContainer{
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 600;
     margin-top: 20px;
   }
 
   .logoTextExpElemText{
-    font-size: 12px;
+    font-size: 20px;
   }
 
   .logoTextExp{

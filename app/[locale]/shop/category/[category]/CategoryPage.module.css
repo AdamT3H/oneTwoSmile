@@ -2,6 +2,7 @@
 .container {
   padding: clamp(32px, 8vw, 128px) clamp(32px, 8vw, 128px) 40px;
   padding-top: 30px;
+  padding-bottom: 50px;
 }
 
 .title {
@@ -17,6 +18,8 @@
   gap: 40px;
   width: 100%;
   padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 40px;
 }
 
 .productListWraper {

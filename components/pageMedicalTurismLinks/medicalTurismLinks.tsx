@@ -149,7 +149,7 @@ export default function MedicalTurismLinks() {
                 <div className={styles.titleBlockWrapper}>
                   <h3 className={styles.name}>{item.name}</h3>
                   <p className={styles.price}>${item.price}</p>
-                  <p className={styles.duration}>{item.duration} ({t("days_nights")})</p>
+                  <p className={styles.duration}>{item.duration} {t("daysNights")}</p>
                 </div>
                 <p className={styles.description}>{item.description}</p>
               </div>

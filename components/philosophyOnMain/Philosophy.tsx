@@ -44,7 +44,8 @@ async function Philosophy(params: { locale: string }) {
             className={styles.logoWord}
           />
           <p className={styles.logoTextExpElemText}>
-            —&nbsp;&nbsp;&nbsp;{t('oneText')}
+            —&nbsp;&nbsp;&nbsp;{t('oneTextPhone')}
+            <span className={styles.onlyDesktop}> {t('oneText')}</span>
           </p>
         </div>
 
@@ -55,7 +56,8 @@ async function Philosophy(params: { locale: string }) {
             className={styles.logoWord}
           />
           <p className={styles.logoTextExpElemText}>
-            —&nbsp;&nbsp;&nbsp;{t('twoText')}
+            —&nbsp;&nbsp;&nbsp;{t('twoTextPhone')}
+            <span className={styles.onlyDesktop}> {t('twoText')}</span>
           </p>
         </div>
 
@@ -66,7 +68,8 @@ async function Philosophy(params: { locale: string }) {
             className={styles.logoWord}
           />
           <p className={styles.logoTextExpElemText}>
-            —&nbsp;&nbsp;&nbsp;{t('smileText')}
+            —&nbsp;&nbsp;&nbsp;{t('smileTextPhone')}
+            <span className={styles.onlyDesktop}> {t('smileText')}</span>
           </p>
         </div>
       </div>

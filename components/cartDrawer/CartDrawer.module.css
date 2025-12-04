@@ -216,6 +216,12 @@
   cursor: not-allowed;
 }
 
+.productImage {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+}
+
 @media (max-width: 500px) {
   .drawer {
     width: 100%;

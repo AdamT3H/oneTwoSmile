@@ -136,7 +136,7 @@ export default function CategorySection({
         <div className={styles.header}>
           <h3 className={styles.title}>{title}</h3>
           <Link href={categoryLink} className={styles.moreButton}>
-            {t("more")} →
+            {t("more")} 
           </Link>
         </div>
 

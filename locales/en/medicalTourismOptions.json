@@ -4,6 +4,7 @@
   "packageExplanation": "Below are all the services included in this medical package:",
   "contactButton": "Contact us",
   "faqTitle": "Frequently Asked Questions",
+  "view": "MORE",
   "faq": [
     {
       "question": "Is food included in the package?",
