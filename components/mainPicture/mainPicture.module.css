@@ -144,6 +144,7 @@
 
     .containerCenterENG {
         font-size: 45px;
+        font-weight: 300;
     }
 
     .containerEndButton{
@@ -180,7 +181,8 @@
     }
 
     .containerCenterENG {
-        font-size: 20px !important;
+        font-size: 37px !important;
+        font-weight: 400;
     }
 
     .slogan{
@@ -194,7 +196,7 @@
     }
 
     .containerCenterENG {
-        font-size: 20px !important;
+        font-size: 28px !important;
     }
 
     .slogan{

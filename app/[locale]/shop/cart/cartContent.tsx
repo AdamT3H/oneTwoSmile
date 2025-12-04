@@ -107,7 +107,7 @@ export default function CartContent({ locale }: { locale: string }) {
               )
             `)
             .in("id", cartedIDs)
-            .filter("product_translations.language_code", "eq", locale);
+            .eq("product_translations.language_code", locale);
 
           if (!error && data) {
             const mapped = (data || []).map((item: RawSupabaseProduct) => {

@@ -4,6 +4,7 @@ export async function GET() {
   const url = "https://api.novaposhta.ua/v2.0/json/";
 
   const apiKey = process.env.NOVA_POSHTA_API_KEY;
+  
   if (!apiKey) {
     throw new Error("NOVA_POSHTA_API_KEY is not set");
   }
