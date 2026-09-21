@@ -1,9 +1,27 @@
-// import type { NextConfig } from "next";
-
 const nextConfig = {
   images: {
-    
-    domains: ['jfabsbeoollsulcjyorr.supabase.co',  'example.com', 'kamon.ua', 'beautycarebag.com', 'i.ebayimg.com'], // заміни на свій actual домен Supabase, якщо інший
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "jfabsbeoollsulcjyorr.supabase.co",
+      },
+      {
+        protocol: "https",
+        hostname: "example.com",
+      },
+      {
+        protocol: "https",
+        hostname: "kamon.ua",
+      },
+      {
+        protocol: "https",
+        hostname: "beautycarebag.com",
+      },
+      {
+        protocol: "https",
+        hostname: "i.ebayimg.com",
+      },
+    ],
   },
 };
 

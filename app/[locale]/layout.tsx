@@ -7,6 +7,12 @@ import TranslationsProvider from "@/components/TranslationsProvider";
 import { Montserrat } from "next/font/google";
 import initTranslations from "../i18n";
 
+const montserrat = Montserrat({
+  subsets: ["latin", "cyrillic"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
+});
+
 export default async function LocaleLayout({
   children,
   params,
@@ -18,12 +24,6 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   const { resources } = await initTranslations(locale, ["header", "footer"]);
-
-  const montserrat = Montserrat({
-    subsets: ["latin", "cyrillic"],
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-    variable: "--font-montserrat",
-  });
 
   return (
     <html lang={locale} className={montserrat.variable}>
