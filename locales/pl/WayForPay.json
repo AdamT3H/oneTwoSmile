@@ -1,5 +1,6 @@
 {
-    "text": "Złóż zamówienie",
-    "loading": "Proszę czekać..."
-  }
-  
+  "text": "Złóż zamówienie",
+  "loading": "Proszę czekać...",
+  "payment_link_error": "Link do płatności jest niedostępny. Spróbuj ponownie później.",
+  "orderError": "Wystąpił błąd podczas tworzenia zamówienia. Spróbuj ponownie później."
+}

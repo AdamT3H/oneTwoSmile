@@ -7,5 +7,6 @@
   "sort_price_desc": "Cena: malejąco",
   "sort_title_asc": "Od A do Z",
   "sort_title_desc": "Od Z do A",
-  "prev": "Poprzednia"
+  "prev": "Poprzednia",
+  "next": "Dalej"
 }

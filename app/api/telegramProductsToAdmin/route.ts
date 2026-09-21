@@ -1,4 +1,4 @@
-interface PaymentBody {
+interface TelegramOrderPayload {
   amount: number;
   product_names: string[];
   product_counts: number[];
@@ -14,21 +14,29 @@ interface PaymentBody {
   paymentType: "card" | "paper";
 }
 
-async function sendTelegramMessage(order: PaymentBody) {
+function escapeMarkdown(text: string): string {
+  return text.replace(/[_*[\]()~`>#+\-=|{}.!]/g, "\\$&");
+}
 
+async function sendTelegramMessage(order: TelegramOrderPayload) {
   const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
   const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
   if (!TELEGRAM_TOKEN || !TELEGRAM_CHAT_ID) {
     throw new Error("Telegram token or chat id is not set");
   }
+  
   const { product_names, product_counts, product_prices } = order;
 
+  if (product_names.length !== product_counts.length || product_names.length !== product_prices.length) {
+    throw new Error("Product arrays length mismatch");
+  }
+  
   const formattedGoods = product_names
     .map((name, index) => {
       return (
         `      📦 Товар ${index + 1}:\n` +
-        `              Назва: ${name}\n` +
+        `              Назва: ${escapeMarkdown(name)}\n` +
         `              Кількість: ${product_counts[index]}\n` +
         `              Ціна: ${product_prices[index]} ₴\n\n`
       );
@@ -37,7 +45,7 @@ async function sendTelegramMessage(order: PaymentBody) {
 
   const deliveryText =
     order.type === "nova_poshta"
-      ? `🚚 Доставка: Нова Пошта\nОбласть: ${order.oblast_name}\nМісто: ${order.city}\nВідділення: ${order.warehouse}`
+      ? `🚚 Доставка: Нова Пошта\nОбласть: ${escapeMarkdown(order.oblast_name)}\nМісто: ${escapeMarkdown(order.city)}\nВідділення: ${escapeMarkdown(order.warehouse)}`
       : `🚚 Доставка: Заберуть у фізичному магазині`;
 
   const paymentText =
@@ -47,16 +55,17 @@ async function sendTelegramMessage(order: PaymentBody) {
 
   const message =
     `🛒 НОВЕ ЗАМОВЛЕННЯ:\n\n` +
-    `👤 Ім'я: ${order.customer_name || "Невідомо"}\n` +
-    `📧 Email: ${order.client_email || "Невідомо"}\n` +
-    `📞 Телефон: ${order.phone || "Невідомо"}\n` +
-    (order.comment ? `📝 Коментар: ${order.comment}\n` : "") +
+    `👤 Ім'я: ${escapeMarkdown(order.customer_name) || "Невідомо"}\n` +
+    `📧 Email: ${escapeMarkdown(order.client_email) || "Невідомо"}\n` +
+    `📞 Телефон: ${escapeMarkdown(order.phone) || "Невідомо"}\n` +
+    (order.comment ? `📝 Коментар: ${escapeMarkdown(order.comment)}\n` : "") +
     `${paymentText}\n\n` +
     `${deliveryText}\n` +
     `🛍️ Товари:\n${formattedGoods}\n` +
     `💰 Кінцева сума: ${order.amount} ₴`;
 
   const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+
   const payload = {
     chat_id: TELEGRAM_CHAT_ID,
     text: message,
@@ -78,16 +87,26 @@ async function sendTelegramMessage(order: PaymentBody) {
 
 export async function POST(request: Request) {
   try {
-    const body: PaymentBody = await request.json();
+    const body: TelegramOrderPayload = await request.json();
+
     await sendTelegramMessage(body);
-    return new Response(JSON.stringify({ success: true }), { status: 200 });
+
+    return new Response(
+      JSON.stringify({ success: true }),
+      { status: 200 }
+    );
   } catch (error: unknown) {
-    let message = "Unknown error";
-    if (error instanceof Error) {
-      message = error.message;
-    }
-    return new Response(JSON.stringify({ success: false, message }), {
-      status: 500,
-    });
+    const message =
+      error instanceof Error ? error.message : "Unknown error";
+
+    console.error("❌ sendTelegramMessage error:", message);
+
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message,
+      }),
+      { status: 500 }
+    );
   }
 }

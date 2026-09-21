@@ -1,0 +1,13 @@
+{
+  "all": "Wszystkie",
+  "noServicesInCategory": "Brak usług w tej kategorii.",
+  "before": "PRZED",
+  "after": "PO",
+  "readMore": "Czytaj więcej",
+  "collapse": "Zwiń",
+  "priceRange": "Cena: od {{from}} do {{to}} UAH",
+  "priceUah": "Cena: {{price}} UAH",
+  "priceEuro": "Cena: {{price}} EUR",
+  "priceUsdt": "Cena: {{price}} USDT",
+  "priceNotAvailable": "Cena: brak"
+}

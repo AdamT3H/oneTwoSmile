@@ -1,4 +1,6 @@
 {
   "text": "Place order",
-  "loading": "Please wait..."
+  "loading": "Please wait...",
+  "payment_link_error": "Payment link is not available. Please try again later.",
+  "orderError": "An error occurred while creating the order. Please try again later."
 }

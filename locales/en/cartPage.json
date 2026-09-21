@@ -19,5 +19,15 @@
   "payment": "Payment:",
   "payment_card": "Card payment",
   "payment_cash": "Cash on delivery",
-  "cash_payment_note": "You selected cash on delivery. Pay upon receiving the order."
+  "cash_payment_note": "You selected cash on delivery. Pay upon receiving the order.",
+  "validation_required_fields": "Please fill in all required fields.",
+  "validation_nova_poshta_incomplete": "Please fill in the Nova Poshta delivery details.",
+  "validation_out_of_stock": "\"{{name}}\" is currently out of stock.",
+  "validation_invalid_email": "Please enter a valid email address.",
+  "invalid_email_hint": "Please enter a valid email address",
+  "orderButton": "Place order",
+  "loading": "Please wait...",
+  "orderError": "Failed to place the order.",
+  "oblast_load_error": "Failed to load regions: {{status}}",
+  "oblast_invalid_response": "Invalid API response format"
 }

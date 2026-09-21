@@ -4,33 +4,27 @@ import styles from "./Footer.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import clinicInfo from "@/data/clinicInfo";
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t } = useTranslation("footer");
 
   return (
     <div className={styles.container}>
       <div className={styles.meinText}>
-        <h1>{t("footer:slogan")}</h1>
+        <h1>{t("slogan")}</h1>
       </div>
 
       <div className={styles.workingDaysAndMap}>
         <div className={styles.workingDays}>
-          <h1>{t("footer:workingHoursTitle")}</h1>
-          <h2>{t("footer:monFri")}</h2>
-          <h2>{t("footer:sat")}</h2>
+          <h1>{t("workingHoursTitle")}</h1>
+          <h2>{t("monFri")}</h2>
+          <h2>{t("sat")}</h2>
         </div>
 
         <div className={styles.infoAndMyDiv}>
           <div className={styles.info}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                marginBottom: "5px",
-              }}
-            >
+            <div className={styles.phoneRow}>
               <Image
                 src="/header/Phone.png"
                 alt="Header Background"
@@ -38,10 +32,10 @@ export default function Footer() {
                 height={0}
                 objectFit="cover"
               />
-              <div>+38 097 477 47 49</div>
+              <div>{clinicInfo.phone}</div>
             </div>
-            <div style={{ fontSize: "9px", textAlign: "center" }}>
-              {t("footer:address")}
+            <div className={styles.address}>
+              {t("address")}
             </div>
           </div>
 
@@ -73,9 +67,9 @@ export default function Footer() {
       </div>
 
       <div className={styles.linksAndGmail}>
-        <h2>one.two.smile.dentistry@gmail.com</h2>
+        <h2>{clinicInfo.email}</h2>
         <div className={styles.links}>
-          <Link href="/" className={styles.instagram}>
+          <Link href={clinicInfo.instagram} className={styles.instagram}>
             <Image
               src="/main/instagramLogo.png"
               alt="Instagram Logo"
@@ -83,7 +77,7 @@ export default function Footer() {
               height={20}
             />
           </Link>
-          <Link href="/" className={styles.tiktok}>
+          <Link href={clinicInfo.tiktok} className={styles.tiktok}>
             <Image
               src="/main/tiktok-logo-4501.png"
               alt="TikTok Logo"
@@ -91,7 +85,7 @@ export default function Footer() {
               height={20}
             />
           </Link>
-          <Link href="/" className={styles.facebook}>
+          <Link href={clinicInfo.facebook} className={styles.facebook}>
             <Image
               src="/main/facebook-logo-108.png"
               alt="Facebook Logo"

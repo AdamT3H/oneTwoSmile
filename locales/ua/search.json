@@ -7,5 +7,6 @@
   "sort_price_desc": "Дороще - дешевше",
   "sort_title_asc": "Від А до Я",
   "sort_title_desc": "Від Я до A",
-  "prev": "Попередня"
+  "prev": "Назад",
+  "next": "Вперед"
 }

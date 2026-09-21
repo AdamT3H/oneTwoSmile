@@ -1,3 +1,5 @@
 {
-  "more": "More"
+  "more": "More",
+  "noTitle": "No title",
+  "loadError": "Failed to load products."
 }

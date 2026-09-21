@@ -1,0 +1,13 @@
+{
+  "all": "All",
+  "noServicesInCategory": "No services in this category.",
+  "before": "BEFORE",
+  "after": "AFTER",
+  "readMore": "Read more",
+  "collapse": "Collapse",
+  "priceRange": "Price: from {{from}} to {{to}} UAH",
+  "priceUah": "Price: {{price}} UAH",
+  "priceEuro": "Price: {{price}} EUR",
+  "priceUsdt": "Price: {{price}} USDT",
+  "priceNotAvailable": "Price: not available"
+}

@@ -1,0 +1,13 @@
+{
+  "all": "Усі",
+  "noServicesInCategory": "Послуг у цій категорії немає.",
+  "before": "ДО",
+  "after": "ПІСЛЯ",
+  "readMore": "Читати більше",
+  "collapse": "Згорнути",
+  "priceRange": "Ціна: від {{from}} до {{to}} грн",
+  "priceUah": "Ціна: {{price}} грн",
+  "priceEuro": "Ціна: {{price}} євро",
+  "priceUsdt": "Ціна: {{price}} USDT",
+  "priceNotAvailable": "Ціна: не вказана"
+}

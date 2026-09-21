@@ -6,80 +6,31 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { transactionStatus, orderReference } = body;
 
-    if (transactionStatus === "Approved") {
-      console.log("✅ УСПІШНА ОПЛАТА — ОБРОБКА ЗАМОВЛЕННЯ", orderReference);
+    if (transactionStatus !== "Approved") {
+      return new Response("Ignored", { status: 200 });
+    }
 
-      const { data: order, error } = await supabase
-        .from("orders")
-        .select("*")
-        .eq("order_reference", orderReference)
-        .single();
+    console.log("✅ УСПІШНА ОПЛАТА — ОБРОБКА ЗАМОВЛЕННЯ", orderReference);
 
-      if (error || !order) {
-        console.error("❌ Не вдалося знайти замовлення в базі:", error);
-        return new Response("Order not found", { status: 404 });
-      }
+    const { data: order, error } = await supabase
+      .from("orders")
+      .select("*")
+      .eq("order_reference", orderReference)
+      .single();
 
-      if (order.status === "paid") {
-        console.warn(
-          "⚠️ Замовлення вже оброблено — пропускаємо повторну обробку."
-        );
-        return new Response("Already processed", { status: 200 });
-      }
+    if (error || !order) {
+      console.error("❌ Не вдалося знайти замовлення в базі:", error);
+      return new Response("Order not found", { status: 404 });
+    }
 
-      const productIds: number[] = order.product_ids;
-      const productCounts: number[] = order.product_counts;
+    if (order.status === "paid") {
+      console.warn(
+        "⚠️ Замовлення вже оброблено — пропускаємо повторну обробку."
+      );
+      return new Response("Already processed", { status: 200 });
+    }
 
-      if (
-        !productIds ||
-        !productCounts ||
-        productIds.length !== productCounts.length
-      ) {
-        console.error("❌ Неправильні дані product_ids або product_counts");
-        return new Response("Invalid product data", { status: 400 });
-      }
-
-      const { data: products, error: productsError } = await supabase
-        .from("products")
-        .select("id, in_stock")
-        .in("id", productIds);
-
-      if (productsError || !products) {
-        console.error("❌ Не вдалося отримати продукти:", productsError);
-        return new Response("Products fetch error", { status: 500 });
-      }
-
-      for (let i = 0; i < productIds.length; i++) {
-        const productId = productIds[i];
-        const countToSubtract = productCounts[i];
-
-        const product = products.find((p) => p.id === productId);
-        if (!product) {
-          console.warn(`⚠️ Продукт з id ${productId} не знайдено — пропуск`);
-          continue;
-        }
-
-        const newInStock = product.in_stock - countToSubtract;
-        if (newInStock < 0) {
-          console.warn(
-            `⚠️ Продукт ${productId} має недостатній запас — залишилось ${product.in_stock}, потрібно ${countToSubtract}`
-          );
-        }
-
-        const { error: updateProductError } = await supabase
-          .from("products")
-          .update({ in_stock: newInStock >= 0 ? newInStock : 0 })
-          .eq("id", productId);
-
-        if (updateProductError) {
-          console.error(
-            `❌ Помилка оновлення продукту ${productId}:`,
-            updateProductError
-          );
-          return new Response("Stock update error", { status: 500 });
-        }
-      }
-
+    try {
       const emailPayload = {
         amount: order.amount,
         productName: order.product_names,
@@ -105,9 +56,12 @@ export async function POST(req: NextRequest) {
       if (!sendEmailRes.ok) {
         const errorText = await sendEmailRes.text();
         console.error("❌ Помилка надсилання листа через API:", errorText);
-        return new Response("Email error", { status: 500 });
       }
+    } catch (err) {
+      console.error("❌ Email fetch failed:", err);
+    }
 
+    try {
       await fetch(
         "https://one-two-smile.vercel.app/api/telegramProductsToAdmin",
         {
@@ -132,24 +86,24 @@ export async function POST(req: NextRequest) {
           }),
         }
       );
-
-      const { error: updateError } = await supabase
-        .from("orders")
-        .update({ status: "paid" })
-        .eq("order_reference", orderReference);
-
-      if (updateError) {
-        console.error("❌ Не вдалося оновити статус замовлення:", updateError);
-        return new Response("DB update error", { status: 500 });
-      }
-
-      return new Response(JSON.stringify({ reason: "Success" }), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      });
+    } catch (err) {
+      console.error("❌ Telegram fetch failed:", err);
     }
 
-    return new Response("Ignored", { status: 200 });
+    const { error: updateError } = await supabase
+      .from("orders")
+      .update({ status: "paid" })
+      .eq("order_reference", orderReference);
+
+    if (updateError) {
+      console.error("❌ Не вдалося оновити статус замовлення:", updateError);
+      return new Response("DB update error", { status: 500 });
+    }
+
+    return new Response(JSON.stringify({ reason: "Success" }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
     console.error("❌ Помилка в callback:", error);
     return new Response("Server Error", { status: 500 });

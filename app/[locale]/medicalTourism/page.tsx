@@ -1,6 +1,6 @@
-import MedicalTurismVideo from "@/components/pageMedicalTurismVideo/medicalTurismVideo.tsx";
-import MedicalTurismBanner from "@/components/pageMedicalTurismBanner/medicalTurismBanner.tsx";
-import MedicalTurismLinks from "@/components/pageMedicalTurismLinks/medicalTurismLinks.tsx";
+import Video from "@/features/medicalTourism/components/Video/Video";
+import Banner from "@/features/medicalTourism/components/Banner/Banner";
+import Links from "@/features/medicalTourism/components/Links/Links";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
@@ -17,14 +17,14 @@ export default async function MedicalTourism({ params }: PageProps) {
 
   return (
     <div className="w-full">
-      <MedicalTurismVideo />
-      <MedicalTurismBanner locale={locale}/>
+      <Video />
+      <Banner locale={locale}/>
       <TranslationsProvider
         resources={resources}
         locale={locale}
         namespaces={["medicalTourismOptions"]}
       >
-        <MedicalTurismLinks />
+        <Links />
       </TranslationsProvider>
     </div>
   );

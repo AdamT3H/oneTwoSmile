@@ -1,5 +1,5 @@
 import initTranslations from "@/app/i18n";
-import CategoryPageContent from "./categoryContent";
+import CategoryPageContent from "@/features/shop/category/components/CategoryContent/categoryContent";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
 export default async function CategoryPage({

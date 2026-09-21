@@ -1,4 +1,4 @@
-import ShopNav from "@/components/shopNav/ShopNav.tsx";
+import ShopNav from "@/features/shop/components/ShopNav/ShopNav";
 import { ReactNode } from "react";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";

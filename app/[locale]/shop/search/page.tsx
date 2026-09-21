@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import SearchPage from "./SearchContent";
+import SearchPage from "@/features/shop/search/components/SearchContent/SearchContent";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider.js";
 

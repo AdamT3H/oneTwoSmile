@@ -23,6 +23,7 @@ interface NoPaymentBody {
 
 export async function POST(req: NextRequest) {
   let body: NoPaymentBody;
+  const origin = req.nextUrl.origin;
 
   try {
     body = await req.json();
@@ -82,7 +83,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const telegramRes = await fetch(
-      "https://one-two-smile.vercel.app/api/telegramProductsToAdmin",
+      `${origin}/api/telegramProductsToAdmin`,
       {
         method: "POST",
         headers: {
@@ -123,7 +124,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const emailRes = await fetch(
-      "https://one-two-smile.vercel.app/api/sendEmail",
+      `${origin}/api/sendEmail`,
       {
         method: "POST",
         headers: {

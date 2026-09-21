@@ -1,5 +1,5 @@
 import initTranslations from "@/app/i18n.js";
-import ClientSuccess from "./ClientSuccess.tsx";
+import ClientSuccess from "@/features/shop/success/components/Success/Success.tsx";
 import React from "react";
 import TranslationsProvider from "@/components/TranslationsProvider.js";
 

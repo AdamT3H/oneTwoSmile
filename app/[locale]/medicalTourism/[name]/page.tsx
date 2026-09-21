@@ -1,5 +1,5 @@
 import initTranslations from "@/app/i18n";
-import MedicalTourismLinkUser from "./pageUser";
+import Detail from "@/features/medicalTourism/components/Detail/Detail";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
 interface PageProps {
@@ -9,7 +9,7 @@ interface PageProps {
   }>;
 }
 
-export default async function MedicalTourism({ params }: PageProps) {
+export default async function MedicalTourismDetailPage({ params }: PageProps) {
   const { locale } = await params;
 
   const { resources } = await initTranslations(locale, ["medicalTourismOptions"]);
@@ -21,7 +21,7 @@ export default async function MedicalTourism({ params }: PageProps) {
         locale={locale}
         namespaces={["medicalTourismOptions"]}
       >
-        <MedicalTourismLinkUser />
+        <Detail />
       </TranslationsProvider>
     </div>
   );

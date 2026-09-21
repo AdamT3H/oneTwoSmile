@@ -1,5 +1,5 @@
 import initTranslations from "@/app/i18n";
-import ProductPageContent from "./productPageContent";
+import ProductPageContent from "@/features/shop/product/components/ProductContent/ProductContent";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
 interface PageProps {

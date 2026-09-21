@@ -19,5 +19,15 @@
   "payment": "Płatność:",
   "payment_card": "Płatność kartą",
   "payment_cash": "Płatność za pobraniem",
-  "cash_payment_note": "Wybrałeś płatność za pobraniem. Zapłać przy odbiorze."
+  "cash_payment_note": "Wybrałeś płatność za pobraniem. Zapłać przy odbiorze.",
+  "validation_required_fields": "Proszę wypełnić wszystkie wymagane pola.",
+  "validation_nova_poshta_incomplete": "Proszę uzupełnić dane Nova Poshta.",
+  "validation_out_of_stock": "Produktu \"{{name}}\" nie ma obecnie w magazynie.",
+  "validation_invalid_email": "Wprowadź poprawny adres e-mail.",
+  "invalid_email_hint": "Wprowadź poprawny adres e-mail",
+  "orderButton": "Złóż zamówienie",
+  "loading": "Proszę czekać...",
+  "orderError": "Nie udało się złożyć zamówienia.",
+  "oblast_load_error": "Nie udało się załadować obwodów: {{status}}",
+  "oblast_invalid_response": "Nieprawidłowy format odpowiedzi API"
 }

@@ -6,7 +6,7 @@ import styles from "./Header.module.css";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import LanguageChanger from "../LanguageChanger/LanguageChanger.tsx";
+import LanguageChanger from "../LanguageChanger/LanguageChanger";
 
 export default function Header() {
   const [isMoreOptionsVisible, setMoreOptionsVisible] = useState(false);

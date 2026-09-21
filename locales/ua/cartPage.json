@@ -19,5 +19,15 @@
   "payment": "Оплата:",
   "payment_card": "Оплата картою",
   "payment_cash": "Накладний платіж",
-  "cash_payment_note": "Ви обрали накладний платіж. Оплатіть замовлення при отриманні."
+  "cash_payment_note": "Ви обрали накладний платіж. Оплатіть замовлення при отриманні.",
+  "validation_required_fields": "Будь ласка, заповніть усі обов'язкові поля.",
+  "validation_nova_poshta_incomplete": "Будь ласка, заповніть дані Нової Пошти.",
+  "validation_out_of_stock": "Товару \"{{name}}\" немає в наявності.",
+  "validation_invalid_email": "Введіть коректну електронну адресу.",
+  "invalid_email_hint": "Введіть коректну електронну адресу",
+  "orderButton": "Оформити замовлення",
+  "loading": "Очікуйте...",
+  "orderError": "Не вдалося оформити замовлення.",
+  "oblast_load_error": "Не вдалося завантажити області: {{status}}",
+  "oblast_invalid_response": "Некоректний формат відповіді API"
 }

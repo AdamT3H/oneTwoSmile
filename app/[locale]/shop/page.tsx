@@ -1,7 +1,7 @@
-import BannerShopPage from "@/components/bannerShopPage/BannerShopPage";
-import ShopContent from "./ShopContent";
-import initTranslations from "../../i18n";
+import Banner from "@/features/shop/components/Banner/Banner";
+import ShopContent from "@/features/shop/components/ShopContent/ShopContent";
 import TranslationsProvider from "@/components/TranslationsProvider.js";
+import initTranslations from "../../i18n";
 
 export default async function Shop({
   params,
@@ -14,7 +14,7 @@ export default async function Shop({
 
   return (
     <div className="w-full">
-      <BannerShopPage params={params} />
+      <Banner params={params} />
 
       <TranslationsProvider
         resources={resources}

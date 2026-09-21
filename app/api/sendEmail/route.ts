@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import nodemailer from "nodemailer";
 
-interface PaymentBody {
+interface SendEmailBody {
   amount: number;
   productName: string[];
   productCount: number[];
@@ -14,28 +14,48 @@ interface PaymentBody {
   warehouseNP: string,
 }
 
-export async function POST(req: NextRequest) {
-  try {
-    const body: PaymentBody = await req.json();
-
-    const {
-        amount,
-        productName,
-        productCount,
-        productPrice,
-        clientEmail,
-        clientName,
-        phone,
-        oblastNP,
-        cityNP,
-        warehouseNP,
-      } = body;
-
-    if (!clientEmail) {
-      console.error("❌ Немає clientEmail!");
-      return new Response("Missing clientEmail", { status: 400 });
+function escapeHtml(value: string): string {
+  return value.replace(/[<>&"]/g, (char) => {
+    switch (char) {
+      case "<": return "&lt;";
+      case ">": return "&gt;";
+      case "&": return "&amp;";
+      case '"': return "&quot;";
+      default: return char;
     }
+  });
+}
 
+export async function POST(req: NextRequest) {
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailPassword = process.env.GMAIL_APP_PASSWORD;
+
+  if (!gmailUser || !gmailPassword) {
+    console.error("Gmail credentials are not set in environment variables");
+    return new Response("Server configuration error", { status: 500 });
+  }
+
+  let body: SendEmailBody;
+  try {
+    body = await req.json();
+  } catch (err) {
+    console.error("❌ Помилка при розборі JSON:", err);
+    return new Response("Invalid JSON", { status: 400 });
+  }
+
+  const { amount, productName, productCount, productPrice, clientEmail, clientName, phone, oblastNP, cityNP, warehouseNP } = body;
+
+  if (!clientEmail) {
+    console.error("❌ Немає clientEmail!");
+    return new Response("Missing clientEmail", { status: 400 });
+  }
+
+  if (productName.length !== productCount.length || productName.length !== productPrice.length) {
+    console.error("❌ Масиви товарів різної довжини");
+    return new Response("Invalid product data", { status: 400 });
+  }
+
+  try {
     const productList = productName
       .map((name, index) => {
         const count = productCount[index];
@@ -49,7 +69,7 @@ export async function POST(req: NextRequest) {
         <div style="max-width: 600px; margin: auto; background: #ffffff; padding: 40px 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
           
           <div style="text-align: center; margin-bottom: 30px;">
-            <h2 style="color: #222; font-size: 24px;">Дякуємо за ваше замовлення, ${clientName}!</h2>
+            <h2 style="color: #222; font-size: 24px;">Дякуємо за ваше замовлення, ${escapeHtml(clientName)}!</h2>
           </div>
 
           <p style="font-size: 16px; margin-bottom: 10px;">Ви придбали наступні товари:</p>
@@ -60,11 +80,11 @@ export async function POST(req: NextRequest) {
           <p style="font-size: 18px; font-weight: bold; margin-bottom: 20px;">Сума замовлення: ₴${amount}</p>
 
           <div style="font-size: 16px; margin-bottom: 20px;">
-            <p><b>Номер телефону:</b> ${phone}</p>
-            <p><b>Email:</b> ${clientEmail}</p>
-            <p><b>Область:</b> ${oblastNP}</p>
-            <p><b>Місто:</b> ${cityNP}</p>
-            <p><b>Відділення Нової Пошти:</b> ${warehouseNP}</p>
+            <p><b>Номер телефону:</b> ${escapeHtml(phone)}</p>
+            <p><b>Email:</b> ${escapeHtml(clientEmail)}</p>
+            <p><b>Область:</b> ${escapeHtml(oblastNP)}</p>
+            <p><b>Місто:</b> ${escapeHtml(cityNP)}</p>
+            <p><b>Відділення Нової Пошти:</b> ${escapeHtml(warehouseNP)}</p>
           </div>
 
           <p style="font-size: 16px;">Очікуйте підтвердження доставки. Гарного дня!</p>
@@ -79,8 +99,8 @@ export async function POST(req: NextRequest) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "onetwosmileshop@gmail.com",
-        pass: "xsxj awdx xspp xbqw",
+        user: gmailUser,
+        pass: gmailPassword,
       },
     });
 

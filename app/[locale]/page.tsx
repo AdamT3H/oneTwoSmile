@@ -1,14 +1,10 @@
-import { MainPicture } from "@/components";
-import Philosophy from "@/components/philosophyOnMain/Philosophy";
-import PeopleSmilesSlider from "@/components/peopleSmilesSliderOnMain/peopleSmilesSlider";
+import MainPicture from "@/features/home/components/MainPicture/MainPicture";
+import Philosophy from "@/features/home/components/Philosophy/Philosophy";
+import PeopleSmilesSlider from "@/features/home/components/PeopleSmilesSlider/PeopleSmilesSlider";
 import initTranslations from "../i18n";
 import TranslationsProvider from "@/components/TranslationsProvider.js";
 
-export const metadata = {
-  title: "One Two Smile",
-  description:
-    "Дізнайтесь більше про One Two Smile — клініку краси, яка поєднує сучасні методики лікування з натуральною косметикою.",
-};
+export { metadata } from "./metadata";
 
 export default async function Home({
   params,
