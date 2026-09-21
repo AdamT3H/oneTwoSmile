@@ -58,7 +58,6 @@ export async function POST(req: NextRequest) {
   const orderReference = `ORDER-${Date.now()}`;
   const orderDate = Math.floor(Date.now() / 1000);
   const currency = 'UAH';
-  const origin = req.nextUrl.origin;
 
   const signatureSource = [
     MERCHANT_ACCOUNT,
