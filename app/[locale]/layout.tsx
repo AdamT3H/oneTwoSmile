@@ -4,6 +4,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import Script from "next/script";
 import TranslationsProvider from "@/components/TranslationsProvider";
+import { Montserrat } from "next/font/google";
 import initTranslations from "../i18n";
 
 export default async function LocaleLayout({
@@ -18,8 +19,14 @@ export default async function LocaleLayout({
 
   const { resources } = await initTranslations(locale, ["header", "footer"]);
 
+  const montserrat = Montserrat({
+    subsets: ["latin", "cyrillic"],
+    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+    variable: "--font-montserrat",
+  });
+
   return (
-    <html lang={locale}>
+    <html lang={locale} className={montserrat.variable}>
       <head>
         <Script
           src="https://widget.easyweek.io/widget.js"
@@ -28,7 +35,6 @@ export default async function LocaleLayout({
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
       </head>
 
       <body>
