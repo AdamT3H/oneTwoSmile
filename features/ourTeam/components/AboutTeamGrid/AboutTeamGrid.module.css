@@ -69,12 +69,6 @@
 @media (max-width: 480px) {
 }
 
-
-
-
-
-
-
 .card {
   display: flex;
   flex-direction: row;
@@ -104,7 +98,7 @@
 }
 
 .name {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
   color: #222;
   background-image: url("/header/bg.png");

@@ -18,7 +18,7 @@ export default function Header() {
       <header className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.wrapperleng}>
-            <div className={styles.logo}>
+            <Link href="/" className={styles.logo}>
               <Image
                 src="/header/Logo.png"
                 alt="Header Background"
@@ -28,7 +28,7 @@ export default function Header() {
                 className={styles.imageMargin}
               />
               <h1 className={styles.logoText}>{t("underLogoText")}</h1>
-            </div>
+            </Link>
             <LanguageChanger />
           </div>
 
@@ -106,7 +106,7 @@ export default function Header() {
                 height={0}
                 objectFit="cover"
               />
-              <div>+38 097 477 47 49</div>
+              <a href="tel:+380974774749">+38 097 477 47 49</a>
             </div>
             <div style={{ fontSize: "9px", display: "inline-block" }}>
             {t("address")}

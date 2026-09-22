@@ -3,7 +3,10 @@ import { i18nRouter } from "next-i18n-router";
 import i18nConfig from "./i18nConfig";
 
 export function middleware(request: NextRequest) {
-  return i18nRouter(request, i18nConfig);
+  return i18nRouter(request,{
+    ...i18nConfig,
+    localeDetector: false, // Disable automatic locale detection
+  });
 }
 
 export const config = {

@@ -95,6 +95,12 @@ export default function Footer() {
           </Link>
         </div>
       </div>
+
+      <div>Повне фірмове найменування: ФОП Ступак Юлія Петрівна</div>
+      <div>ІПН: 3553608422</div>
+      <div>Юридична адреса: </div>
+      <div>Телефон: +380974774749</div>
+      <div>Email: one.two.smile.dentistry@gmail.com</div>
     </div>
   );
 }

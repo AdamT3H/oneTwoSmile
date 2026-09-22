@@ -27,17 +27,12 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={montserrat.variable}>
-      <head>
+      <body>
         <Script
           src="https://widget.easyweek.io/widget.js"
           strategy="beforeInteractive"
         />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-      </head>
-
-      <body>
+  
         <TranslationsProvider
           resources={resources}
           locale={locale}

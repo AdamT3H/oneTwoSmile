@@ -35,6 +35,12 @@ export default async function Policy({
 
         <h1>{t("7.title")}</h1>
         <h2>{t("7.text")}</h2>
+
+        <h1>{t("8.title")}</h1>
+        <h2>{t("8.text")}</h2>
+
+        <h1>{t("9.title")}</h1>
+        <h2>{t("9.text")}</h2>
       </div>
     </div>
   );
