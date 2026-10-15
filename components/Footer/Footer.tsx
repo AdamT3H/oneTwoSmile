@@ -45,7 +45,7 @@ export default function Footer() {
               src="/footer/arrow-png-image-start.png"
               width={55}
               height={30}
-              alt="Way to clinic"
+              alt="Get directions"
             />
             <Link
               href="https://maps.app.goo.gl/LZ2czQejsunVQqNA8"
@@ -60,7 +60,7 @@ export default function Footer() {
               src="/footer/arrow-png-image-end.png"
               width={55}
               height={30}
-              alt="Way to clinic"
+              alt="Get directions"
             />
           </div>
         </div>
@@ -95,12 +95,6 @@ export default function Footer() {
           </Link>
         </div>
       </div>
-
-      {/* <div>Повне фірмове найменування: ФОП Ступак Юлія Петрівна</div>
-      <div>ІПН: 3553608422</div>
-      <div>Юридична адреса: </div>
-      <div>Телефон: +380974774749</div>
-      <div>Email: one.two.smile.dentistry@gmail.com</div> */}
     </div>
   );
 }

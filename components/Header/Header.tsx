@@ -174,7 +174,3 @@ export default function Header() {
     </>
   );
 }
-
-{
-  /* <h1 className={styles.logoText}>Інноваційна клініка стоматології та косметології</h1> */
-}
