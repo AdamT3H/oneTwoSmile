@@ -5,19 +5,35 @@ import styles from "./AllServices.module.css";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import { Service, Category } from "../../types";
-import { getServicesAndCategories } from "../../services/getServicesAndCategories";
-
-const ALL = "all";
+import getCategories from "../../services/getCategories";
+import getServices from "../../services/getServices";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function AllServices() {
-  const [selected, setSelected] = useState<number | typeof ALL>(ALL);
   const [expandedServices, setExpandedServices] = useState<Record<number, boolean>>({});
   const [services, setServices] = useState<Service[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const categoryParam = searchParams.get("category");
+  const parsed = categoryParam ? Number(categoryParam) : null;
+  const selected = parsed !== null && !Number.isNaN(parsed) ? parsed : null;
+
   const { t, i18n } = useTranslation("service");
   const lang = i18n.language;
+
+  const selectCategory = (id: number | null) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (id === null) params.delete("category");
+    else params.set("category", String(id));
+
+    const query = params.toString();
+    router.push(query ? `${pathname}?${query}` : pathname, { scroll: false });
+  };
 
   const getTranslatedText = (ua: string, eng: string, pl: string): string => {
     if (lang === "en") return eng;
@@ -36,21 +52,36 @@ export default function AllServices() {
   };
 
   useEffect(() => {
-    getServicesAndCategories().then((result) => {
-      setServices(result.services);
-      setCategories(result.categories);
-      setLoading(false);
-    });
+    getCategories()
+      .then((res) => setCategories(res.categories))
+      .catch((err) => console.error("Error fetching categories:", err));
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+
+    getServices(selected)
+      .then((res) => {
+        if (!cancelled) {
+          setServices(res.services)
+        }
+      })
+      .catch((err) => console.error("Error fetching data:", err))
+      .finally(() => {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      })
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selected]);
 
   const toggleExpand = (id: number) => {
     setExpandedServices((prev) => ({ ...prev, [id]: !prev[id] }));
   };
-
-  const filteredServices =
-    selected === ALL
-      ? services
-      : services.filter((service) => service.category_id === selected);
 
   return (
     <div className={styles.container}>
@@ -65,9 +96,9 @@ export default function AllServices() {
           <>
             <div
               className={`${styles.option} ${
-                selected === ALL ? styles.active : ""
+                selected === null ? styles.active : ""
               }`}
-              onClick={() => setSelected(ALL)}
+              onClick={() => selectCategory(null)}
             >
               {t("all")}
             </div>
@@ -77,7 +108,7 @@ export default function AllServices() {
                 className={`${styles.option} ${
                   selected === cat.id ? styles.active : ""
                 }`}
-                onClick={() => setSelected(cat.id)}
+                onClick={() => selectCategory(cat.id)}
               >
                 {getTranslatedText(cat.name, cat.name_ENG, cat.name_PL)}
               </div>
@@ -91,8 +122,8 @@ export default function AllServices() {
           Array.from({ length: 4 }).map((_, i) => (
             <div key={i} className={styles.skeletonCard}></div>
           ))
-        ) : filteredServices.length > 0 ? (
-          filteredServices.map((service) => (
+        ) : services.length > 0 ? (
+          services.map((service) => (
             <div key={service.id} className={styles.serviceCard}>
               <h3 className={styles.serviceName}>
                 {getTranslatedText(

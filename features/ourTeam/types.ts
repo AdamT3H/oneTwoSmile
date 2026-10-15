@@ -1,13 +1,20 @@
 export type TeamTranslation = {
     name: string;
-    position: string[];
-    description: string[];
-    language_code?: string;
+    specialty: string | null;
+    education: string | null;
+};
+
+export type TreatmentDirection = {
+    id: number;
+    categoryId: number;
+    categoryName: string;
 };
   
 export type TeamMember = {
     id: number;
     image_url: string;
-    translation: TeamTranslation[];
+    experience_years: number | null;
+    easyweek_employee_id: string | null;
+    translation: TeamTranslation;
+    treatmentDirections: TreatmentDirection[];
 };
-  
