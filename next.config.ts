@@ -1,4 +1,9 @@
 const nextConfig = {
+  allowedDevOrigins: [
+    "192.168.68.108",
+    "localhost",
+  ],
+
   images: {
     remotePatterns: [
       {

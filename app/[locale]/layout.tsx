@@ -4,6 +4,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import Script from "next/script";
 import TranslationsProvider from "@/components/TranslationsProvider";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Montserrat } from "next/font/google";
 import initTranslations from "../i18n";
 
@@ -27,6 +28,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={montserrat.variable}>
+      {process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GTM_ID && (
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+      )}
+
       <body>
         <Script
           src="https://widget.easyweek.io/widget.js"

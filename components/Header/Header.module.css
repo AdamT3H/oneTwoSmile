@@ -33,6 +33,7 @@
     font-weight: 300;
     overflow: hidden; 
     white-space: nowrap;
+    /* padding: 10px 0px 10px 10px; */
 }
 
 .burger h1{
@@ -140,7 +141,6 @@
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-
 .overlayVisible {
     opacity: 1;
     visibility: visible;
@@ -181,6 +181,30 @@
     justify-content: space-between;
 }
 
+.phoneIcon {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: #1a1a1a;
+    background-image: url("/header/bg.png");
+    background-size: cover;
+    background-position: center;
+    background-origin: border-box;  /* картинка рахується по всій рамці, разом з бордером */
+    background-repeat: no-repeat; 
+    border: 2px solid transparent;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.phoneIcon:hover {
+    border: 2px solid rgb(180, 180, 180);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
 @media (max-width: 1382px) {
     .burger > .burgerOptionsService {
       display: none;
@@ -219,10 +243,15 @@
         transform: none; /* Вимкнути зміщення */
         left: auto;
         width: fit-content;
+        overflow: visible;
+    }
+
+    .phoneIcon {
+        display: flex;
     }
 }
 
-@media (max-width: 530px) {
+@media (max-width: 580px) {
     .container{
         padding:20px 20px 20px 20px;
         /* height: 150px; */
