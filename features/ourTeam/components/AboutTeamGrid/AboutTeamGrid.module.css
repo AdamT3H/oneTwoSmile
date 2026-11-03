@@ -1,19 +1,21 @@
 .container {
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 120px;
   margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0px 100px;
+  box-sizing: border-box; 
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
-  gap: 80px;
-  max-width: 1500px;
+  gap: 120px;
+  width: 100%;
+  max-width: 1300px;
 }
 
 .skeletonCard {
@@ -46,7 +48,6 @@
   overflow: hidden;
   box-shadow: 0 0px 16px rgba(0, 0, 0, 0.15);
   align-items: stretch;
-  max-width: 500;
 }
 
 .photoWrapper {
@@ -143,6 +144,7 @@
   margin-top: auto;
   display: flex;
   justify-content: flex-end;
+  padding-top: 32px;
 }
 
 .bookButton {
@@ -175,10 +177,6 @@
     justify-content: center;
     gap: 80px;
     max-width: 1500px;
-  }
-
-  .cardWrapper {
-    max-width: 400;
   }
 
   .content {
