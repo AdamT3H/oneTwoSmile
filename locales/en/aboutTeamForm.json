@@ -1,0 +1,13 @@
+{
+  "title": "Not sure which doctor to see?",
+  "subtitle": "Leave a request — we'll call you back and help you choose a specialist",
+  "phone": "Phone number",
+  "name": "Name (optional)",
+  "comment": "Comment (optional)",
+  "contactLegend": "How can we contact you?",
+  "call": "Call",
+  "submit": "Send request",
+  "loading": "Sending...",
+  "success": "Thank you! We'll get in touch with you soon.",
+  "error": "Failed to send. Please try again."
+}

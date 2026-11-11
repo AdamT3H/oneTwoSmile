@@ -20,14 +20,34 @@
 }
 
 .navWrapper {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
   width: 100%;
   padding: 0 20px;
+  transition: transform 0.3s ease;
+}
+
+.navWrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 10px;
+  background: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+.navHidden {
+  transform: translateY(-100%);
 }
 
 .container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 8px 0 16px 0px;
+  padding: 16px 0 16px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,6 +128,7 @@
   background-color: rgb(238, 237, 237);
   padding: 9px;
   display: inline-block;
+  position: relative;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   border: 2px solid rgba(0, 0, 0, 0.03);
@@ -118,6 +139,72 @@
 .iconButton:hover {
   background-color: rgb(228, 227, 227);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.19);
+}
+
+.countNumberOfLikes{
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  box-sizing: border-box;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 0 5px;
+  background: #e53835d7;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 0 6px rgba(211, 47, 47, 0.4);
+  pointer-events: none;
+  animation: badgePop 0.25s ease-out;
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.countNumberOfCarts{
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  box-sizing: border-box;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 0 5px;
+  background: #4340f0ca;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 0 6px rgba(211, 47, 47, 0.4);
+  pointer-events: none;
+  animation: badgePop 0.25s ease-out;
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .searchInShopListLoopButton {

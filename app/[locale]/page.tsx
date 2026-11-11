@@ -1,10 +1,10 @@
 import MainPicture from "@/features/home/components/MainPicture/MainPicture";
 import Philosophy from "@/features/home/components/Philosophy/Philosophy";
-import PeopleSmilesSlider from "@/features/home/components/PeopleSmilesSlider/PeopleSmilesSlider";
+import PeopleSmilesSlider from "@/features/home/components/Reviews/Reviews";
 import initTranslations from "../i18n";
 import TranslationsProvider from "@/components/TranslationsProvider.js";
 
-export { metadata } from "./metadata";
+export { generateMetadata } from "./metadata";
 
 export default async function Home({
   params,

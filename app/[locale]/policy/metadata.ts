@@ -13,7 +13,7 @@ export const metadata = {
       title: "Політика конфіденційності | One Two Smile",
       description:
         "Як ми обробляємо ваші персональні дані та забезпечуємо безпеку під час замовлення.",
-      url: "https://one-two-smile.vercel.app/policy",
+      url: "https://onetwosmile.org/policy",
       siteName: "One Two Smile",
       locale: "uk_UA",
       type: "website",

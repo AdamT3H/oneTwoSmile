@@ -50,7 +50,12 @@
     width: 210px;
 }
 
-.burgerOptionsMain, .burgerOptionsTeam, .burgerOptionsMed, .burgerOptionsService, .burgerOptionsMore {
+.burgerOptionsMain,
+.burgerOptionsTeam, 
+.burgerOptionsMed,
+.burgerOptionsShop, 
+.burgerOptionsService, 
+.burgerOptionsMore {
     transition: transform 0.23s ease, font-size 0.3s ease;
     position: relative;
 }
@@ -65,13 +70,33 @@
     justify-content: center;
 }
   
-.burgerOptionsMain:hover, .burgerOptionsTeam:hover, .burgerOptionsMed:hover, .burgerOptionsService:hover {
+.burgerOptionsMain:hover, 
+.burgerOptionsTeam:hover, 
+.burgerOptionsMed:hover, 
+.burgerOptionsShop:hover, 
+.burgerOptionsService:hover {
     transform: translateY(-3px); 
     font-size: 18px; 
 }
 
 .burgerOptionsMore:hover{
     font-size: 18px; 
+}
+
+.burgerOptionsMainActive, 
+.burgerOptionsMedActive, 
+.burgerOptionsShopActive, 
+.burgerOptionsTeamActive, 
+.burgerOptionsServiceActive  {
+    font-weight: 300;
+    /* background-image: url("/header/bg.png");
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text; 
+    color: transparent; */
+    filter: brightness(0.9) saturate(2.8);
+    border-bottom: 2px solid #99999949;
+    padding: 0px 2px 0px 2px;
 }
 
 #OnlineBookingBtnId {
@@ -101,10 +126,6 @@
     box-sizing: border-box;
     width: 100%;
     overflow-x: hidden;
-  }
-
-.moreOptions{
-    width: 100%;
     background-color: rgb(255, 255, 255);
     z-index: 1000;
     position: absolute;
@@ -147,21 +168,6 @@
     max-width: 100%;
 }
 
-.moreOptionsContainer{
-    max-width : 1824px;
-    width: 610px;
-    font-weight: 300;
-    gap: 20px;
-    display: flex;
-    flex-wrap: wrap; /* Додаємо можливість переносити елементи на новий рядок */
-    flex-direction: column;
-    text-align: center;
-}
-
-.moreOptionsContainer:last-child{
-    margin-bottom: 30px;
-}
-
 .option{
     transition: 0.2s ease;
 }
@@ -179,6 +185,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.wrapperleng{
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
 .phoneIcon {
@@ -205,9 +217,52 @@
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
+.optionService, 
+/* .optionMed,  */
+.optionTeam,
+.optionMain,
+.optionShop{
+    will-change: transform;
+    transition: transform 0.3s ease;
+    transform: scale(1);
+    display: none;
+}
+
+.optionAbout{
+    will-change: transform;
+    transition: transform 0.3s ease;
+    transform: scale(1);
+}
+
+.optionService:hover, 
+.optionMed:hover, 
+.optionTeam:hover, 
+.optionMain:hover, 
+.optionShop:hover, 
+.optionAbout:hover{
+    transform: scale(1.2);
+    will-change: transform;
+}
+
+.moreOptionsContainer{
+    max-width : 1824px;
+    width: 610px;
+    font-weight: 300;
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Додаємо можливість переносити елементи на новий рядок */
+    flex-direction: column;
+    text-align: center;
+}
+
+.moreOptionsContainer:last-child{
+    margin-bottom: 30px;
+}
+
+
 @media (max-width: 1382px) {
     .burger > .burgerOptionsService {
-      display: none;
+        display: none;
     }
 
     .moreOptionsContainer > .optionService {
@@ -216,11 +271,19 @@
 }
 
 @media (max-width: 1250px) {
-    .burger > .burgerOptionsMed {
+    /* .burger > .burgerOptionsMed {
       display: none;
+    } */
+
+    .burger > .burgerOptionsShop {
+        display: none;
     }
 
-    .moreOptionsContainer > .optionMed {
+    /* .moreOptionsContainer > .optionMed {
+        display: block;
+    } */
+
+    .moreOptionsContainer > .optionShop {
         display: block;
     }
 }
@@ -277,40 +340,4 @@
     .imageMargin{
         margin-bottom: 12px;
     }
-}
-  
-.optionService, .optionMed, .optionTeam, .optionMain{
-    will-change: transform;
-    transition: transform 0.3s ease;
-    transform: scale(1);
-    display: none;
-}
-
-.optionShop, .optionAbout{
-    will-change: transform;
-    transition: transform 0.3s ease;
-    transform: scale(1);
-}
-
-.optionService:hover, .optionMed:hover, .optionTeam:hover, .optionMain:hover, .optionShop:hover, .optionAbout:hover{
-    transform: scale(1.2);
-    will-change: transform;
-}
-
-.burgerOptionsMainActive, .burgerOptionsMedActive, .burgerOptionsTeamActive, .burgerOptionsServiceActive  {
-    font-weight: 300;
-    /* background-image: url("/header/bg.png");
-    background-size: cover;
-    background-clip: text;
-    -webkit-background-clip: text; 
-    color: transparent; */
-    filter: brightness(0.9) saturate(2.8);
-    border-bottom: 2px solid #99999949;
-    padding: 0px 2px 0px 2px;
-}
-
-.wrapperleng{
-    display: flex;
-    align-items: center;
-    gap: 25px;
 }

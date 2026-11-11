@@ -129,7 +129,7 @@
     z-index: 1; /* Щоб іконка була поверх бекграунда */
 }
 
-.tiktok{
+.youtube{
     position: relative;
     display: inline-block;
     background-image: url("/header/bg.png");
@@ -141,7 +141,7 @@
     transition: transform 0.4s ease-in-out; /* Плавне масштабування */
 }
 
-.tiktok::before {
+.youtube::before {
     content: '';
     position: absolute;
     top: 0;
@@ -159,15 +159,15 @@
     will-change: transform; 
 }
 
-.tiktok:hover::before {
+.youtube:hover::before {
     transform: rotate(-40deg);
 }
 
-.tiktok:hover {
+.youtube:hover {
     transform: scale(1.1);
 }
 
-.tiktok img {
+.youtube img {
     margin: 10px;
     position: relative;
     z-index: 1;
@@ -215,6 +215,32 @@
     margin: 10px;
     position: relative;
     z-index: 1;
+}
+
+.instagram img,
+.youtube img,
+.facebook img {
+  display: block;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.policyLink {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 300;
+    color: #888;
+    text-align: center;
+    transition: color 0.2s ease;
+}
+
+.policyLink:hover {
+    color: #2e2e2e;
+    text-decoration: underline;
 }
 
 .map{

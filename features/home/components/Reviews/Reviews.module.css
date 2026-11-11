@@ -1,0 +1,242 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.introSection {
+  max-width: 840px;
+  margin: 0 auto 20px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.lead {
+  text-transform: uppercase;
+  color: #4a4a4a;
+  font-size: 40px;
+  font-weight: 600;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.underline {
+  width: 50%;
+  height: 4px;
+  background-image: url("/header/bg.png");
+  filter: saturate(2);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 10px auto 30px;
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+.subtext {
+  font-size: 18px;
+  color: #292929;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.sliderWrapper {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 70px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.swiper {
+  padding: 16px 6px 56px;
+}
+
+.slide {
+  height: auto;
+}
+
+.card {
+  position: relative;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 28px 24px 22px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quoteMark {
+  position: absolute;
+  top: 6px;
+  right: 20px;
+  font-family: Georgia, serif;
+  font-size: 90px;
+  line-height: 1;
+  color: #4a4a4a;
+  opacity: 0.08;
+  pointer-events: none;
+  user-select: none;
+}
+
+.stars {
+  display: flex;
+  gap: 3px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.starOn {
+  color: #f5b301;
+}
+
+.starOff {
+  color: #ddd;
+}
+
+.text {
+  flex: 1;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-image: url("/header/bg.png");
+  background-size: cover;
+  background-position: center;
+  color: #2e2e2e;
+  font-weight: 600;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #2e2e2e;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.googleLink {
+  font-size: 13px;
+  color: #888;
+  text-decoration: none;
+}
+
+.googleLink:hover {
+  color: #2e2e2e;
+  text-decoration: underline;
+}
+
+.sliderWrapper :global(.swiper-button-prev) {
+  left: 10px;
+}
+
+.sliderWrapper :global(.swiper-button-next) {
+  right: 10px;
+}
+
+.sliderWrapper :global(.swiper-button-prev::after),
+.sliderWrapper :global(.swiper-button-next::after) {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.sliderWrapper :global(.swiper-button-disabled) {
+  opacity: 0.3;
+}
+
+.sliderWrapper :global(.swiper-pagination-bullet) {
+  width: 8px;
+  height: 8px;
+  background: #bbb;
+  opacity: 1;
+}
+
+.sliderWrapper :global(.swiper-pagination-bullet-active) {
+  width: 22px;
+  border-radius: 4px;
+  background: #4a4a4a;
+  transition: width 0.25s ease;
+}
+
+@media (max-width: 1000px) {
+  .lead {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lead {
+    font-size: 1.75rem;
+    margin-bottom: 28px;
+  }
+
+  .subtext {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .introSection {
+    padding: 0 5px;
+  }
+
+  .sliderWrapper {
+    padding: 0 16px;
+  }
+
+  .sliderWrapper :global(.swiper-button-prev),
+  .sliderWrapper :global(.swiper-button-next) {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .lead {
+    font-size: 23px;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+}

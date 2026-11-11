@@ -10,12 +10,19 @@ type Employee = {
   easyweek_employee_id?: number | string | null;
 }
 
+type ServiceItem = {
+  id: number | string;
+  easyweek_service_id?: number | string | null;
+}
+
 let headerReady = false;
 
 export default function EasyWeekIntegration({
   employees = [],
+  services = [],
 }: {
   employees?: Employee[];
+  services?: ServiceItem[];
 }) {
   useEffect(() => {
     if (!window.EasyWeekWidget || headerReady) return;
@@ -23,10 +30,9 @@ export default function EasyWeekIntegration({
     headerReady = true;
   }, []);
 
-  const key = employees.map((e) => e.id).join(",");
-
+  const employeeskey = employees.map((e) => e.id).join(",");
   useEffect(() => {
-    if (!key || !window.EasyWeekWidget) return;
+    if (!employeeskey || !window.EasyWeekWidget) return;
 
     employees.forEach((e) => {
       new window.EasyWeekWidget({
@@ -36,7 +42,21 @@ export default function EasyWeekIntegration({
         trigger: `.doctor-book-${e.id}`,
       });
     });
-  }, [key]);
+  }, [employeeskey]);
+
+  const serviceskey = services.map((s) => s.id).join(",");
+  useEffect(() => {
+    if (!serviceskey || !window.EasyWeekWidget) return;
+
+    services.forEach((s) => {
+      new window.EasyWeekWidget({
+        url: s.easyweek_service_id
+          ? `${BASE}/${LOCATION_ID}/${s.easyweek_service_id}/date`
+          : BASE,
+        trigger: `.service-book-${s.id}`,
+      });
+    });
+  }, [serviceskey]);
 
   return null;
 }

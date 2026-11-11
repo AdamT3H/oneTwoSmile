@@ -1,23 +1,38 @@
 {
-  "lead": "Ich uśmiechy to nasza duma",
+  "lead": "Ich uśmiechy są naszą dumą",
   "subtext": {
-    "line1": "Za każdym uśmiechem stoi osoba, która nam zaufała.",
+    "line1": "Za każdym uśmiechem stoi człowiek, który nam zaufał.",
     "line2": "Historia, którą przeżyliśmy razem."
   },
+  "readOnGoogle": "Zobacz opinię w Google",
   "slide1": {
-    "quote": "To była niesamowita podróż. Nigdy tego nie zapomnę.",
-    "name": "Ołeksandr Iwanow"
+    "quote": "Do One Two Smile zawsze wracam z przyjemnością. Miałam zabiegi iniekcyjne i oczyszczanie skóry. Profesjonalni lekarze, specjaliści w swojej dziedzinie. Pracują wyłącznie z wysokiej jakości, oryginalnymi preparatami i zawsze wszystko jasno wyjaśniają przed zabiegiem. Atmosfera jest zawsze miła!"
   },
   "slide2": {
-    "quote": "Zespół był świetny, a rezultat przeszedł moje oczekiwania.",
-    "name": "Maria Szewczenko"
+    "quote": "Zgłosiłem się do kliniki One Two Smile, ponieważ nie podobał mi się mój uśmiech. Ortodontka Julia pomogła mi dobrać system aparatu odpowiadający moim potrzebom, opowiedziała, jak przebiega leczenie, oraz o dodatkowych elementach stosowanych w ortodoncji, takich jak mikroimplanty i gumki, i odpowiedziała na wszystkie moje liczne pytania. Podczas zakładania aparatu wszystko tłumaczyła. Leczenie przebiega świetnie, asystenci, administrator i lekarze są bardzo mili i zawsze proponują kawę. Bardzo lubię tę klinikę."
   },
   "slide3": {
-    "quote": "Cieszę się, że wybrałam właśnie was. Zmieniliście moje życie!",
-    "name": "Iryna Kowal"
+    "quote": "Jestem bardzo zadowolona z tej kliniki, odwiedzam ją od ponad trzech lat! Leczyłam tu zęby, usuwałam zęby mądrości i przechodziłam leczenie aparatem ortodontycznym. Wszystko przebiegło świetnie, lekarze są uważni i profesjonalni. Dzięki aparatowi mam równe i piękne zęby, bardzo cieszę się z rezultatu 🥰🥰 Szczerze polecam tę klinikę!"
   },
   "slide4": {
-    "quote": "Wszystko było na najwyższym poziomie. Dziękuję za profesjonalizm!",
-    "name": "Dmytro Łysenko"
+    "quote": "Ząb został bardzo ładnie wypełniony."
+  },
+  "slide5": {
+    "quote": "Wszystko wspaniale. Uprzejmy personel, profesjonalni lekarze. Polecam."
+  },
+  "slide6": {
+    "quote": "Byłam w tym tygodniu na wizycie u Julii i jestem bardzo zadowolona ze wszystkiego ❤️ dziękuję!!!"
+  },
+  "slide7": {
+    "quote": "Bardzo ładna, nowoczesna, schludna klinika z uprzejmymi administratorami oraz wykwalifikowanymi i miłymi lekarzami 🥹 Po prostu top 😍"
+  },
+  "slide8": {
+    "quote": "Nowoczesna klinika z kompleksowym podejściem do leczenia, wszystkie wizyty odbywają się w miłej atmosferze)"
+  },
+  "slide9": {
+    "quote": "Wszystko przebiegło świetnie, lekarz jest bardzo uważny i tworzy komfortową atmosferę)"
+  },
+  "slide10": {
+    "quote": "Świetna klinika z indywidualnym podejściem do każdego klienta. Chodzę na wizyty jak na święto! W środku jest bardzo czysto i schludnie."
   }
 }

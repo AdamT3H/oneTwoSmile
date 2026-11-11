@@ -14,6 +14,7 @@ export type Service = {
     category_id: number;
     photo_before: string;
     photo_after: string;
+    easyweek_service_id: string;
 };
   
 export type Category = {

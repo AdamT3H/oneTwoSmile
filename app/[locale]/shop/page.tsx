@@ -2,6 +2,7 @@ import Banner from "@/features/shop/components/Banner/Banner";
 import ShopContent from "@/features/shop/components/ShopContent/ShopContent";
 import TranslationsProvider from "@/components/TranslationsProvider.js";
 import initTranslations from "../../i18n";
+export { generateMetadata } from "./metadata";
 
 export default async function Shop({
   params,

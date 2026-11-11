@@ -13,7 +13,7 @@ export default async function OurTeam({
 }) {
   const { locale } = await params;
 
-  const { resources } = await initTranslations(locale, ["aboutTeamGrid"]);
+  const { resources } = await initTranslations(locale, ["aboutTeamGrid", "aboutTeamForm"]);
 
   return (
     <div className="w-full">
@@ -21,11 +21,11 @@ export default async function OurTeam({
       <TranslationsProvider
         resources={resources}
         locale={locale}
-        namespaces={["aboutTeamGrid"]}
+        namespaces={["aboutTeamGrid", "aboutTeamForm"]}
       >
         <AboutTeamGrid />
+        <AboutTeamForm/>
       </TranslationsProvider>
-      <AboutTeamForm/>
     </div>
   );
 }

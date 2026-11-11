@@ -1,0 +1,13 @@
+{
+  "title": "Nie wiesz, do którego lekarza się zwrócić?",
+  "subtitle": "Zostaw zgłoszenie — oddzwonimy i pomożemy wybrać specjalistę",
+  "phone": "Numer telefonu",
+  "name": "Imię (opcjonalnie)",
+  "comment": "Komentarz (opcjonalnie)",
+  "contactLegend": "Jak możemy się z Tobą skontaktować?",
+  "call": "Telefon",
+  "submit": "Wyślij zgłoszenie",
+  "loading": "Wysyłamy...",
+  "success": "Dziękujemy! Wkrótce się z Tobą skontaktujemy.",
+  "error": "Nie udało się wysłać. Spróbuj ponownie."
+}

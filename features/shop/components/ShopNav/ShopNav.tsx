@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ShopNav.module.css";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { Resource } from "i18next";
 import CartDrawer from "../../cart/components/cartDrawer/CartDrawer";
-
+import { useLikedProducts } from "../../hooks/useLikedProducts";
+import { useCartedProducts } from "../../hooks/useCartedProducts";
 
 export default function ShopNav({
   locale,
@@ -22,12 +23,48 @@ export default function ShopNav({
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLikeOpen, setIsLikeOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const {likedProducts} = useLikedProducts();
+  const {cartedProducts} = useCartedProducts();
+  const navRef = useRef<HTMLElement>(null);
+  const [hidden, setHidden] = useState(false);
+  const [isNavHidden, setIsNavHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const router = useRouter();
   const { t } = useTranslation();
 
+  const likeProductsCount = likedProducts.length;
+  const cartedProductsCount = cartedProducts.reduce((total, product) => total + product.quantity, 0);
+
+  useEffect(() => {
+    let ticking = false;
+  
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+  
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const diff = y - lastScrollY.current;
+  
+        if (y <= 80) {
+          setIsNavHidden(false);
+          lastScrollY.current = y;
+        } else if (Math.abs(diff) > 8) {
+          setIsNavHidden(diff > 0);
+          lastScrollY.current = y;
+        }
+  
+        ticking = false;
+      });
+    };
+  
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <>
-      <nav className={styles.navWrapper}>
+      <nav className={`${styles.navWrapper} ${isNavHidden ? styles.navHidden : ""}`}>
         <div className={styles.container}>
           <div className={styles.topRow}>
             <div className={styles.left}>
@@ -55,6 +92,12 @@ export default function ShopNav({
                     width={24}
                     height={24}
                   />
+                  { likeProductsCount > 0 && (
+                    <div key={likeProductsCount} className={styles.countNumberOfLikes}>
+                      {likeProductsCount > 99 ? "99+" : likeProductsCount}
+                    </div>
+                  )}
+                  
                 </button>
                 <button
                   className={styles.iconButton}
@@ -66,6 +109,11 @@ export default function ShopNav({
                     width={24}
                     height={24}
                   />
+                  { cartedProductsCount > 0 && (
+                    <div key={cartedProductsCount} className={styles.countNumberOfCarts}>
+                      {cartedProductsCount > 99 ? "99+" : cartedProductsCount}
+                    </div>
+                  )}
                 </button>
               </div>
             </div>

@@ -9,5 +9,6 @@
   "priceUah": "Ціна: {{price}} грн",
   "priceEuro": "Ціна: {{price}} євро",
   "priceUsdt": "Ціна: {{price}} USDT",
-  "priceNotAvailable": "Ціна: не вказана"
+  "priceNotAvailable": "Ціна: не вказана",
+  "book": "Записатися"
 }

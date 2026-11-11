@@ -2,22 +2,37 @@
   "lead": "Their smiles are our pride",
   "subtext": {
     "line1": "Behind every smile is a person who trusted us.",
-    "line2": "A story we lived together."
+    "line2": "A story we lived through together."
   },
+  "readOnGoogle": "View review on Google",
   "slide1": {
-    "quote": "It was an incredible journey. I’ll never forget this experience.",
-    "name": "Oleksandr Ivanov"
+    "quote": "I always enjoy coming back to One Two Smile. I've had injection procedures and skin cleanings. Professional doctors, true experts in their field. They work exclusively with high-quality, original products and always explain everything clearly before a procedure. The atmosphere is always welcoming!"
   },
   "slide2": {
-    "quote": "The team was amazing, and the result exceeded expectations.",
-    "name": "Maria Shevchenko"
+    "quote": "I came to One Two Smile because I wasn't happy with my smile. The orthodontist, Yulia, helped me choose a bracket system that suited my needs, explained how the treatment works and the additional orthodontic elements such as mini-implants and elastics, and answered all of my many questions. She explained everything during the fitting. The treatment is going great; the assistants, the administrator and the doctors are very friendly and always offer coffee. I really like this clinic."
   },
   "slide3": {
-    "quote": "I'm happy I chose you. You changed my life!",
-    "name": "Iryna Koval"
+    "quote": "I'm very happy with this clinic and have been coming for more than three years! I've had my teeth treated, my wisdom teeth removed and braces treatment here. Everything went great, the doctors are attentive and professional. Thanks to the braces I have straight, beautiful teeth and I'm very pleased with the result 🥰🥰 I wholeheartedly recommend this clinic!"
   },
   "slide4": {
-    "quote": "Everything was top-notch. Thank you for your professionalism!",
-    "name": "Dmytro Lysenko"
+    "quote": "They filled my tooth really nicely."
+  },
+  "slide5": {
+    "quote": "Everything was great. Polite staff, professional doctors. I recommend it."
+  },
+  "slide6": {
+    "quote": "I had an appointment with Yulia this week and I'm very happy with everything ❤️ thank you!!!"
+  },
+  "slide7": {
+    "quote": "A really nice, modern, tidy clinic with polite administrators and qualified, pleasant doctors 🥹 Simply top 😍"
+  },
+  "slide8": {
+    "quote": "A modern clinic with a comprehensive approach to treatment; all visits take place in a pleasant atmosphere)"
+  },
+  "slide9": {
+    "quote": "Everything went great, the doctor is very attentive and creates a comfortable atmosphere)"
+  },
+  "slide10": {
+    "quote": "A great clinic with an individual approach to every client. I go to appointments like it's a holiday! It's very clean and tidy inside."
   }
 }

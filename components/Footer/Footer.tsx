@@ -5,9 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import clinicInfo from "@/data/clinicInfo";
+import { usePathname } from "next/navigation";
+import i18nConfig from "@/i18nConfig";
 
 export default function Footer() {
   const { t } = useTranslation("footer");
+  const pathname = usePathname();
+  const pathLocale = pathname.split("/")[1];
+
+  const locale = i18nConfig.locales.includes(pathLocale)
+    ? pathLocale
+    : i18nConfig.defaultLocale;
 
   return (
     <div className={styles.container}>
@@ -48,7 +56,7 @@ export default function Footer() {
               alt="Get directions"
             />
             <Link
-              href="https://maps.app.goo.gl/LZ2czQejsunVQqNA8"
+              href="https://maps.app.goo.gl/bnpUocXTCRD4bthe8"
               className={styles.mapText}
               target="_blank"
               rel="noopener noreferrer"
@@ -77,10 +85,10 @@ export default function Footer() {
               height={20}
             />
           </Link>
-          <Link href={clinicInfo.tiktok} className={styles.tiktok}>
+          <Link href={clinicInfo.youtube} className={styles.youtube}>
             <Image
-              src="/main/tiktok-logo-4501.png"
-              alt="TikTok Logo"
+              src="/main/youtube-logo.png"
+              alt="Youtube Logo"
               width={20}
               height={20}
             />
@@ -94,6 +102,9 @@ export default function Footer() {
             />
           </Link>
         </div>
+        <Link href={`/${locale}/policy`} className={styles.policyLink}>
+          {t("policy")}
+        </Link>
       </div>
     </div>
   );

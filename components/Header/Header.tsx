@@ -7,20 +7,28 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import LanguageChanger from "../LanguageChanger/LanguageChanger";
+import i18nConfig from "@/i18nConfig";
 
 export default function Header() {
   const [isMoreOptionsVisible, setMoreOptionsVisible] = useState(false);
   const pathname = usePathname();
+  const pathLocale = pathname.split("/")[1];
   const { t } = useTranslation();
+
+  const locale = i18nConfig.locales.includes(pathLocale)
+  ? pathLocale
+  : i18nConfig.defaultLocale;
+
+  const localizedPath = (path: string) => `/${locale}${path}`;
 
   return (
     <>
       <header className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.wrapperleng}>
-            <Link href="/" className={styles.logo}>
+            <Link href={localizedPath("/")} className={styles.logo}>
               <Image
-                src="/header/Logo.png"
+                src="/header/Logo.svg"
                 alt="Header Background"
                 width={80}
                 height={0}
@@ -34,16 +42,16 @@ export default function Header() {
 
           <nav className={styles.burger}>
             <Link
-              href="/"
+              href={localizedPath("/")}
               className={`${styles.burgerOptionsMain} ${
-                pathname === "/" || pathname.match(/^\/(en|uk|pl)$/) ? styles.burgerOptionsMainActive : ""
+                pathname === "/" || pathname.match(/^\/(en|ua|pl)$/) ? styles.burgerOptionsMainActive : ""
               }`}
             >
               {t("main")}
             </Link>
             <h1 className={styles.burgerOptionsMainDecor}>|</h1>
             <Link
-              href="/ourTeam"
+              href={localizedPath("/ourTeam")}
               className={`${styles.burgerOptionsTeam} ${
                 pathname.includes("/ourTeam")
                   ? styles.burgerOptionsTeamActive
@@ -54,18 +62,18 @@ export default function Header() {
             </Link>
             <h1 className={styles.burgerOptionsTeam}>|</h1>
             <Link
-              href="/medicalTourism"
-              className={`${styles.burgerOptionsMed} ${
-                pathname.includes("/medicalTourism")
-                  ? styles.burgerOptionsMedActive
+              href={localizedPath("/shop")}
+              className={`${styles.burgerOptionsShop} ${
+                pathname.includes("/shop")
+                  ? styles.burgerOptionsShopActive
                   : ""
               }`}
             >
-              {t("medicalTourism")}
+              {t("shop")}
             </Link>
-            <h1 className={styles.burgerOptionsMed}>|</h1>
+            <h1 className={styles.burgerOptionsShop}>|</h1>
             <Link
-              href="/service"
+              href={localizedPath("/service")}
               className={`${styles.burgerOptionsService} ${
                 pathname.includes("/service")
                   ? styles.burgerOptionsServiceActive
@@ -112,7 +120,8 @@ export default function Header() {
           </nav>
 
           <div className={styles.info}>
-            <div
+            <a
+              href="tel:+380974774749"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -127,8 +136,8 @@ export default function Header() {
                 height={0}
                 objectFit="cover"
               />
-              <a href="tel:+380974774749">+38 097 477 47 49</a>
-            </div>
+              <span>+38 097 477 47 49</span>
+            </a>
             <div style={{ fontSize: "9px", display: "inline-block" }}>
             {t("address")}
             </div>
@@ -149,42 +158,42 @@ export default function Header() {
       >
         <div className={styles.moreOptionsContainer}>
           <Link
-            href="/"
+            href={localizedPath("/")}
             onClick={() => setMoreOptionsVisible((prev) => !prev)}
             className={styles.optionMain}
           >
             {t("main")} 
           </Link>
           <Link
-            href="/shop"
+            href={localizedPath("/shop")}
             onClick={() => setMoreOptionsVisible((prev) => !prev)}
             className={styles.optionShop}
           >
             {t("shop")}
           </Link>
           <Link
-            href="/ourTeam"
+            href={localizedPath("/ourTeam")}
             onClick={() => setMoreOptionsVisible((prev) => !prev)}
             className={styles.optionTeam}
           >
             {t("ourTeam")}  
           </Link>
-          <Link
-            href="/medicalTourism"
+          {/* <Link
+            href={localizedPath("/medicalTourism")}
             onClick={() => setMoreOptionsVisible((prev) => !prev)}
             className={styles.optionMed}
           >
             {t("medicalTourism")}   
-          </Link>
+          </Link> */}
           <Link
-            href="/service"
+            href={localizedPath("/service")}
             onClick={() => setMoreOptionsVisible((prev) => !prev)}
             className={styles.optionService}
           >
             {t("services")}
           </Link>
           <Link
-            href="/policy"
+            href={localizedPath("/policy")}
             onClick={() => setMoreOptionsVisible((prev) => !prev)}
             className={styles.optionAbout}
           >

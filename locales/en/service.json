@@ -9,5 +9,6 @@
   "priceUah": "Price: {{price}} UAH",
   "priceEuro": "Price: {{price}} EUR",
   "priceUsdt": "Price: {{price}} USDT",
-  "priceNotAvailable": "Price: not available"
+  "priceNotAvailable": "Price: not available",
+  "book": "Book"
 }

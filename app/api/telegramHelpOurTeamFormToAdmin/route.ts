@@ -2,11 +2,12 @@ interface HelpOurTeamPayload {
   phone: string;
   name?: string;
   comment?: string;
+  contactMethod: string;
 }
 
 export async function POST(request: Request) {
   try {
-    const {phone, name, comment}: HelpOurTeamPayload = await request.json();
+    const {phone, name, comment, contactMethod}: HelpOurTeamPayload = await request.json();
 
     if (!phone?.trim()) {
       return Response.json(
@@ -25,7 +26,8 @@ export async function POST(request: Request) {
       `📞 НОВА ЗАЯВКА (підбір лікаря)\n\n` +
       `Телефон: ${phone.trim().slice(0, 30)}\n` +
       `Ім'я: ${name?.trim().slice(0, 100) || "Не вказано"}\n` +
-      `Коментар: ${comment?.trim().slice(0, 1000) || "Не вказано"}`;
+      `Коментар: ${comment?.trim().slice(0, 1000) || "Не вказано"}\n` +
+      `Метод звʼязку: ${contactMethod?.trim().slice(0, 1000)}`;
 
     const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: "POST",

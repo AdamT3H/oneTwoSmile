@@ -3,6 +3,9 @@ import Banner from "@/features/medicalTourism/components/Banner/Banner";
 import Links from "@/features/medicalTourism/components/Links/Links";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
+import { generateMetadata } from "./metadata";
+
+export { generateMetadata };
 
 interface PageProps {
   params: Promise<{

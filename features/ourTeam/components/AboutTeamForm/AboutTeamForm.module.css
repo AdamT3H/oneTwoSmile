@@ -81,6 +81,76 @@
   resize: none;
 }
 
+.contactGroup {
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+.contactLegend {
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+
+.contactOptions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.contactOption {
+  position: relative;
+  cursor: pointer;
+}
+
+.contactRadio {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.contactPill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #444;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  text-align: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+@media (hover: hover) {
+  .contactOption:hover .contactPill {
+    border-color: rgb(180, 180, 180);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.contactRadio:checked + .contactPill {
+  background: #e1e1e1;
+  border-color: #444;
+  color: #222;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.contactRadio:focus-visible + .contactPill {
+  outline: 2px solid rgb(120, 120, 120);
+  outline-offset: 2px;
+}
+
 .button {
   padding: 14px 32px;
   font: inherit;
@@ -167,6 +237,19 @@
   .button {
     width: 100%;
     align-self: stretch;
+  }
+  
+  .contactLegend {
+    font-size: 13px;
+  }
+
+  .contactOptions {
+    gap: 8px;
+  }
+
+  .contactPill {
+    padding: 10px 4px;
+    font-size: 13px;
   }
 }
 
